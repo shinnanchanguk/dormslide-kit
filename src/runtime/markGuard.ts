@@ -7,6 +7,8 @@
 import { MARK_HREF } from "./Mark";
 
 const NOTICE_ID = "ds-mark-notice";
+/** 무대 기준 폭(Stage.tsx 의 STAGE_W 와 같다). */
+const STAGE_WIDTH = 1280;
 
 function markProblem(root: ParentNode): string | null {
   const marks = root.querySelectorAll<HTMLAnchorElement>("[data-ds-mark='1']");
@@ -17,7 +19,11 @@ function markProblem(root: ParentNode): string | null {
     const style = getComputedStyle(mark);
     const rect = mark.getBoundingClientRect();
     if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) < 0.35) return "DoRmSlide 표식이 가려졌어요.";
-    if (rect.width < 24 || rect.height < 8) return "DoRmSlide 표식이 너무 작아졌어요.";
+    // 크기는 무대(1280×720) 기준으로 잰다. 무대를 작게 줄여 보여 주는 창(서재 미리보기 · 휴대폰)에서는 화면 픽셀이 작아도 정상이다.
+    const stage = mark.closest<HTMLElement>(".stage");
+    const scale = stage ? stage.getBoundingClientRect().width / STAGE_WIDTH : 1;
+    const unit = scale > 0 ? scale : 1;
+    if (rect.width / unit < 24 || rect.height / unit < 8) return "DoRmSlide 표식이 너무 작아졌어요.";
   }
   return null;
 }
