@@ -15,6 +15,9 @@
 .ds-survey__form, .ds-board__form { display: flex; gap: .5em; }
 .ds-survey__form textarea, .ds-board__form input { flex: 1 1 auto; min-width: 0; padding: .6em .7em; border-radius: .6em; border: 1px solid var(--ds-line); font: 500 .7em/1.4 var(--ds-ui); background: var(--ds-surface); }
 .ds-survey__form button, .ds-board__form button, .ds-join button { padding: .6em 1em; border-radius: .6em; border: 0; background: var(--ds-button); color: var(--ds-button-ink); font: 700 .7em/1 var(--ds-ui); cursor: pointer; }
+.ds-board__form { min-width: 0; }
+.ds-board__form input { flex: 1 1 0; width: 0; }
+.ds-survey__form button, .ds-board__form button, .ds-join button { flex-shrink: 0; white-space: nowrap; }
 .ds-survey__answers { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4em; }
 .ds-survey__answers li { padding: .45em .7em; border-radius: .6em; background: var(--ds-surface); border: 1px solid var(--ds-line); font: 500 .7em/1.4 var(--ds-ui); }
 
@@ -27,6 +30,7 @@
 .ds-timer__face { font: 700 3.2em/1 ui-monospace, "JetBrains Mono", monospace; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
 .ds-timer.is-done .ds-timer__face { color: #d0391b; }
 .ds-timer__buttons { display: flex; gap: .5em; }
+.ds-timer__done { margin: 0; font: 700 .8em/1.4 var(--ds-ui); text-align: center; word-break: keep-all; }
 .ds-timer__buttons button { display: inline-flex; align-items: center; justify-content: center; width: 2.4em; height: 2.4em; border-radius: .7em; border: 1px solid var(--ds-line); background: var(--ds-surface); cursor: pointer; }
 
 .ds-youtube { position: relative; width: 100%; max-width: 46em; aspect-ratio: 16 / 9; margin-top: .6em; border-radius: .8em; overflow: hidden; background: #000; }

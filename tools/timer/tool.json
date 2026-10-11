@@ -6,7 +6,7 @@
  "needsServer": false,
  "studentData": false,
  "attach": "TOOL",
- "how": "payload.tool \"timer\", config.seconds",
+ "how": "도구 장 payload.tool \"timer\" + config.seconds(+ config.doneMessage). 글과 함께 쓰려면 본문 장에 payload.timer { seconds, doneMessage }",
  "maker": "DoRms",
  "shelf": "official",
  "version": 1

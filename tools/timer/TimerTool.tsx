@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/runtime/Icon";
 
-/** 슬라이드에서 바로 쓰는 시계. 시작·멈춤·다시·1분 더하기. 혼자 쓰는 판에서도 돈다. */
+/** 슬라이드에서 바로 쓰는 시계. 시작·멈춤·다시·1분 더하기. 혼자 쓰는 판에서도 돈다. config.doneMessage 는 0초가 되면 보이는 한 줄. */
 export function TimerTool({ config }: { config?: Record<string, unknown> }) {
   const initial = Math.max(10, Math.min(60 * 90, Number(config?.seconds ?? 300) || 300));
   const [left, setLeft] = useState(initial);
@@ -39,6 +39,9 @@ export function TimerTool({ config }: { config?: Record<string, unknown> }) {
           <Icon name="plus" size={18} />
         </button>
       </div>
+      {left === 0 && typeof config?.doneMessage === "string" && config.doneMessage.trim() ? (
+        <p className="ds-timer__done" role="status">{config.doneMessage.slice(0, 120)}</p>
+      ) : null}
     </div>
   );
 }

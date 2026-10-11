@@ -13,7 +13,7 @@ import { FollowDemo } from "./follow-demo";
 /**
  * 도구 상자. 장에 붙는 도구를 여기서 이어 준다.
  *
- * - 본문 장(BODY)에 덧붙는 것: video(유튜브) · linkPreview(링크 미리보기 카드) · pet:"doreumi"(도름이 산책)
+ * - 본문 장(BODY)에 덧붙는 것: video(유튜브) · linkPreview(링크 미리보기 카드) · timer(시계) · pet:"doreumi"(도름이 산책)
  * - 설문 장(SURVEY): 객관식·서술형. 실시간 모드가 꺼져 있으면 이 화면에서만 세는 '혼자 보는 판'이다.
  * - 도구 장(TOOL): payload.tool 로 고른다. link-qr · timer 는 혼자 쓰는 판에서도 돌고,
  *   link-board · classify · likes · join 은 실시간 모드(내 수파베이스)가 있어야 돈다.
@@ -26,6 +26,7 @@ const DoreumiStage = lazy(() => import("./doreumi-walk/DoreumiStage").then((modu
 
 export function renderBodyAddons(payload: BodyPayload & { linkPreview?: LinkPreview }, _index: number): ReactNode {
   const parts: ReactNode[] = [];
+  if (payload.timer) parts.push(<TimerTool key="timer" config={payload.timer} />);
   if (payload.video?.url) parts.push(<YoutubeEmbed key="video" url={payload.video.url} title={payload.title} />);
   if (payload.linkPreview?.url) parts.push(<LinkPreviewCard key="preview" preview={payload.linkPreview} />);
   if (payload.pet === "doreumi")

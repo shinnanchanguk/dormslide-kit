@@ -66,6 +66,8 @@ export type BodyPayload = {
    * 발표 흐름과 상관없는 장식이라 인쇄·PDF 에서는 멈춘 그림 한 장으로 남는다.
    */
   pet?: "doreumi";
+  /** 본문 장에 덧붙이는 시계(도구 장을 따로 만들지 않고 글과 함께 쓸 때). doneMessage 는 0초가 되면 보이는 한 줄. */
+  timer?: { seconds?: number; doneMessage?: string };
   /** 표로 보여 주는 것이 가장 빠른 내용. `tool-compare` 배치가 세로로 훑어 읽게 그린다. */
   tables?: BodyTable[];
 };
