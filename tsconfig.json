@@ -21,5 +21,5 @@
       "@slides/*": ["slides/*"]
     }
   },
-  "include": ["src", "designs", "tools", "samples", "slides", "vite.config.ts", "scripts/edit-server.ts"]
+  "include": ["src", "designs", "tools", "samples", "slides", "vite.config.ts", "scripts/edit-server.ts", "scripts/inline-images.ts", "scripts/subset-fonts.ts"]
 }

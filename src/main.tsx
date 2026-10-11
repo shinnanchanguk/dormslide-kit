@@ -7,7 +7,7 @@ import "@tools/tools.css";
 import { DeckApp } from "./runtime/DeckApp";
 import type { Deck } from "./lib/deck";
 import content from "@slides/content.json";
-import sampleStory from "@samples/dorms-story/deck.json";
+import { DEMOS, SAMPLES, VISUALS } from "./previews";
 
 /**
  * 시작점. 기본은 slides/content.json(내 슬라이드)을 그린다.
@@ -17,15 +17,12 @@ import sampleStory from "@samples/dorms-story/deck.json";
  *   ?visual=<시각화 id>           시각화 조각 예시(visuals/<id>/demo.json)
  *   &embed=1                      서재 미리보기 창처럼 작은 틀 안에서 볼 때(아래 띠를 줄인다)
  */
-const SAMPLES: Record<string, Deck> = { "dorms-story": sampleStory as Deck };
-const demoFiles = import.meta.glob<Deck>("../tools/*/demo.json", { eager: true, import: "default" });
-const visualFiles = import.meta.glob<Deck>("../visuals/*/demo.json", { eager: true, import: "default" });
 const pick = (files: Record<string, Deck>, dir: string, id: string | null) => (id && /^[a-z][a-z0-9-]{1,59}$/.test(id) ? files[`../${dir}/${id}/demo.json`] : undefined);
 
 const params = new URLSearchParams(window.location.search);
 const sample = params.get("sample");
-const demo = pick(demoFiles, "tools", params.get("demo"));
-const visual = pick(visualFiles, "visuals", params.get("visual"));
+const demo = pick(DEMOS, "tools", params.get("demo"));
+const visual = pick(VISUALS, "visuals", params.get("visual"));
 const deck: Deck = demo ?? visual ?? (sample ? SAMPLES[sample] : undefined) ?? (content as Deck);
 const design = params.get("design") ?? undefined;
 const embed = params.get("embed") === "1";
