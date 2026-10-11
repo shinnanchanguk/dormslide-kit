@@ -33,8 +33,17 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
       return db;
     }));
 
-  async function loadSurvey(room: string, slide: number, optionCount: number): Promise<SurveySnapshot> {
+  // 방에 먼저 들어와야(ds_join) 그 방을 읽고 쓸 수 있다. 방마다 한 번만 들어온다.
+  const joined = new Map<string, Promise<unknown>>();
+  const join = async (room: string): Promise<Client> => {
     const db = await client();
+    if (!joined.has(room)) joined.set(room, db.rpc("ds_join", { p_room: room }));
+    await joined.get(room);
+    return db;
+  };
+
+  async function loadSurvey(room: string, slide: number, optionCount: number): Promise<SurveySnapshot> {
+    const db = await join(room);
     const { data } = await db.from("ds_responses").select("option, text").eq("room", room).eq("slide", slide).order("created_at", { ascending: false }).limit(500);
     const counts = Array.from({ length: optionCount }, () => 0);
     const texts: string[] = [];
@@ -46,7 +55,7 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
   }
 
   async function loadBoard(room: string, slide: number): Promise<BoardItem[]> {
-    const db = await client();
+    const db = await join(room);
     const { data } = await db.from("ds_board").select("id, nickname, text, url, bucket, likes, created_at").eq("room", room).eq("slide", slide).order("created_at", { ascending: true }).limit(300);
     return ((data ?? []) as Array<{ id: string; nickname: string; text: string; url: string | null; bucket: string | null; likes: number; created_at: string }>).map((row) => ({
       id: row.id,
@@ -61,7 +70,7 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
 
   function watch(table: string, room: string, reload: () => void): () => void {
     let stop = () => {};
-    void client().then((db) => {
+    void join(room).then((db) => {
       const channel = db
         .channel(`${table}:${room}:${Math.random().toString(36).slice(2)}`)
         .on("postgres_changes", { event: "*", schema: "public", table, filter: `room=eq.${room}` }, () => reload())
@@ -78,11 +87,11 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
       return watch("ds_responses", room, reload);
     },
     async vote(room, slide, option) {
-      const db = await client();
+      const db = await join(room);
       await db.rpc("ds_vote", { p_room: room, p_slide: slide, p_option: option });
     },
     async answer(room, slide, text) {
-      const db = await client();
+      const db = await join(room);
       await db.from("ds_responses").insert({ room, slide, kind: "text", text: text.slice(0, 400) });
     },
     subscribeBoard(room, slide, on) {
@@ -91,24 +100,24 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
       return watch("ds_board", room, reload);
     },
     async post(room, slide, item) {
-      const db = await client();
+      const db = await join(room);
       await db.from("ds_board").insert({ room, slide, nickname: item.nickname.slice(0, 20), text: item.text.slice(0, 400), url: item.url ?? null });
     },
     async like(room, slide, itemId) {
-      const db = await client();
+      const db = await join(room);
       await db.rpc("ds_like", { p_room: room, p_slide: slide, p_item: itemId });
     },
     async moveBucket(room, slide, itemId, bucket) {
-      const db = await client();
+      const db = await join(room);
       await db.rpc("ds_move_bucket", { p_room: room, p_slide: slide, p_item: itemId, p_bucket: bucket.slice(0, 40) });
     },
     async clearRoom(room) {
-      const db = await client();
+      const db = await join(room);
       await db.rpc("ds_clear_room", { p_room: room });
     },
     subscribePresenter(room, on) {
       const reload = () =>
-        void client().then(async (db) => {
+        void join(room).then(async (db) => {
           const { data } = await db.from("ds_presenter").select("slide_index").eq("room", room).maybeSingle();
           if (data && typeof (data as { slide_index: number }).slide_index === "number") on((data as { slide_index: number }).slide_index);
         });
@@ -116,7 +125,7 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
       return watch("ds_presenter", room, reload);
     },
     async setPresenter(room, index) {
-      const db = await client();
+      const db = await join(room);
       await db.rpc("ds_set_presenter", { p_room: room, p_index: index });
     },
   };

@@ -6,6 +6,7 @@
 --   2) SQL Editor 에 이 파일 전체를 붙여 넣고 Run. 다시 실행해도 안전하다.
 --
 -- 지키는 것
+--   · 방 이름을 아는 사람만 그 방에 들어오고(ds_join), 들어온 방의 것만 읽고 쓴다. 다른 방은 보이지 않는다.
 --   · 모든 쓰기는 로그인(익명 포함)한 사람만, 자기 번호로만 한다. 남의 표·글을 고치거나 지울 수 없다.
 --   · 객관식은 한 사람 한 표(바꾸면 고쳐진다). 서술형·게시물은 한 사람이 한 장에 올릴 수 있는 개수에 상한이 있다.
 --   · 발표자(장 넘기기·칸 옮기기·방 비우기)는 그 방을 처음 연 브라우저의 번호뿐이다.
@@ -13,6 +14,15 @@
 --   · 학생 이름 대신 별명만 받는다. 수업이 끝나면 ds_clear_room 으로 그 방을 비운다.
 
 create extension if not exists pgcrypto;
+
+-- 예전 판(2026-10-11 이전 초안)에서 만든 함수가 남아 있으면 지운다. 남아 있으면 옛 규칙으로 쓸 수 있는 문이 된다.
+drop function if exists public.ds_key_ok(text, text);
+drop function if exists public.ds_set_presenter(text, int, text);
+drop function if exists public.ds_like(text, int, uuid, text);
+drop function if exists public.ds_move_bucket(text, int, uuid, text, text);
+drop function if exists public.ds_clear_room(text, text);
+drop function if exists public.ds_vote(text, int, int, text);
+drop function if exists public.ds_limit_rows() cascade;
 
 create table if not exists public.ds_responses (
   id uuid primary key default gen_random_uuid(),
@@ -53,6 +63,14 @@ create table if not exists public.ds_presenter (
   updated_at timestamptz not null default now()
 );
 
+-- 방에 들어온 사람. 방 이름을 아는 사람이 ds_join 으로 들어온다. 이 표는 직접 읽거나 쓸 수 없다.
+create table if not exists public.ds_members (
+  room text not null check (room ~ '^[a-z0-9-]{6,60}$'),
+  uid uuid not null,
+  joined_at timestamptz not null default now(),
+  primary key (room, uid)
+);
+
 create index if not exists ds_responses_room_slide on public.ds_responses (room, slide);
 create index if not exists ds_board_room_slide on public.ds_board (room, slide);
 
@@ -60,27 +78,42 @@ alter table public.ds_responses enable row level security;
 alter table public.ds_board enable row level security;
 alter table public.ds_likes enable row level security;
 alter table public.ds_presenter enable row level security;
+alter table public.ds_members enable row level security;
 
--- 읽기: 방 안의 응답·게시물·발표자 위치는 들어온 사람이 읽는다(이름 없이 별명·익명).
+create or replace function public.ds_is_member(p_room text) returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists (select 1 from public.ds_members where room = p_room and uid = auth.uid());
+$$;
+
+create or replace function public.ds_join(p_room text) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if auth.uid() is null then raise exception 'sign in first'; end if;
+  if p_room !~ '^[a-z0-9-]{6,60}$' then raise exception 'bad room'; end if;
+  insert into public.ds_members (room, uid) values (p_room, auth.uid()) on conflict do nothing;
+end $$;
+
+-- 읽기: 그 방에 들어온 사람만 그 방의 응답·게시물·발표자 위치를 읽는다(실시간 알림도 같은 규칙을 따른다).
 drop policy if exists ds_responses_read on public.ds_responses;
-create policy ds_responses_read on public.ds_responses for select to authenticated using (true);
+create policy ds_responses_read on public.ds_responses for select to authenticated using (public.ds_is_member(room));
 drop policy if exists ds_board_read on public.ds_board;
-create policy ds_board_read on public.ds_board for select to authenticated using (true);
+create policy ds_board_read on public.ds_board for select to authenticated using (public.ds_is_member(room));
 drop policy if exists ds_presenter_read on public.ds_presenter;
-create policy ds_presenter_read on public.ds_presenter for select to authenticated using (true);
+create policy ds_presenter_read on public.ds_presenter for select to authenticated using (public.ds_is_member(room));
 
 -- 쓰기: 서술형 답과 게시물은 자기 번호로만 넣는다. 객관식은 ds_vote 함수로만(한 사람 한 표).
 drop policy if exists ds_responses_insert on public.ds_responses;
 create policy ds_responses_insert on public.ds_responses for insert to authenticated
-  with check (voter = auth.uid() and kind = 'text');
+  with check (voter = auth.uid() and kind = 'text' and public.ds_is_member(room));
 drop policy if exists ds_responses_update on public.ds_responses;
 drop policy if exists ds_board_insert on public.ds_board;
 create policy ds_board_insert on public.ds_board for insert to authenticated
-  with check (author = auth.uid() and likes = 0 and bucket is null);
+  with check (author = auth.uid() and likes = 0 and bucket is null and public.ds_is_member(room));
 
-revoke all on public.ds_responses, public.ds_board, public.ds_likes, public.ds_presenter from anon;
+revoke all on public.ds_responses, public.ds_board, public.ds_likes, public.ds_presenter, public.ds_members from anon;
 revoke update, delete on public.ds_responses, public.ds_board from authenticated;
 revoke insert, update, delete on public.ds_presenter, public.ds_likes from authenticated;
+revoke all on public.ds_members from authenticated;
 
 -- 한 사람이 한 장에 너무 많이 올리지 못하게(장난 방지), 방 하나가 너무 커지지 않게 막는다.
 create or replace function public.ds_limit_board() returns trigger language plpgsql security definer set search_path = public as $$
@@ -109,7 +142,7 @@ create trigger ds_responses_limit before insert on public.ds_responses for each 
 create or replace function public.ds_vote(p_room text, p_slide int, p_option int) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if auth.uid() is null then raise exception 'sign in first'; end if;
+  if not public.ds_is_member(p_room) then raise exception 'join the room first'; end if;
   insert into public.ds_responses (room, slide, kind, option, voter) values (p_room, p_slide, 'choice', p_option, auth.uid())
   on conflict (room, slide, voter) where kind = 'choice' do update set option = excluded.option, created_at = now();
 end $$;
@@ -117,7 +150,8 @@ end $$;
 create or replace function public.ds_like(p_room text, p_slide int, p_item uuid) returns void
 language plpgsql security definer set search_path = public as $$
 begin
-  if auth.uid() is null then raise exception 'sign in first'; end if;
+  if not public.ds_is_member(p_room) then raise exception 'join the room first'; end if;
+  if not exists (select 1 from public.ds_board where id = p_item and room = p_room and slide = p_slide) then raise exception 'no such item'; end if;
   insert into public.ds_likes (item_id, voter) values (p_item, auth.uid()) on conflict do nothing;
   if found then
     update public.ds_board set likes = likes + 1 where id = p_item and room = p_room and slide = p_slide;
@@ -129,6 +163,8 @@ create or replace function public.ds_set_presenter(p_room text, p_index int) ret
 language plpgsql security definer set search_path = public as $$
 begin
   if auth.uid() is null then raise exception 'sign in first'; end if;
+  if p_room !~ '^[a-z0-9-]{6,60}$' then raise exception 'bad room'; end if;
+  insert into public.ds_members (room, uid) values (p_room, auth.uid()) on conflict do nothing;
   insert into public.ds_presenter (room, slide_index, owner) values (p_room, p_index, auth.uid())
   on conflict (room) do update set slide_index = excluded.slide_index, updated_at = now()
     where public.ds_presenter.owner = auth.uid();
@@ -154,13 +190,15 @@ begin
   delete from public.ds_responses where room = p_room;
   delete from public.ds_board where room = p_room;
   delete from public.ds_presenter where room = p_room;
+  delete from public.ds_members where room = p_room;
 end $$;
 
 revoke all on function public.ds_vote(text, int, int), public.ds_like(text, int, uuid), public.ds_set_presenter(text, int),
   public.ds_is_presenter(text), public.ds_move_bucket(text, int, uuid, text), public.ds_clear_room(text),
-  public.ds_limit_board(), public.ds_limit_text() from public, anon;
+  public.ds_join(text), public.ds_is_member(text), public.ds_limit_board(), public.ds_limit_text() from public, anon;
 grant execute on function public.ds_vote(text, int, int), public.ds_like(text, int, uuid), public.ds_set_presenter(text, int),
-  public.ds_is_presenter(text), public.ds_move_bucket(text, int, uuid, text), public.ds_clear_room(text) to authenticated;
+  public.ds_is_presenter(text), public.ds_move_bucket(text, int, uuid, text), public.ds_clear_room(text),
+  public.ds_join(text), public.ds_is_member(text) to authenticated;
 
 -- 실시간 알림을 켠다.
 do $$ begin
