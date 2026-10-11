@@ -1,0 +1,23 @@
+name: check
+# 등록 요청(PR)마다, 그리고 메인에 합쳐질 때마다 표식·타입·공개 전 점검·목록·빌드를 확인한다.
+# 결과는 도름스 운영자 쪽지 카드에도 보인다.
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - run: npm run build:html
