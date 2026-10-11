@@ -1,0 +1,13 @@
+{
+ "id": "survey",
+ "name": "객관식 설문",
+ "group": "응답",
+ "summary": "보기를 고르면 막대가 실시간으로 자라요. 한 사람 한 표예요.",
+ "needsServer": true,
+ "studentData": true,
+ "attach": "SURVEY",
+ "how": "장 종류 SURVEY, payload.kind \"CHOICE\", payload.options [보기들].",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

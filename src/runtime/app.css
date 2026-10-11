@@ -37,7 +37,7 @@ body { background: #1b1a18; word-break: keep-all; overflow-wrap: break-word; }
 .ds-controls__btn.is-on { background: #f4f1eb; color: #121110; }
 .ds-controls__text { padding: 0 12px; }
 .ds-controls__page { min-width: 74px; height: 36px; text-align: center; font: inherit; color: inherit; background: transparent; border: 1px solid rgba(244, 241, 235, .16); border-radius: 10px; }
-.ds-app.is-editing [contenteditable="true"] { outline: 1.5px dashed color-mix(in srgb, var(--ds-mark) 70%, transparent); outline-offset: 3px; border-radius: 4px; }
+.ds-app.is-editing .slide-inline-edit { outline: 1.5px dashed color-mix(in srgb, var(--ds-mark) 70%, transparent); outline-offset: 3px; border-radius: 4px; }
 
 /* 링크 공유 창 */
 .ds-share {
@@ -52,3 +52,9 @@ body { background: #1b1a18; word-break: keep-all; overflow-wrap: break-word; }
 @media print {
   .ds-controls, .ds-share { display: none !important; }
 }
+
+/* 서재 미리보기 창 안에서 볼 때(?embed=1): 아래 띠를 얇게 줄이고 글자 단추는 그림만. */
+.ds-embed .ds-controls { gap: 4px; padding: 5px 8px; }
+.ds-embed .ds-controls__btn { min-width: 30px; height: 30px; padding: 0 7px; border-radius: 8px; }
+.ds-embed .ds-controls__page { min-width: 60px; height: 30px; }
+.ds-embed body { background: #121110; }

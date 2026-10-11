@@ -1,0 +1,13 @@
+{
+ "id": "link-qr",
+ "name": "링크와 QR",
+ "group": "내용",
+ "summary": "주소 하나를 큰 QR 과 단추로 보여 줘요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "TOOL",
+ "how": "payload.tool \"link-qr\", config.url, config.label",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

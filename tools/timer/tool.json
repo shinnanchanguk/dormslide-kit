@@ -1,0 +1,13 @@
+{
+ "id": "timer",
+ "name": "타이머",
+ "group": "내용",
+ "summary": "시작·멈춤·1분 더하기가 되는 시계예요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "TOOL",
+ "how": "payload.tool \"timer\", config.seconds",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

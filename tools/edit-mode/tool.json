@@ -1,0 +1,13 @@
+{
+ "id": "edit-mode",
+ "name": "화면에서 바로 고치기",
+ "group": "기본",
+ "summary": "개발 서버에서 [편집] 을 누르면 글자를 눌러 그 자리에서 고치고 파일에 바로 저장돼요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "viewer",
+ "how": "개발 서버(npm run dev)에서 늘 켜져요. 고친 기록은 slides/.edits.jsonl 에 남아요.",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

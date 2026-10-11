@@ -1,0 +1,13 @@
+{
+ "id": "html-save",
+ "name": "HTML 한 파일로 저장",
+ "group": "기본",
+ "summary": "그림·글꼴까지 담긴 파일 하나로 저장해요. 인터넷 없이도 열려요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "viewer",
+ "how": "npm run build:html → dist/덱 제목.html",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

@@ -1,0 +1,13 @@
+{
+ "id": "doreumi-walk",
+ "name": "도름이 산책",
+ "group": "재미",
+ "summary": "도름이가 슬라이드 위 글자를 발판 삼아 걸어 다녀요. 끌어서 옮길 수도 있어요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "BODY",
+ "how": "본문 장 payload.pet \"doreumi\" (도름이 © 아인T, CC BY-NC 4.0)",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

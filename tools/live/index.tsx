@@ -3,8 +3,8 @@ import type { ToolPayload } from "@/lib/deck";
 import { Icon } from "@/runtime/Icon";
 import { strictPublicWebUrl } from "@/lib/safe-url";
 import { liveClient, liveRoom } from "./client";
-import { presenterKey } from "./presenter";
 import type { BoardItem } from "./types";
+import { downloadCsv } from "../results-export/exportCsv";
 
 /**
  * 학생 화면과 주고받는 도구들. 실시간 모드(내 수파베이스)가 켜져 있으면 반 전체가 한 화면을 같이 쓰고,
@@ -49,7 +49,7 @@ function useBoard(slide: number) {
   );
   const move = useCallback(
     (id: string, bucket: string) => {
-      if (client) return void client.moveBucket(liveRoom(), slide, id, bucket, presenterKey());
+      if (client) return void client.moveBucket(liveRoom(), slide, id, bucket);
       setItems((previous) => previous.map((item) => (item.id === id ? { ...item, bucket } : item)));
     },
     [client, slide],
@@ -88,8 +88,15 @@ function PostForm({ withUrl, onPost }: { withUrl: boolean; onPost: (item: { nick
   );
 }
 
-function ModeLine({ live, count }: { live: boolean; count: number }) {
-  return <p className="ds-board__mode">{live ? `실시간으로 모으는 중 · ${count}개` : "혼자 보는 판: 이 화면에서 올린 것만 보여요"}</p>;
+function ModeLine({ live, items }: { live: boolean; items: BoardItem[] }) {
+  return (
+    <p className="ds-board__mode">
+      {live ? `실시간으로 모으는 중 · ${items.length}개` : "혼자 보는 판: 이 화면에서 올린 것만 보여요"}
+      {items.length ? (
+        <button type="button" className="ds-export" onClick={() => downloadCsv("게시판 결과.csv", ["별명", "내용", "링크", "칸", "좋아요"], items.map((item) => [item.nickname, item.text, item.url ?? "", item.bucket ?? "", item.likes]))}>결과 내려받기</button>
+      ) : null}
+    </p>
+  );
 }
 
 function LinkBoard({ slide, withLikes }: { slide: number; withLikes: boolean }) {
@@ -116,7 +123,7 @@ function LinkBoard({ slide, withLikes }: { slide: number; withLikes: boolean }) 
           </li>
         ))}
       </ul>
-      <ModeLine live={board.live} count={board.items.length} />
+      <ModeLine live={board.live} items={board.items} />
     </div>
   );
 }
@@ -163,7 +170,7 @@ function Classify({ slide, buckets }: { slide: number; buckets: string[] }) {
           </section>
         ))}
       </div>
-      <ModeLine live={board.live} count={board.items.length} />
+      <ModeLine live={board.live} items={board.items} />
     </div>
   );
 }

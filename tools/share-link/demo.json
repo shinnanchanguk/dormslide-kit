@@ -1,0 +1,50 @@
+{
+ "meta": {
+  "title": "링크 공유 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "링크 공유",
+    "title": "학생이 같은 슬라이드를 보게",
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "아래 띠의 "
+        },
+        {
+         "t": "hl",
+         "v": "링크 공유"
+        },
+        {
+         "t": "text",
+         "v": " 를 누르면 지금 주소의 QR 이 떠요."
+        }
+       ]
+      },
+      {
+       "b": "note",
+       "parts": [
+        {
+         "t": "text",
+         "v": "배포한 주소에서 쓰면 학생이 휴대폰으로 같은 슬라이드를 봐요."
+        }
+       ]
+      }
+     ]
+    ]
+   }
+  }
+ ]
+}

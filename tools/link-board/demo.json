@@ -1,0 +1,25 @@
+{
+ "meta": {
+  "title": "링크 모으기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "TOOL",
+   "payload": {
+    "eyebrow": "함께 모으기",
+    "title": "내가 만든 작품 링크를 올려 주세요",
+    "tool": "link-board",
+    "config": {
+     "likes": true
+    },
+    "hint": "별명과 링크를 넣고 [올리기] 를 눌러 보세요."
+   }
+  }
+ ]
+}

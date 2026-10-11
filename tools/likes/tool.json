@@ -1,0 +1,13 @@
+{
+ "id": "likes",
+ "name": "좋아요 누르기",
+ "group": "응답",
+ "summary": "다른 사람 의견에 한 번씩 좋아요를 눌러요.",
+ "needsServer": true,
+ "studentData": true,
+ "attach": "TOOL",
+ "how": "payload.tool \"likes\".",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

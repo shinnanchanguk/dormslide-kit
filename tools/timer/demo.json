@@ -1,0 +1,25 @@
+{
+ "meta": {
+  "title": "타이머 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "TOOL",
+   "payload": {
+    "eyebrow": "활동 시간",
+    "title": "모둠 토의 3분",
+    "tool": "timer",
+    "config": {
+     "seconds": 180
+    },
+    "hint": "시작을 누르면 시계가 돌아요. 1분 더하기도 돼요."
+   }
+  }
+ ]
+}

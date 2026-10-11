@@ -7,6 +7,8 @@ import { TimerTool } from "./timer/TimerTool";
 import { YoutubeEmbed } from "./youtube/YoutubeEmbed";
 import { LinkPreviewCard, type LinkPreview } from "./link-preview/LinkPreviewCard";
 import { LIVE_TOOLS, renderLiveTool } from "./live";
+import { ActivityFrameTool } from "./activity-frame/ActivityFrame";
+import { FollowDemo } from "./follow-demo";
 
 /**
  * 도구 상자. 장에 붙는 도구를 여기서 이어 준다.
@@ -45,6 +47,10 @@ export function renderToolSlide(payload: ToolPayload, index: number): ReactNode 
       return <LinkQrTool config={payload.config} />;
     case "timer":
       return <TimerTool config={payload.config} />;
+    case "activity-frame":
+      return <ActivityFrameTool config={payload.config} />;
+    case "follow-demo":
+      return <FollowDemo />;
     default:
       if (LIVE_TOOLS.has(payload.tool)) return renderLiveTool(payload, index);
       return <p className="tool-missing">이 장의 도구({payload.tool})를 찾지 못했어요. tools/ 폴더와 catalog.json 을 확인해 주세요.</p>;

@@ -1,0 +1,13 @@
+{
+ "id": "fullscreen",
+ "name": "전체 화면",
+ "group": "기본",
+ "summary": "발표할 때 슬라이드만 화면 가득 보여요. 키보드 F 도 같아요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "viewer",
+ "how": "늘 들어 있어요.",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

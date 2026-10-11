@@ -9,8 +9,8 @@ export type LiveClient = {
   subscribeBoard: (room: string, slide: number, on: (items: BoardItem[]) => void) => () => void;
   post: (room: string, slide: number, item: { nickname: string; text: string; url?: string }) => Promise<void>;
   like: (room: string, slide: number, itemId: string) => Promise<void>;
-  moveBucket: (room: string, slide: number, itemId: string, bucket: string, presenterKey: string) => Promise<void>;
-  clearRoom: (room: string, presenterKey: string) => Promise<void>;
+  moveBucket: (room: string, slide: number, itemId: string, bucket: string) => Promise<void>;
+  clearRoom: (room: string) => Promise<void>;
   subscribePresenter: (room: string, on: (index: number) => void) => () => void;
-  setPresenter: (room: string, index: number, presenterKey: string) => Promise<void>;
+  setPresenter: (room: string, index: number) => Promise<void>;
 };

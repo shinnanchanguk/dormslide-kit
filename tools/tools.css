@@ -52,3 +52,22 @@
 .ds-join label { display: grid; gap: .3em; font-size: .7em; }
 .ds-join input { padding: .6em .7em; border-radius: .6em; border: 1px solid rgba(17, 17, 17, .2); font: 500 1em/1.4 var(--ds-ui); }
 .tool-missing { font: 500 .7em/1.5 var(--ds-ui); color: #a33; }
+.ds-export { margin-left: .8em; padding: .25em .6em; border-radius: .5em; border: 1px solid rgba(17, 17, 17, .2); background: transparent; font: 600 1em/1.2 var(--ds-ui); cursor: pointer; }
+.ds-frame { position: relative; width: 100%; height: 22em; border-radius: .8em; overflow: hidden; border: 1px solid rgba(17, 17, 17, .15); background: #fbf8f1; }
+.ds-frame iframe { width: 100%; height: 100%; border: 0; }
+.ds-frame__open { position: absolute; right: .6em; bottom: .6em; padding: .35em .7em; border-radius: .5em; background: #111; color: #fbf8f1; font: 600 .6em/1 var(--ds-ui); text-decoration: none; }
+.ds-follow { display: flex; align-items: center; justify-content: center; gap: 1.6em; }
+.ds-follow__screen { margin: 0; display: grid; gap: .4em; justify-items: center; font-family: var(--ds-ui); }
+.ds-follow__screen figcaption { font: 600 .6em/1 var(--ds-ui); color: rgba(17, 17, 17, .55); letter-spacing: .04em; }
+.ds-follow__screen--teacher .ds-follow__slide { width: 14em; aspect-ratio: 16 / 9; }
+.ds-follow__screen--phone .ds-follow__slide { width: 5.4em; aspect-ratio: 9 / 16; border-radius: .9em; }
+.ds-follow__slide { display: grid; align-content: center; justify-items: center; gap: .3em; border-radius: .6em; background: #111; color: #f4f1eb; padding: .6em; animation: ds-follow-in .45s cubic-bezier(.2, .8, .2, 1); text-align: center; }
+.ds-follow__slide span { font: 600 .55em/1 ui-monospace, monospace; color: var(--ds-mark); }
+.ds-follow__slide strong { font: 700 .75em/1.25 var(--ds-ui); }
+.ds-follow__arrow { width: 3em; height: 2px; background: linear-gradient(90deg, transparent, var(--ds-mark)); position: relative; }
+.ds-follow__arrow::after { content: ""; position: absolute; right: -2px; top: -4px; border: 5px solid transparent; border-left-color: var(--ds-mark); }
+@keyframes ds-follow-in { from { opacity: 0; transform: translateX(.6em); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .ds-follow__slide { animation: none; } }
+.ds-videoRow { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 1.2em; align-items: center; }
+.ds-videoRow .ds-youtube { max-width: none; margin-top: 0; }
+.ds-videoRow__copy { min-width: 0; }

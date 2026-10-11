@@ -27,13 +27,18 @@ export function liveClient(): LiveClient | null {
 }
 
 /**
- * 수업 방 이름. 주소의 ?room= 값이 있으면 그것을, 없으면 덱 제목에서 만든 기본값을 쓴다.
- * 같은 슬라이드로 여러 반을 하면 반마다 ?room=1반 처럼 다른 방을 쓰면 된다.
+ * 수업 방 이름. 주소의 ?room= 값이 있으면 그것을 쓴다. 없으면 발표자가 [발표 시작] 을 누를 때 무작위로 만든다
+ * (예: ds-k3x9-2m7q). 이름을 아는 사람만 들어오도록, 학생에게는 링크 공유(QR)로 그 방 주소를 보낸다.
  */
-let roomName = "class";
-export function setLiveRoom(name: string) {
-  roomName = name.slice(0, 60) || "class";
+let roomName = "";
+export const ROOM_RE = /^[a-z0-9-]{6,60}$/;
+export function setLiveRoom(name: string | null) {
+  roomName = name && ROOM_RE.test(name) ? name : "";
 }
 export function liveRoom() {
   return roomName;
+}
+export function newRoomName() {
+  const part = () => Array.from(crypto.getRandomValues(new Uint8Array(4)), (byte) => "abcdefghjkmnpqrstuvwxyz23456789"[byte % 31]).join("");
+  return `ds-${part()}-${part()}`;
 }

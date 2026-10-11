@@ -1,0 +1,13 @@
+{
+ "id": "youtube",
+ "name": "유튜브 영상 넣기",
+ "group": "내용",
+ "summary": "유튜브 주소를 넣으면 슬라이드 안에서 바로 재생돼요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "BODY",
+ "how": "본문 장 payload.video.url",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

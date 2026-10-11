@@ -1,0 +1,13 @@
+{
+ "id": "join",
+ "name": "별명으로 들어오기",
+ "group": "응답",
+ "summary": "학생이 실명 대신 별명을 정해 들어와요. 다른 도구가 이 별명을 써요.",
+ "needsServer": true,
+ "studentData": true,
+ "attach": "TOOL",
+ "how": "payload.tool \"join\".",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

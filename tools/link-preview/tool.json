@@ -1,0 +1,13 @@
+{
+ "id": "link-preview",
+ "name": "링크 미리보기",
+ "group": "내용",
+ "summary": "사이트 주소를 제목·설명·그림이 있는 카드로 보여 줘요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "BODY",
+ "how": "본문 장 payload.linkPreview {url,title,description,image}",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

@@ -1,0 +1,13 @@
+{
+ "id": "link-board",
+ "name": "링크 모으기",
+ "group": "응답",
+ "summary": "학생이 올린 링크와 한 줄 설명이 한 화면에 모여요.",
+ "needsServer": true,
+ "studentData": true,
+ "attach": "TOOL",
+ "how": "장 종류 TOOL, payload.tool \"link-board\" (config.likes: true 면 좋아요도).",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

@@ -1,0 +1,13 @@
+{
+ "id": "first-page",
+ "name": "처음으로",
+ "group": "기본",
+ "summary": "버튼 한 번에 첫 장으로 돌아가요. 키보드 Home 도 같아요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "viewer",
+ "how": "늘 들어 있어요(아래 띠의 [처음으로]).",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

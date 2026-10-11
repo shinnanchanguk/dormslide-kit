@@ -1,0 +1,39 @@
+{
+ "meta": {
+  "title": "링크 미리보기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "링크 미리보기",
+    "title": "사이트를 카드로 보여 줘요",
+    "columns": [
+     [
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "제목·설명·그림은 슬라이드를 만들 때 AI 가 읽어 와 적어 둬요. 발표 중에는 바깥에 묻지 않아요."
+        }
+       ]
+      }
+     ]
+    ],
+    "linkPreview": {
+     "url": "https://dorms.school/",
+     "title": "도름스 DoRms",
+     "description": "교사들이 만든 앱·자료·생각을 나누는 커뮤니티",
+     "site": "dorms.school"
+    }
+   }
+  }
+ ]
+}

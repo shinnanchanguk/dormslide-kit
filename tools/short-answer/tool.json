@@ -1,0 +1,13 @@
+{
+ "id": "short-answer",
+ "name": "주관식 답",
+ "group": "응답",
+ "summary": "짧은 글로 답을 받아 한 화면에 모아요.",
+ "needsServer": true,
+ "studentData": true,
+ "attach": "SURVEY",
+ "how": "장 종류 SURVEY, payload.kind \"TEXT\".",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

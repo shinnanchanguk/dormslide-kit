@@ -1,0 +1,36 @@
+{
+ "meta": {
+  "title": "유튜브 영상 넣기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "영상",
+    "title": "슬라이드 안에서 바로 재생",
+    "columns": [
+     [
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "유튜브 주소를 넣으면 이 자리에서 재생돼요."
+        }
+       ]
+      }
+     ]
+    ],
+    "video": {
+     "url": "https://www.youtube.com/watch?v=2pcoZIC2ypA"
+    }
+   }
+  }
+ ]
+}

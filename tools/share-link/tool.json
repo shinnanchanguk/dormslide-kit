@@ -1,0 +1,13 @@
+{
+ "id": "share-link",
+ "name": "링크 공유",
+ "group": "기본",
+ "summary": "지금 슬라이드 주소를 QR 과 함께 띄워 학생이 휴대폰으로 들어오게 해요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "viewer",
+ "how": "늘 들어 있어요. 배포한 주소에서 쓰면 학생이 같은 슬라이드를 봐요.",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

@@ -85,7 +85,7 @@ export function SlidePage({ slide, index, design, editor }: { slide: DeckSlide; 
     const payload = slide.payload as SurveyPayload | ToolPayload;
     const body = slide.kind === "SURVEY" ? renderSurvey(slide.payload as SurveyPayload, index) : renderToolSlide(slide.payload as ToolPayload, index);
     return (
-      <AutoFit className={`body-page ${slide.kind === "SURVEY" ? "survey-page" : `tool-page tool-page--${(payload as ToolPayload).tool ?? ""}`}`} min={14} max={30}>
+      <AutoFit className={`body-page ${slide.kind === "SURVEY" ? "survey-page" : `tool-page tool-page--${(payload as ToolPayload).tool ?? ""}`}`} min={14} max={46}>
         <Title as="div" className="eyebrow" value={payload.eyebrow} field="eyebrow" editor={editor} />
         <Title as="h2" className="page-title" value={payload.title} field="title" editor={editor} />
         <div className="page-rule" />
@@ -123,6 +123,24 @@ export function SlidePage({ slide, index, design, editor }: { slide: DeckSlide; 
     renderBlocks(0, payload.columns[0] ?? [], (payload.columns[0] ?? []).map((_, blockIndex) => blockIndex))
   );
   const resources = (payload.resources ?? []).filter((resource) => strictPublicWebUrl(resource.url));
+  // 배치 없이 영상만 붙인 장은 영상이 주인공이다. 글은 영상 옆에 짧게 둔다.
+  if (!payload.layout && payload.video?.url) {
+    return (
+      <AutoFit className="body-page body-page--video" min={12} max={30}>
+        <div className="body-page__eyebrowRow">
+          <div className="body-page__eyebrowLead">
+            <Title as="div" className="eyebrow" value={payload.eyebrow} field="eyebrow" editor={editor} />
+          </div>
+        </div>
+        <Title as="h2" className="page-title" value={payload.title} field="title" editor={editor} />
+        <div className="page-rule" />
+        <div className="ds-videoRow">
+          {renderBodyAddons(payload, index)}
+          <div className="ds-videoRow__copy">{content}</div>
+        </div>
+      </AutoFit>
+    );
+  }
   const max = payload.layout ? design.fitMax?.(payload.layout) ?? 34 : 72;
 
   return (

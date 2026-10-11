@@ -1,0 +1,22 @@
+{
+ "meta": {
+  "title": "좋아요 누르기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "TOOL",
+   "payload": {
+    "eyebrow": "좋아요",
+    "title": "친구 생각에 공감하면 눌러요",
+    "tool": "likes",
+    "hint": "의견을 올리고 좋아요를 눌러 보세요. 한 사람이 한 번씩 눌러요."
+   }
+  }
+ ]
+}

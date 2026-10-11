@@ -1,0 +1,60 @@
+{
+ "meta": {
+  "title": "도름이 산책 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "도름이 산책",
+    "title": "도름이가 글자 위를 걸어 다녀요",
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "슬라이드의 "
+        },
+        {
+         "t": "hl",
+         "v": "제목과 글자"
+        },
+        {
+         "t": "text",
+         "v": " 가 도름이의 발판이 돼요."
+        }
+       ]
+      },
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "도름이를 끌어서 다른 곳에 내려놓을 수도 있어요."
+        }
+       ]
+      },
+      {
+       "b": "note",
+       "parts": [
+        {
+         "t": "text",
+         "v": "도름이 © 아인T, CC BY-NC 4.0"
+        }
+       ]
+      }
+     ]
+    ],
+    "pet": "doreumi"
+   }
+  }
+ ]
+}

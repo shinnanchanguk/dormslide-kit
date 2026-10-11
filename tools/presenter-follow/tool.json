@@ -1,0 +1,13 @@
+{
+ "id": "presenter-follow",
+ "name": "발표자 따라오기",
+ "group": "실시간",
+ "summary": "선생님이 넘기면 학생 화면도 같은 장으로 넘어가요. 꺼 두면 학생이 혼자 넘겨 봐요.",
+ "needsServer": true,
+ "studentData": false,
+ "attach": "viewer",
+ "how": "meta.live: true + 내 수파베이스. 아래 띠의 [발표 시작] 을 누르면 방이 만들어져요.",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

@@ -2,7 +2,8 @@ import type { BoardItem, LiveClient, SurveySnapshot } from "./types";
 
 /**
  * 내 수파베이스로 도는 실시간 모드. 표와 규칙은 supabase/schema.sql 에 있다.
- * 학생은 로그인하지 않는다. 브라우저마다 무작위 표(voter)를 하나 만들어 한 사람이 같은 설문에 두 번 세어지지 않게 한다.
+ * 학생은 이메일 없이 수파베이스 익명 로그인으로 브라우저마다 번호를 하나 받는다(대시보드에서 Anonymous sign-ins 켜기).
+ * 규칙(RLS)이 그 번호로 '한 사람 한 표'와 '발표자는 방을 연 사람만'을 지킨다.
  */
 /** 표 모양을 미리 알려 주지 않고 쓰는 느슨한 손잡이. 표와 규칙은 supabase/schema.sql 이 정한다. */
 type Query = {
@@ -15,28 +16,22 @@ type Query = {
 };
 type Channel = { on: (event: string, filter: Record<string, string>, callback: () => void) => Channel; subscribe: () => Channel };
 type Client = {
+  auth: { getSession: () => Promise<{ data: { session: unknown } }>; signInAnonymously: () => Promise<{ error: unknown }> };
   from: (table: string) => Query;
   rpc: (fn: string, args: Record<string, unknown>) => Promise<unknown>;
   channel: (name: string) => Channel;
   removeChannel: (channel: Channel) => Promise<unknown>;
 };
 
-function voterId(): string {
-  try {
-    const saved = localStorage.getItem("dormslide:voter");
-    if (saved && /^[a-z0-9]{24}$/.test(saved)) return saved;
-    const fresh = Array.from(crypto.getRandomValues(new Uint8Array(12)), (byte) => byte.toString(36).padStart(2, "0").slice(-2)).join("").slice(0, 24).padEnd(24, "0");
-    localStorage.setItem("dormslide:voter", fresh);
-    return fresh;
-  } catch {
-    return "anonymous000000000000000";
-  }
-}
-
 export function createSupabaseLive(url: string, anonKey: string): LiveClient {
   let clientPromise: Promise<Client> | null = null;
-  const client = () => (clientPromise ??= import("@supabase/supabase-js").then((module) => module.createClient(url, anonKey, { auth: { persistSession: false } }) as unknown as Client));
-  const voter = voterId();
+  const client = () =>
+    (clientPromise ??= import("@supabase/supabase-js").then(async (module) => {
+      const db = module.createClient(url, anonKey, { auth: { persistSession: true, storageKey: "dormslide-live" } }) as unknown as Client;
+      const { data } = await db.auth.getSession();
+      if (!data.session) await db.auth.signInAnonymously();
+      return db;
+    }));
 
   async function loadSurvey(room: string, slide: number, optionCount: number): Promise<SurveySnapshot> {
     const db = await client();
@@ -84,11 +79,11 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
     },
     async vote(room, slide, option) {
       const db = await client();
-      await db.rpc("ds_vote", { p_room: room, p_slide: slide, p_option: option, p_voter: voter });
+      await db.rpc("ds_vote", { p_room: room, p_slide: slide, p_option: option });
     },
     async answer(room, slide, text) {
       const db = await client();
-      await db.from("ds_responses").insert({ room, slide, option: null, voter: `${voter}-${Date.now().toString(36)}`, text: text.slice(0, 400) });
+      await db.from("ds_responses").insert({ room, slide, kind: "text", text: text.slice(0, 400) });
     },
     subscribeBoard(room, slide, on) {
       const reload = () => void loadBoard(room, slide).then(on);
@@ -101,15 +96,15 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
     },
     async like(room, slide, itemId) {
       const db = await client();
-      await db.rpc("ds_like", { p_room: room, p_slide: slide, p_item: itemId, p_voter: voter });
+      await db.rpc("ds_like", { p_room: room, p_slide: slide, p_item: itemId });
     },
-    async moveBucket(room, slide, itemId, bucket, presenterKey) {
+    async moveBucket(room, slide, itemId, bucket) {
       const db = await client();
-      await db.rpc("ds_move_bucket", { p_room: room, p_slide: slide, p_item: itemId, p_bucket: bucket.slice(0, 40), p_key: presenterKey });
+      await db.rpc("ds_move_bucket", { p_room: room, p_slide: slide, p_item: itemId, p_bucket: bucket.slice(0, 40) });
     },
-    async clearRoom(room, presenterKey) {
+    async clearRoom(room) {
       const db = await client();
-      await db.rpc("ds_clear_room", { p_room: room, p_key: presenterKey });
+      await db.rpc("ds_clear_room", { p_room: room });
     },
     subscribePresenter(room, on) {
       const reload = () =>
@@ -120,9 +115,9 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
       reload();
       return watch("ds_presenter", room, reload);
     },
-    async setPresenter(room, index, presenterKey) {
+    async setPresenter(room, index) {
       const db = await client();
-      await db.rpc("ds_set_presenter", { p_room: room, p_index: index, p_key: presenterKey });
+      await db.rpc("ds_set_presenter", { p_room: room, p_index: index });
     },
   };
 }

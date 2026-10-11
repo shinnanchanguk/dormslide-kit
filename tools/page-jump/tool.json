@@ -1,0 +1,13 @@
+{
+ "id": "page-jump",
+ "name": "쪽 이동",
+ "group": "기본",
+ "summary": "쪽 번호를 눌러 원하는 장으로 바로 가요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "viewer",
+ "how": "늘 들어 있어요(아래 띠의 쪽 번호).",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

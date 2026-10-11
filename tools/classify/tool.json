@@ -1,0 +1,13 @@
+{
+ "id": "classify",
+ "name": "의견 나누어 붙이기",
+ "group": "응답",
+ "summary": "모인 의견을 선생님이 끌어서 칸으로 나눠 붙여요.",
+ "needsServer": true,
+ "studentData": true,
+ "attach": "TOOL",
+ "how": "payload.tool \"classify\", config.buckets [칸 이름들].",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

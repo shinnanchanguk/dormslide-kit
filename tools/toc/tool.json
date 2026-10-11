@@ -1,0 +1,13 @@
+{
+ "id": "toc",
+ "name": "목차",
+ "group": "기본",
+ "summary": "목차 장(ch-toc)이 있으면 목차 단추가 생기고, 줄을 누르면 그 장으로 넘어가요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "viewer",
+ "how": "덱에 ch-toc 배치 장을 하나 두면 켜져요.",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

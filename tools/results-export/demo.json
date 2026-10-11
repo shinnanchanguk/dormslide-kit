@@ -1,0 +1,28 @@
+{
+ "meta": {
+  "title": "결과 내려받기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "SURVEY",
+   "payload": {
+    "eyebrow": "결과 내려받기",
+    "title": "좋아하는 계절은?",
+    "kind": "CHOICE",
+    "options": [
+     "봄",
+     "여름",
+     "가을",
+     "겨울"
+    ],
+    "hint": "보기를 몇 번 누른 뒤 [결과 내려받기] 를 눌러 보세요. 표 파일로 받아져요."
+   }
+  }
+ ]
+}

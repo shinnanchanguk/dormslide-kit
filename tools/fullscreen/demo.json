@@ -1,0 +1,50 @@
+{
+ "meta": {
+  "title": "전체 화면 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "전체 화면",
+    "title": "슬라이드만 화면 가득",
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "아래 띠의 "
+        },
+        {
+         "t": "hl",
+         "v": "전체 화면"
+        },
+        {
+         "t": "text",
+         "v": " 을 누르거나 키보드 F 를 누르세요."
+        }
+       ]
+      },
+      {
+       "b": "note",
+       "parts": [
+        {
+         "t": "text",
+         "v": "다시 누르거나 Esc 를 누르면 돌아와요."
+        }
+       ]
+      }
+     ]
+    ]
+   }
+  }
+ ]
+}

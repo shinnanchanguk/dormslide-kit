@@ -1,0 +1,22 @@
+{
+ "meta": {
+  "title": "주관식 답 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "SURVEY",
+   "payload": {
+    "eyebrow": "함께 생각하기 · 익명",
+    "title": "오늘 수업에서 가장 기억에 남는 한 가지는?",
+    "kind": "TEXT",
+    "hint": "한 줄로 적어 [보내기] 를 눌러 보세요."
+   }
+  }
+ ]
+}

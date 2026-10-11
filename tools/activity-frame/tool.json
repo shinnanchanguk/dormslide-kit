@@ -1,0 +1,13 @@
+{
+ "id": "activity-frame",
+ "name": "다른 수업 화면 넣기",
+ "group": "연결",
+ "summary": "매쓰매쓰·모란처럼 다른 곳의 수업 화면을 슬라이드 안에 띄워요.",
+ "needsServer": false,
+ "studentData": false,
+ "attach": "TOOL",
+ "how": "payload.tool \"activity-frame\", config.url(https), config.title",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

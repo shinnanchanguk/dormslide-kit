@@ -1,0 +1,28 @@
+{
+ "meta": {
+  "title": "객관식 설문 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "SURVEY",
+   "payload": {
+    "eyebrow": "함께 생각하기 · 익명",
+    "title": "급식에서 가장 좋아하는 반찬은?",
+    "kind": "CHOICE",
+    "options": [
+     "돈가스",
+     "떡볶이",
+     "김치볶음밥",
+     "샐러드"
+    ],
+    "hint": "보기를 눌러 보세요. 실시간 모드면 반 전체의 응답이 모여 막대가 자라요."
+   }
+  }
+ ]
+}

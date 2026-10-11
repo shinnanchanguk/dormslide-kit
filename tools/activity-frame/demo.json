@@ -1,0 +1,26 @@
+{
+ "meta": {
+  "title": "다른 수업 화면 넣기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "TOOL",
+   "payload": {
+    "eyebrow": "다른 수업 화면",
+    "title": "슬라이드 안에서 활동까지",
+    "tool": "activity-frame",
+    "config": {
+     "url": "https://shinnanchanguk.github.io/dormslide/?demo=timer&embed=1",
+     "title": "타이머 예시(다른 화면)"
+    },
+    "hint": "모란·매쓰매쓰처럼 다른 곳의 수업 화면을 슬라이드 안에 띄워요. 액자를 막아 둔 사이트는 [새 창으로 열기] 로 열어요."
+   }
+  }
+ ]
+}

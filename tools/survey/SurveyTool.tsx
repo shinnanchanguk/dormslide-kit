@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { SurveyPayload } from "@/lib/deck-content";
 import { useLiveSurvey } from "../live/useLiveSurvey";
+import { downloadCsv } from "../results-export/exportCsv";
 
 /**
  * 객관식·서술형 설문.
@@ -36,7 +37,12 @@ export function SurveyTool({ payload, slideIndex }: { payload: SurveyPayload; sl
             <li key={`${index}:${text.slice(0, 12)}`}>{text}</li>
           ))}
         </ul>
-        <p className="ds-survey__mode">{store.live ? "실시간으로 모으는 중" : "혼자 보는 판: 이 화면에 적은 답만 보여요"}</p>
+        <p className="ds-survey__mode">
+          {store.live ? "실시간으로 모으는 중" : "혼자 보는 판: 이 화면에 적은 답만 보여요"}
+          {store.texts.length ? (
+            <button type="button" className="ds-export" onClick={() => downloadCsv(`${payload.title}.csv`, ["답"], store.texts.map((text) => [text]))}>결과 내려받기</button>
+          ) : null}
+        </p>
       </div>
     );
   }
@@ -59,7 +65,12 @@ export function SurveyTool({ payload, slideIndex }: { payload: SurveyPayload; sl
           );
         })}
       </ol>
-      <p className="ds-survey__mode">{store.live ? `실시간으로 모으는 중 · ${total}명 응답` : "혼자 보는 판: 이 화면에서 누른 수만 세요"}</p>
+      <p className="ds-survey__mode">
+        {store.live ? `실시간으로 모으는 중 · ${total}명 응답` : "혼자 보는 판: 이 화면에서 누른 수만 세요"}
+        {total ? (
+          <button type="button" className="ds-export" onClick={() => downloadCsv(`${payload.title}.csv`, ["보기", "응답 수"], options.map((option, index) => [option, store.counts[index] ?? 0]))}>결과 내려받기</button>
+        ) : null}
+      </p>
     </div>
   );
 }

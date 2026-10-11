@@ -1,0 +1,29 @@
+{
+ "meta": {
+  "title": "의견 나누어 붙이기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "TOOL",
+   "payload": {
+    "eyebrow": "의견 나누기",
+    "title": "우리 학교에 바라는 점",
+    "tool": "classify",
+    "config": {
+     "buckets": [
+      "시설",
+      "수업",
+      "행사"
+     ]
+    },
+    "hint": "의견을 올린 뒤 카드를 끌어 칸으로 옮겨 보세요."
+   }
+  }
+ ]
+}

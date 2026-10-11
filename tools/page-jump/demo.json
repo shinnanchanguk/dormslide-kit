@@ -1,0 +1,81 @@
+{
+ "meta": {
+  "title": "쪽 이동 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "쪽 이동",
+    "title": "원하는 장으로 바로",
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "아래 쪽 번호를 눌러 "
+        },
+        {
+         "t": "hl",
+         "v": "숫자"
+        },
+        {
+         "t": "text",
+         "v": " 를 넣으면 그 장으로 가요."
+        }
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "2쪽",
+    "title": "둘째 장",
+    "columns": [
+     [
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "02 를 넣으면 이 장이에요."
+        }
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "3쪽",
+    "title": "셋째 장",
+    "columns": [
+     [
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "03 을 넣으면 이 장이에요."
+        }
+       ]
+      }
+     ]
+    ]
+   }
+  }
+ ]
+}

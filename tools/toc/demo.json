@@ -1,0 +1,122 @@
+{
+ "meta": {
+  "title": "목차 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "TOOL · DEMO",
+  "footLabel": "TOOL-DEMO",
+  "issueLabel": "작동 예시",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "목차",
+    "title": "목차 장이 있으면",
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "아래 띠에 "
+        },
+        {
+         "t": "hl",
+         "v": "목차"
+        },
+        {
+         "t": "text",
+         "v": " 단추가 생기고, 줄을 누르면 그 장으로 넘어가요."
+        }
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "CONTENTS",
+    "title": "목차",
+    "layout": "ch-toc",
+    "columns": [
+     []
+    ],
+    "tables": [
+     {
+      "head": [
+       "표시",
+       "제목",
+       "설명",
+       "쪽"
+      ],
+      "rows": [
+       [
+        "1",
+        "여는 질문",
+        "오늘 무엇을 배울까",
+        "2"
+       ],
+       [
+        "2",
+        "함께 생각하기",
+        "설문으로 생각 모으기",
+        "3"
+       ],
+       [
+        "끝",
+        "정리",
+        "오늘 배운 것",
+        "4"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "여는 질문",
+    "title": "오늘 무엇을 배울까요?",
+    "columns": [
+     [
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "목차에서 이 장으로 왔어요."
+        }
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "정리",
+    "title": "오늘 배운 것",
+    "columns": [
+     [
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "목차 장의 줄을 눌러 보세요."
+        }
+       ]
+      }
+     ]
+    ]
+   }
+  }
+ ]
+}

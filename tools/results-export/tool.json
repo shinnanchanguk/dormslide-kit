@@ -1,0 +1,13 @@
+{
+ "id": "results-export",
+ "name": "결과 내려받기",
+ "group": "응답",
+ "summary": "설문·게시물 결과를 표(CSV) 파일로 내려받아요.",
+ "needsServer": true,
+ "studentData": true,
+ "attach": "viewer",
+ "how": "실시간 모드에서 설문·게시판 아래에 [결과 내려받기] 가 생겨요.",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1
+}

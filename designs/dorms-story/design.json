@@ -1,0 +1,15 @@
+{
+ "id": "dorms-story",
+ "name": "도름스 탄생비화",
+ "summary": "따뜻한 종이 바탕에 필름 그레인, 기하 산세리프 제목과 모노 라벨. 그래프·연표·인용 카드가 차례로 떠오르는 이야기형 디자인이에요.",
+ "markColor": "#1e5fce",
+ "sample": "samples/dorms-story/deck.json",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "fonts": [
+  "Space Grotesk",
+  "JetBrains Mono",
+  "Wanted Sans"
+ ]
+}

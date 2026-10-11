@@ -3,8 +3,7 @@ import type { Deck, DeckSlide } from "@/lib/deck";
 import { deckToc } from "@/lib/deck-toc";
 import { applyInlineEditToSlide } from "@/lib/inline-edit-client";
 import { designOf } from "@designs/index";
-import { liveClient, liveRoom, setLiveEnabled, setLiveRoom } from "@tools/live/client";
-import { presenterKey } from "@tools/live/presenter";
+import { liveClient, liveRoom, newRoomName, setLiveEnabled, setLiveRoom } from "@tools/live/client";
 import { Stage } from "./Stage";
 import { SlidePage } from "./SlidePage";
 import { DeckNavContext } from "./DeckNav";
@@ -47,20 +46,35 @@ export function DeckApp({ deck: initial, designOverride, editTarget }: Props) {
   const design = designOf(designOverride ?? deck.meta.design);
   const toc = useMemo(() => deckToc(deck.slides) ?? [], [deck.slides]);
 
-  // 실시간 모드: 덱이 켜 두었고 내 수파베이스 주소가 있을 때만.
-  useEffect(() => {
-    setLiveEnabled(deck.meta.live === true);
-    const room = new URLSearchParams(window.location.search).get("room");
-    setLiveRoom(room ?? deck.meta.footLabel ?? "class");
-  }, [deck.meta.live, deck.meta.footLabel]);
-  const live = deck.meta.live === true ? liveClient() : null;
+  // 실시간 모드: 덱이 켜 두었고 내 수파베이스 주소가 있을 때만. 방 이름은 주소의 ?room= (발표자가 [발표 시작] 때 만든다).
+  const [room, setRoom] = useState(() => new URLSearchParams(window.location.search).get("room"));
+  setLiveEnabled(deck.meta.live === true);
+  setLiveRoom(room);
+  const client = deck.meta.live === true ? liveClient() : null;
+  const live = client && liveRoom() ? client : null;
+
+  const startPresenting = useCallback(() => {
+    if (!client) return;
+    let name = liveRoom();
+    if (!name) {
+      name = newRoomName();
+      const params = new URLSearchParams(window.location.search);
+      params.set("room", name);
+      window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}${window.location.hash}`);
+      setLiveRoom(name);
+      setRoom(name);
+    }
+    setPresenting(true);
+    setShareOpen(true);
+    void client.setPresenter(name, index);
+  }, [client, index]);
 
   const go = useCallback(
     (next: number) => {
       const clamped = Math.max(0, Math.min(total - 1, next));
       setIndex(clamped);
       window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#${clamped + 1}`);
-      if (live && presenting) void live.setPresenter(liveRoom(), clamped, presenterKey());
+      if (live && presenting) void live.setPresenter(liveRoom(), clamped);
     },
     [total, live, presenting],
   );
@@ -120,6 +134,10 @@ export function DeckApp({ deck: initial, designOverride, editTarget }: Props) {
         const slides = deck.slides.map((slide, slideIndex) => (slideIndex === index ? (next as DeckSlide) : slide));
         const nextDeck = { ...deck, slides };
         setDeck(nextDeck);
+        if (editTarget === "memory") {
+          setSaveState("saved");
+          return;
+        }
         setSaveState("saving");
         fetch("/__dormslide/edit", {
           method: "POST",
@@ -159,19 +177,33 @@ export function DeckApp({ deck: initial, designOverride, editTarget }: Props) {
         <button type="button" className="ds-controls__btn" onClick={() => setShareOpen((value) => !value)} aria-label="링크 공유" aria-expanded={shareOpen}>
           <Icon name="link" size={16} />
         </button>
+        {client && !presenting && !live ? (
+          <button type="button" className="ds-controls__btn ds-controls__text" onClick={startPresenting}>
+            발표 시작
+          </button>
+        ) : null}
         {live ? (
           <button
             type="button"
-            className={`ds-controls__btn ds-controls__text${presenting ? " is-on" : ""}`}
+            className={`ds-controls__btn ds-controls__text${presenting || following ? " is-on" : ""}`}
+            onClick={() => (presenting ? undefined : setFollowing((value) => !value))}
+            aria-pressed={presenting || following}
+          >
+            {presenting ? "발표 중 · 학생이 따라와요" : following ? "발표자 따라가는 중" : "혼자 넘겨 보는 중"}
+          </button>
+        ) : null}
+        {live && presenting ? (
+          <button
+            type="button"
+            className="ds-controls__btn ds-controls__text"
             onClick={() => {
-              if (presenting) setFollowing((value) => !value);
-              else {
-                setPresenting(true);
-                void live.setPresenter(liveRoom(), index, presenterKey());
+              if (window.confirm("수업을 끝내고 이 방의 학생 응답·게시물을 지울까요? 결과가 필요하면 먼저 [결과 내려받기] 를 눌러 주세요.")) {
+                void live.clearRoom(liveRoom());
+                setPresenting(false);
               }
             }}
           >
-            {presenting ? "발표 중" : following ? "따라가는 중" : "혼자 보는 중"}
+            수업 끝내기
           </button>
         ) : null}
         {editTarget ? (
