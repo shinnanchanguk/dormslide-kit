@@ -31,7 +31,6 @@ function collect(dir, file, kind) {
 
 const catalog = {
   version: 3,
-  source: "shinnanchanguk/dormslide",
   designs: collect("designs", "design.json", "design"),
   tools: collect("tools", "tool.json", "tool"),
   visuals: collect("visuals", "visual.json", "visual"),
