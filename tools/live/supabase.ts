@@ -1,0 +1,128 @@
+import type { BoardItem, LiveClient, SurveySnapshot } from "./types";
+
+/**
+ * 내 수파베이스로 도는 실시간 모드. 표와 규칙은 supabase/schema.sql 에 있다.
+ * 학생은 로그인하지 않는다. 브라우저마다 무작위 표(voter)를 하나 만들어 한 사람이 같은 설문에 두 번 세어지지 않게 한다.
+ */
+/** 표 모양을 미리 알려 주지 않고 쓰는 느슨한 손잡이. 표와 규칙은 supabase/schema.sql 이 정한다. */
+type Query = {
+  select: (columns: string) => Query;
+  eq: (column: string, value: unknown) => Query;
+  order: (column: string, options: { ascending: boolean }) => Query;
+  limit: (count: number) => Promise<{ data: unknown[] | null }>;
+  maybeSingle: () => Promise<{ data: unknown }>;
+  insert: (row: Record<string, unknown>) => Promise<unknown>;
+};
+type Channel = { on: (event: string, filter: Record<string, string>, callback: () => void) => Channel; subscribe: () => Channel };
+type Client = {
+  from: (table: string) => Query;
+  rpc: (fn: string, args: Record<string, unknown>) => Promise<unknown>;
+  channel: (name: string) => Channel;
+  removeChannel: (channel: Channel) => Promise<unknown>;
+};
+
+function voterId(): string {
+  try {
+    const saved = localStorage.getItem("dormslide:voter");
+    if (saved && /^[a-z0-9]{24}$/.test(saved)) return saved;
+    const fresh = Array.from(crypto.getRandomValues(new Uint8Array(12)), (byte) => byte.toString(36).padStart(2, "0").slice(-2)).join("").slice(0, 24).padEnd(24, "0");
+    localStorage.setItem("dormslide:voter", fresh);
+    return fresh;
+  } catch {
+    return "anonymous000000000000000";
+  }
+}
+
+export function createSupabaseLive(url: string, anonKey: string): LiveClient {
+  let clientPromise: Promise<Client> | null = null;
+  const client = () => (clientPromise ??= import("@supabase/supabase-js").then((module) => module.createClient(url, anonKey, { auth: { persistSession: false } }) as unknown as Client));
+  const voter = voterId();
+
+  async function loadSurvey(room: string, slide: number, optionCount: number): Promise<SurveySnapshot> {
+    const db = await client();
+    const { data } = await db.from("ds_responses").select("option, text").eq("room", room).eq("slide", slide).order("created_at", { ascending: false }).limit(500);
+    const counts = Array.from({ length: optionCount }, () => 0);
+    const texts: string[] = [];
+    for (const row of (data ?? []) as Array<{ option: number | null; text: string | null }>) {
+      if (typeof row.option === "number" && row.option >= 0 && row.option < optionCount) counts[row.option] += 1;
+      if (row.text) texts.push(row.text);
+    }
+    return { counts, texts };
+  }
+
+  async function loadBoard(room: string, slide: number): Promise<BoardItem[]> {
+    const db = await client();
+    const { data } = await db.from("ds_board").select("id, nickname, text, url, bucket, likes, created_at").eq("room", room).eq("slide", slide).order("created_at", { ascending: true }).limit(300);
+    return ((data ?? []) as Array<{ id: string; nickname: string; text: string; url: string | null; bucket: string | null; likes: number; created_at: string }>).map((row) => ({
+      id: row.id,
+      nickname: row.nickname,
+      text: row.text,
+      url: row.url ?? undefined,
+      bucket: row.bucket ?? undefined,
+      likes: row.likes,
+      createdAt: row.created_at,
+    }));
+  }
+
+  function watch(table: string, room: string, reload: () => void): () => void {
+    let stop = () => {};
+    void client().then((db) => {
+      const channel = db
+        .channel(`${table}:${room}:${Math.random().toString(36).slice(2)}`)
+        .on("postgres_changes", { event: "*", schema: "public", table, filter: `room=eq.${room}` }, () => reload())
+        .subscribe();
+      stop = () => void db.removeChannel(channel);
+    });
+    return () => stop();
+  }
+
+  return {
+    subscribeSurvey(room, slide, optionCount, on) {
+      const reload = () => void loadSurvey(room, slide, optionCount).then(on);
+      reload();
+      return watch("ds_responses", room, reload);
+    },
+    async vote(room, slide, option) {
+      const db = await client();
+      await db.rpc("ds_vote", { p_room: room, p_slide: slide, p_option: option, p_voter: voter });
+    },
+    async answer(room, slide, text) {
+      const db = await client();
+      await db.from("ds_responses").insert({ room, slide, option: null, voter: `${voter}-${Date.now().toString(36)}`, text: text.slice(0, 400) });
+    },
+    subscribeBoard(room, slide, on) {
+      const reload = () => void loadBoard(room, slide).then(on);
+      reload();
+      return watch("ds_board", room, reload);
+    },
+    async post(room, slide, item) {
+      const db = await client();
+      await db.from("ds_board").insert({ room, slide, nickname: item.nickname.slice(0, 20), text: item.text.slice(0, 400), url: item.url ?? null });
+    },
+    async like(room, slide, itemId) {
+      const db = await client();
+      await db.rpc("ds_like", { p_room: room, p_slide: slide, p_item: itemId, p_voter: voter });
+    },
+    async moveBucket(room, slide, itemId, bucket, presenterKey) {
+      const db = await client();
+      await db.rpc("ds_move_bucket", { p_room: room, p_slide: slide, p_item: itemId, p_bucket: bucket.slice(0, 40), p_key: presenterKey });
+    },
+    async clearRoom(room, presenterKey) {
+      const db = await client();
+      await db.rpc("ds_clear_room", { p_room: room, p_key: presenterKey });
+    },
+    subscribePresenter(room, on) {
+      const reload = () =>
+        void client().then(async (db) => {
+          const { data } = await db.from("ds_presenter").select("slide_index").eq("room", room).maybeSingle();
+          if (data && typeof (data as { slide_index: number }).slide_index === "number") on((data as { slide_index: number }).slide_index);
+        });
+      reload();
+      return watch("ds_presenter", room, reload);
+    },
+    async setPresenter(room, index, presenterKey) {
+      const db = await client();
+      await db.rpc("ds_set_presenter", { p_room: room, p_index: index, p_key: presenterKey });
+    },
+  };
+}

@@ -1,0 +1,54 @@
+/* 발표 화면 바깥 틀: 무대 + 아래 띠 + 표식 + 링크 공유 창. 디자인과 무관하게 같다. */
+:root {
+  --font-inter: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --ds-ui: "Pretendard Variable", Pretendard, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --ds-mark: #1e5fce;
+  color-scheme: light;
+}
+html, body, #root { height: 100%; margin: 0; }
+body { background: #1b1a18; word-break: keep-all; overflow-wrap: break-word; }
+.ds-app { position: relative; display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.ds-app:fullscreen { background: #1b1a18; }
+.ds-app .stage-box { flex: 1 1 auto; min-height: 0; }
+
+/* DoRmSlide 표식. 위치·크기·글자·링크는 고정이고 색만 디자인을 따른다(Mark.tsx 머리말). */
+.stage__mark { position: absolute; right: 26px; bottom: 9px; z-index: 40; pointer-events: auto; }
+.ds-mark {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px 4px 6px; border-radius: 999px;
+  font: 700 12px/1 var(--ds-ui); letter-spacing: .02em; color: var(--ds-mark); text-decoration: none;
+  background: color-mix(in srgb, var(--ds-mark) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ds-mark) 26%, transparent);
+}
+.ds-mark:hover { background: color-mix(in srgb, var(--ds-mark) 16%, transparent); }
+.ds-mark__emblem { display: inline-flex; width: 18px; height: 18px; }
+.ds-mark__emblem svg { display: block; }
+
+/* 아래 띠 */
+.ds-controls {
+  display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 12px;
+  background: #121110; color: #f4f1eb; font: 600 13px/1 var(--ds-ui);
+}
+.ds-controls__btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 36px; height: 36px; padding: 0 10px;
+  border: 1px solid rgba(244, 241, 235, .16); border-radius: 10px; background: transparent; color: inherit; font: inherit; cursor: pointer;
+}
+.ds-controls__btn:hover:not(:disabled) { background: rgba(244, 241, 235, .08); }
+.ds-controls__btn:disabled { opacity: .35; cursor: default; }
+.ds-controls__btn.is-on { background: #f4f1eb; color: #121110; }
+.ds-controls__text { padding: 0 12px; }
+.ds-controls__page { min-width: 74px; height: 36px; text-align: center; font: inherit; color: inherit; background: transparent; border: 1px solid rgba(244, 241, 235, .16); border-radius: 10px; }
+.ds-app.is-editing [contenteditable="true"] { outline: 1.5px dashed color-mix(in srgb, var(--ds-mark) 70%, transparent); outline-offset: 3px; border-radius: 4px; }
+
+/* 링크 공유 창 */
+.ds-share {
+  position: absolute; right: 16px; bottom: 64px; z-index: 50; display: flex; gap: 16px; align-items: center; padding: 16px 44px 16px 16px;
+  border-radius: 16px; background: #fbf8f1; color: #111; box-shadow: 0 18px 48px rgba(0, 0, 0, .35); font: 500 14px/1.5 var(--ds-ui); max-width: min(92vw, 520px);
+}
+.ds-share__copy { display: grid; gap: 6px; min-width: 0; }
+.ds-share__copy span { overflow-wrap: anywhere; color: #555; font-size: 13px; }
+.ds-share__copy button { justify-self: start; display: inline-flex; gap: 6px; align-items: center; padding: 8px 12px; border-radius: 10px; border: 0; background: #111; color: #fbf8f1; font: 600 13px/1 var(--ds-ui); cursor: pointer; }
+.ds-share__close { position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 0; border-radius: 8px; background: transparent; cursor: pointer; }
+
+@media print {
+  .ds-controls, .ds-share { display: none !important; }
+}

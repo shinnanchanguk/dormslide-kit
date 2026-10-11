@@ -1,0 +1,36 @@
+{
+ "meta": {
+  "title": "내 첫 도름슬라이드",
+  "brand": "DoRmSlide",
+  "railLabel": "MY · SLIDES",
+  "footLabel": "MY-SLIDES",
+  "issueLabel": "처음 만든 날",
+  "design": "dorms-story",
+  "live": false,
+  "source": "처음 받았을 때 들어 있는 시작 덱. AI 가 slides/outline.json 을 읽고 이 파일을 새로 씁니다."
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "도름슬라이드",
+    "title": "여기에 선생님 슬라이드가 들어옵니다",
+    "layout": "ch-statement",
+    "columns": [[
+     { "b": "lead", "parts": [{ "t": "text", "v": "쓰던 AI 에게 " }, { "t": "hl", "v": "슬라이드 만들어줘" }, { "t": "text", "v": " 라고 말하면 이 자리가 바뀝니다." }] }
+    ]]
+   }
+  },
+  {
+   "kind": "BODY",
+   "payload": {
+    "eyebrow": "편집",
+    "title": "아래 [편집] 을 누르면 글자를 바로 고칠 수 있어요",
+    "columns": [[
+     { "b": "p", "parts": [{ "t": "text", "v": "고친 글은 slides/content.json 에 바로 저장됩니다. 다 고쳤으면 AI 에게 HTML 파일로 저장해 달라고 하세요." }] },
+     { "b": "note", "parts": [{ "t": "text", "v": "오른쪽 아래 DoRmSlide 표식은 지우지 말아 주세요. 누르면 도름스 서재의 도름슬라이드 책으로 갑니다." }] }
+    ]]
+   }
+  }
+ ]
+}

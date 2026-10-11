@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": false,
+    "types": ["vite/client", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@designs/*": ["designs/*"],
+      "@tools/*": ["tools/*"],
+      "@samples/*": ["samples/*"],
+      "@slides/*": ["slides/*"]
+    }
+  },
+  "include": ["src", "designs", "tools", "samples", "slides", "vite.config.ts", "scripts/edit-server.ts"]
+}

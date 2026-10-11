@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-previews/
+.env
+.env.*
+!.env.example
+slides/.edits.jsonl
+.dorms/
+.work/
+.DS_Store
+*.log

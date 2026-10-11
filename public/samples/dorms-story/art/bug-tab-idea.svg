@@ -1,0 +1,13 @@
+<svg font-family="Pretendard, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, sans-serif" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-label="버그 탭 제안, 3분 뒤 당장 반영">
+<rect width="960" height="640" fill="#fbe3d6"/>
+<circle cx="755" cy="263" r="256" fill="#ed5a14" opacity=".10"/>
+<circle cx="755" cy="263" r="166" fill="#ed5a14" opacity=".18"/>
+<rect x="64" y="64" width="300" height="200" rx="28" fill="#fbf8f1" stroke="#111" stroke-opacity=".18"/>
+<rect x="92" y="96" width="120" height="16" rx="8" fill="#ed5a14" opacity=".85"/>
+<rect x="92" y="128" width="230" height="12" rx="6" fill="#111" opacity=".18"/>
+<rect x="92" y="152" width="200" height="12" rx="6" fill="#111" opacity=".12"/>
+<rect x="92" y="196" width="96" height="40" rx="20" fill="#ed5a14"/>
+<text x="755" y="327" text-anchor="middle" font-size="180" font-weight="800" fill="#ed5a14">버</text>
+<text x="64" y="404" font-size="22" letter-spacing="4" fill="#ed5a14" font-family="ui-monospace,monospace">글</text>
+<text x="64" y="470" font-size="46" font-weight="700" fill="#111">버그 탭 제안, 3분 뒤</text><text x="64" y="528" font-size="46" font-weight="700" fill="#111">당장 반영</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg font-family="Pretendard, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, sans-serif" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-label="exe 개발 단상">
+<rect width="960" height="640" fill="#e2ecfc"/>
+<circle cx="650" cy="192" r="215" fill="#5692f0" opacity=".10"/>
+<circle cx="650" cy="192" r="125" fill="#5692f0" opacity=".18"/>
+<rect x="64" y="64" width="300" height="200" rx="28" fill="#fbf8f1" stroke="#111" stroke-opacity=".18"/>
+<rect x="92" y="96" width="120" height="16" rx="8" fill="#5692f0" opacity=".85"/>
+<rect x="92" y="128" width="230" height="12" rx="6" fill="#111" opacity=".18"/>
+<rect x="92" y="152" width="200" height="12" rx="6" fill="#111" opacity=".12"/>
+<rect x="92" y="196" width="96" height="40" rx="20" fill="#5692f0"/>
+<text x="650" y="256" text-anchor="middle" font-size="180" font-weight="800" fill="#5692f0">e</text>
+<text x="64" y="404" font-size="22" letter-spacing="4" fill="#5692f0" font-family="ui-monospace,monospace">글</text>
+<text x="64" y="470" font-size="46" font-weight="700" fill="#111">exe 개발 단상</text>
+</svg>

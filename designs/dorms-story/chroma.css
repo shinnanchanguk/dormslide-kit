@@ -1,0 +1,5284 @@
+/*
+ * 디자인 ① 도름스 탄생비화 (크로마 Chroma)
+ *
+ * 따뜻한 종이 바탕, 필름 그레인, 기하 산세리프 제목(Space Grotesk + Wanted Sans),
+ * 모노 라벨(JetBrains Mono), 그레인 구와 어두운 둥근 패널.
+ * 도름슬라이드 본체의 「도름스는 어떻게 탄생했고, 어떻게 성장하고 있을까요?」 덱 디자인을 옮겼다.
+ * 모든 규칙은 무대를 감싼 .design-dorms-story 안에서만 듣는다.
+ * 글꼴: Space Grotesk · JetBrains Mono · Wanted Sans (모두 SIL OFL 1.1, public/fonts/OFL-*.txt).
+ */
+
+@font-face {
+  font-family: "Chroma Grotesk";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("../../src/assets/fonts/SpaceGroteskVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Chroma Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("../../src/assets/fonts/JetBrainsMonoVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Wanted Sans Variable";
+  font-style: normal;
+  font-weight: 400 1000;
+  font-display: swap;
+  src: url("../../src/assets/fonts/WantedSansVariable.woff2") format("woff2-variations");
+}
+
+.design-dorms-story {
+  --ch-bg: #f4f1eb;
+  --ch-bg-2: #ece7dc;
+  --ch-ink: #111111;
+  --ch-ink-2: #3b3833;
+  --ch-muted: #77716a;
+  --ch-line: rgba(17, 17, 17, 0.15);
+  --ch-line-strong: #111111;
+  --ch-blue: #1e5fce;
+  --ch-green: #235c34;
+  --ch-orange: #ed5a14;
+  --ch-yellow: #d99d21;
+  --ch-pink: #f29fc8;
+  --ch-purple: #7a42b8;
+  --ch-sky: #5692f0;
+  --ch-dark: #111111;
+  --ch-display: "Chroma Grotesk", "Wanted Sans Variable", var(--font-inter), sans-serif;
+  --ch-ui: var(--font-inter), Inter, "Wanted Sans Variable", sans-serif;
+  --ch-mono: "Chroma Mono", "Wanted Sans Variable", ui-monospace, monospace;
+  --ch-radius: 24px;
+  --ch-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── 무대 틀과 토큰 ───────────────────────────────────────────────────────── */
+
+.design-dorms-story :is(.stage, .share) {
+  --paper: var(--ch-bg);
+  --paper-dim: var(--ch-bg-2);
+  --ink: var(--ch-ink);
+  --ink-soft: var(--ch-ink-2);
+  --muted: var(--ch-muted);
+  --line: var(--ch-line-strong);
+  --hair: var(--ch-line);
+  --crisis: var(--ch-orange);
+  --crisis-strong: #c2440b;
+  --crisis-soft: rgba(237, 90, 20, 0.14);
+  --dark-bg: var(--ch-dark);
+  --font-sans: var(--ch-ui);
+  --font-serif: var(--ch-ui);
+  --font-mono: var(--ch-mono);
+}
+
+.design-dorms-story .stage {
+  --rail: 0px;
+  border: 0;
+  background: var(--ch-bg);
+  font-family: var(--ch-ui);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  font-feature-settings: "tnum" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.design-dorms-story .stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background-image: var(--ch-grain);
+  background-size: 220px 220px;
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+}
+
+.design-dorms-story .rail {
+  display: none;
+}
+
+.design-dorms-story .top {
+  margin: 0 40px;
+  padding: 0;
+  border-bottom: 1px dashed var(--ch-line);
+}
+
+.design-dorms-story .top__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--ch-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.design-dorms-story .top__brand::after {
+  display: none;
+}
+
+.design-dorms-story .top__right,
+.design-dorms-story .foot {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.design-dorms-story .foot {
+  margin: 0 40px;
+  padding: 0;
+  border-top: 1px dashed var(--ch-line);
+}
+
+.design-dorms-story .foot__value {
+  color: var(--ch-ink);
+  font-weight: 600;
+}
+
+.design-dorms-story .foot__rec::before {
+  border-radius: 50%;
+  background: var(--ch-green);
+}
+
+.design-dorms-story .canvas__fade {
+  background: linear-gradient(to bottom, rgba(244, 241, 235, 0), var(--ch-bg) 70%);
+  font-family: var(--ch-ui);
+}
+
+/* ── 공통 글자 ───────────────────────────────────────────────────────────── */
+
+.design-dorms-story .body-page,
+.design-dorms-story .survey-page,
+.design-dorms-story .tool-page {
+  padding: 30px 56px 26px 56px;
+}
+
+.design-dorms-story .eyebrow {
+  gap: 0.55em;
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.56em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.design-dorms-story .eyebrow::before {
+  width: 1.4em;
+  height: 2px;
+  background: var(--ch-orange);
+}
+
+.design-dorms-story .page-title {
+  margin-top: 0.22em;
+  font-family: var(--ch-display);
+  font-size: 1.78em;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.design-dorms-story .page-rule {
+  height: 0;
+  margin: 0.55em 0 0.8em;
+  border-top: 1px solid var(--ch-ink);
+  background: none;
+}
+
+.design-dorms-story .prose {
+  line-height: 1.62;
+  color: var(--ch-ink-2);
+}
+
+.design-dorms-story .prose .lead {
+  color: var(--ch-ink);
+  font-family: var(--ch-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.38;
+}
+
+.design-dorms-story .prose .hl {
+  color: var(--ch-orange);
+  font-weight: 700;
+}
+
+.design-dorms-story .prose .note-serif {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.62em;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+}
+
+.design-dorms-story .ch-source {
+  margin: 0.6em 0 0;
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.5em;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+/* 크로마 배치 공통: 등장 움직임. 캡처·움직임 줄이기에서는 끄고 최종 모습만 남긴다. */
+.design-dorms-story .ch-body {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.design-dorms-story [style*="--d:"] {
+  animation: ch-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes ch-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ch-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 선 긋기. 점선 길이는 움직임 안에서만 준다. 움직임이 꺼진 인쇄·PDF·캡처에서는 점선 설정이
+   아예 없어 끝까지 이어진 선으로 그려진다(PDF 출력은 pathLength 를 무시해 선이 중간에서 끊긴다). */
+/* 끝 장면에서는 점선을 걷어 낸다. 그래프는 늘여 그리는 SVG(preserveAspectRatio=none)에
+   non-scaling-stroke 를 써서, 점선 길이 1(pathLength)이 화면의 선 길이보다 짧게 잡힌다.
+   점선을 남겨 두면 선이 마지막 점 앞에서 끊긴 채 멈춘다(2026-09-29 캡처에서 확인). */
+@keyframes ch-draw {
+  0% {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  99% {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ch-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ── ch-hero 표지 ────────────────────────────────────────────────────────── */
+
+.design-dorms-story .body-page--ch-hero {
+  padding: 42px 60px 30px;
+}
+
+.design-dorms-story .body-page--ch-hero .page-title {
+  position: relative;
+  z-index: 1;
+  max-width: 7.6em;
+  font-size: 2.7em;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+}
+
+.design-dorms-story .body-page--ch-hero .page-rule {
+  display: none;
+}
+
+.design-dorms-story .ch-hero {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.9em;
+  padding-top: 0.7em;
+}
+
+.design-dorms-story .ch-hero__copy {
+  position: relative;
+  z-index: 1;
+  max-width: 21em;
+}
+
+/* 표지 오른쪽의 실제 추이 패널. 제목 옆 빈자리를 장식이 아니라 데이터로 채운다. */
+.design-dorms-story .ch-growth {
+  position: absolute;
+  top: -5.4em;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  width: 13.2em;
+  margin: 0;
+  padding: 0.75em 0.85em 0.6em;
+  border-radius: 20px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  box-shadow: 0 30px 60px -34px rgba(17, 17, 17, 0.7);
+  animation: ch-rise 0.8s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-growth__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6em;
+}
+
+.design-dorms-story .ch-growth__head span {
+  color: rgba(244, 241, 235, 0.65);
+  font-family: var(--ch-mono);
+  font-size: 0.42em;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
+.design-dorms-story .ch-growth__head b {
+  font-family: var(--ch-display);
+  font-size: 1.25em;
+  letter-spacing: -0.03em;
+}
+
+.design-dorms-story .ch-growth__head small {
+  margin-left: 0.1em;
+  font-size: 0.45em;
+  color: rgba(244, 241, 235, 0.6);
+}
+
+.design-dorms-story .ch-growth svg {
+  display: block;
+  width: 100%;
+  height: 5.6em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.design-dorms-story .ch-growth__line {
+  animation: ch-draw 1.8s 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-growth__area {
+  animation: ch-fade 1.2s 1.2s both;
+}
+
+.design-dorms-story .ch-growth__axis {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(244, 241, 235, 0.5);
+  font-family: var(--ch-mono);
+  font-size: 0.4em;
+}
+
+.design-dorms-story .ch-hero__copy .lead {
+  font-size: 1.12em;
+}
+
+.design-dorms-story .ch-hero__stats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 2.2em;
+  margin: 0;
+  padding-top: 0.8em;
+  border-top: 1px dashed var(--ch-line);
+  max-width: 30em;
+}
+
+.design-dorms-story .ch-hero__stat dt {
+  font-family: var(--ch-mono);
+  font-size: 0.52em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.design-dorms-story .ch-hero__stat dd {
+  margin: 0.15em 0 0;
+  font-family: var(--ch-display);
+  font-size: 1.3em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.design-dorms-story .ch-hero__stat dd small {
+  margin-left: 0.15em;
+  color: var(--ch-muted);
+  font-size: 0.5em;
+  font-weight: 500;
+}
+
+.design-dorms-story .ch-hero__foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.2em;
+  margin-top: auto;
+}
+
+.design-dorms-story .ch-hero__agenda {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.45em;
+  margin: 0;
+  /* 장 칩이 꼬리 점선에 닿지 않게 아래를 조금 띄운다. */
+  padding: 0 0 0.35em;
+  list-style: none;
+}
+
+.design-dorms-story .ch-hero__agenda li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.38em 0.85em 0.38em 0.45em;
+  border: 1px solid var(--ch-ink);
+  border-radius: 9999px;
+  font-family: var(--ch-ui);
+  font-size: 0.6em;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-hero__agenda li span {
+  display: inline-grid;
+  place-items: center;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: 50%;
+  background: var(--ch-ink);
+  color: var(--ch-bg);
+  font-family: var(--ch-mono);
+  font-size: 0.8em;
+}
+
+/* ── QR 묶음 ────────────────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-qr {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.5em 0.7em 0.5em 0.5em;
+  border: 1px solid var(--ch-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.design-dorms-story .ch-qr a {
+  display: block;
+  line-height: 0;
+}
+
+.design-dorms-story .ch-qr__copy {
+  display: grid;
+  gap: 0.2em;
+  font-size: 0.62em;
+}
+
+.design-dorms-story .ch-qr__copy .cover-resource {
+  display: grid;
+  gap: 0.15em;
+  color: var(--ch-ink);
+  text-decoration: none;
+}
+
+.design-dorms-story .ch-qr__copy .cover-resource__label {
+  font-family: var(--ch-display);
+  font-size: 1.15em;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-qr__copy .cover-resource__url,
+.design-dorms-story .ch-qr__caption {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.85em;
+}
+
+/* ── ch-statement 큰 문장 ───────────────────────────────────────────────── */
+
+.design-dorms-story .body-page--ch-statement .page-title {
+  max-width: 17em;
+  font-size: 2.35em;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  animation: ch-rise 0.8s 0.05s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .body-page--ch-statement .page-rule {
+  display: none;
+}
+
+.design-dorms-story .ch-statement {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.2em 0 0.2em 1.3em;
+}
+
+.design-dorms-story .ch-statement__bar {
+  position: absolute;
+  top: 0.8em;
+  bottom: 0.8em;
+  left: 0;
+  width: 6px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--ch-sky), var(--ch-purple) 35%, var(--ch-pink) 65%, var(--ch-orange));
+  transform-origin: top;
+  animation: ch-grow-y 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes ch-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.design-dorms-story .ch-statement__copy .lead {
+  font-size: 1.2em;
+  line-height: 1.4;
+  animation: ch-rise 0.8s 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-statement__copy p:not(.lead) {
+  font-size: 0.95em;
+  animation: ch-fade 0.8s 0.55s both;
+}
+
+/* ── ch-chapter 챕터 표지 ───────────────────────────────────────────────── */
+
+.design-dorms-story .body-page--ch-chapter {
+  padding: 40px 60px 30px;
+}
+
+.design-dorms-story .body-page--ch-chapter .page-title {
+  position: relative;
+  z-index: 1;
+  max-width: 12.5em;
+  font-size: 2.55em;
+  letter-spacing: -0.045em;
+  line-height: 1.06;
+}
+
+.design-dorms-story .body-page--ch-chapter .page-rule {
+  display: none;
+}
+
+.design-dorms-story .ch-chapter {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.8em;
+  padding-top: 0.5em;
+}
+
+.design-dorms-story .ch-chapter__main {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 1.2em;
+  align-items: center;
+}
+
+.design-dorms-story .ch-chapter__cards {
+  display: grid;
+  gap: 0.5em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-chapter__card {
+  display: grid;
+  gap: 0.2em;
+  padding: 0.75em 0.95em;
+  border: 1px solid var(--ch-ink);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.design-dorms-story .ch-chapter__card--lead {
+  border-color: var(--ch-dark);
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-chapter__card b {
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.6em;
+  letter-spacing: 0.06em;
+}
+
+.design-dorms-story .ch-chapter__card span {
+  font-family: var(--ch-display);
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.design-dorms-story .ch-chapter__track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5em;
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-chapter__track li {
+  display: grid;
+  gap: 0.35em;
+  padding-top: 0.6em;
+  border-top: 3px solid var(--ch-line);
+  color: var(--ch-muted);
+  font-size: 0.66em;
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-chapter__track li span {
+  font-family: var(--ch-mono);
+  font-size: 0.85em;
+}
+
+.design-dorms-story .ch-chapter__track li[data-state="done"] {
+  border-top-color: var(--ch-ink);
+  color: var(--ch-ink-2);
+}
+
+.design-dorms-story .ch-chapter__track li[data-state="now"] {
+  border-top-color: var(--ch-orange);
+  color: var(--ch-ink);
+}
+
+/* 음악을 만든다는 이야기 옆에 실제 음원을 싣는다. 플레이어를 누르면 그 자리에서 곡이 나온다. */
+.design-dorms-story .ch-chapter--music .ch-chapter__main {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  grid-template-areas:
+    "copy music"
+    "cards music";
+  align-items: start;
+  row-gap: 0.8em;
+}
+
+.design-dorms-story .ch-chapter--music .ch-chapter__copy {
+  grid-area: copy;
+}
+
+.design-dorms-story .ch-chapter--music .ch-chapter__cards {
+  grid-area: cards;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.design-dorms-story .ch-chapter--music .ch-chapter__card span {
+  font-size: 0.72em;
+}
+
+.design-dorms-story .ch-music {
+  grid-area: music;
+  display: grid;
+  gap: 0.55em;
+  margin: 0;
+}
+
+.design-dorms-story .ch-music__frame {
+  position: relative;
+  overflow: hidden;
+  height: 7.8em;
+  border-radius: 16px;
+  background: var(--ch-dark);
+  box-shadow: 0 18px 36px -24px rgba(20, 12, 4, 0.75);
+}
+
+.design-dorms-story .ch-music__player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* 앨범 그림은 인쇄·PDF 에서만 보인다. 화면에서는 플레이어가 그 자리를 쓴다. */
+.design-dorms-story .ch-music__poster {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.design-dorms-story .ch-music__caption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.15em 0.55em;
+  font-size: 0.64em;
+}
+
+.design-dorms-story .ch-music__caption svg {
+  grid-row: 1 / span 2;
+  width: 1.6em;
+  height: 1.6em;
+  color: var(--ch-orange);
+}
+
+.design-dorms-story .ch-music__song {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.45em;
+}
+
+.design-dorms-story .ch-music__song b {
+  font-family: var(--ch-display);
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-music__song span {
+  font-family: var(--ch-display);
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.design-dorms-story .ch-music__album {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.8em;
+}
+
+.deckPrint__pages--capture .design-dorms-story .ch-music__player {
+  display: none;
+}
+
+.deckPrint__pages--capture .design-dorms-story .ch-music__poster {
+  display: block;
+}
+
+@media print {
+  .design-dorms-story .ch-music__player {
+    display: none;
+  }
+
+  .design-dorms-story .ch-music__poster {
+    display: block;
+  }
+}
+
+/* ── ch-timeline 연대기 ─────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-timeline {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.design-dorms-story .ch-timeline__track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: 0.8em;
+  margin: 0;
+  padding: 1.4em 0 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-timeline__line {
+  position: absolute;
+  top: 1.95em;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ch-sky), var(--ch-purple), var(--ch-pink), var(--ch-orange));
+  transform-origin: left;
+  animation: ch-grow-x 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-timeline__node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.design-dorms-story .ch-timeline__dot {
+  width: 1.1em;
+  height: 1.1em;
+  margin-bottom: 0.35em;
+  border: 2px solid var(--ch-ink);
+  border-radius: 50%;
+  background: var(--ch-bg);
+}
+
+.design-dorms-story .ch-timeline__node[data-last] .ch-timeline__dot {
+  border-color: var(--ch-orange);
+  background: var(--ch-orange);
+  box-shadow: 0 0 0 6px rgba(237, 90, 20, 0.18);
+}
+
+.design-dorms-story .ch-timeline__when {
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.56em;
+  letter-spacing: 0.06em;
+}
+
+.design-dorms-story .ch-timeline__what {
+  font-family: var(--ch-display);
+  font-size: 0.86em;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.28;
+}
+
+.design-dorms-story .ch-timeline__more {
+  color: var(--ch-muted);
+  font-size: 0.66em;
+  line-height: 1.45;
+}
+
+/* 줄 전체가 원문 링크인 칸의 버튼 모양. 칸 맨 아래에 두어 옆 칸들과 높이를 맞춘다(53쪽 공지 버튼과 같은 모양). */
+.design-dorms-story .ch-timeline__go {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: auto;
+  padding: 0.42em 0.8em;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  color: var(--ch-ink);
+  font-size: 0.56em;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.design-dorms-story .ch-timeline__go svg {
+  display: block;
+  flex: none;
+  width: 1em;
+  height: 1em;
+}
+
+.design-dorms-story .ch-timeline__node[data-linked]:hover .ch-timeline__go {
+  border-color: var(--ch-ink);
+  background: var(--ch-ink);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-timeline__copy {
+  margin-top: auto;
+  padding: 0.8em 1em;
+  border-left: 3px solid var(--ch-orange);
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 0.88em;
+}
+
+/* ── ch-contrast 대비 두 판 ─────────────────────────────────────────────── */
+
+.design-dorms-story .ch-contrast {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.8em;
+  align-items: stretch;
+}
+
+.design-dorms-story .ch-contrast__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.1em 1.25em;
+  border-radius: var(--ch-radius);
+}
+
+.design-dorms-story .ch-contrast__panel--light {
+  border: 1px solid var(--ch-ink);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.design-dorms-story .ch-contrast__panel--dark {
+  position: relative;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.design-dorms-story .ch-contrast__panel--dark .prose,
+.design-dorms-story .ch-contrast__panel--dark .prose .lead {
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-contrast__panel--dark .prose .hl {
+  color: var(--ch-pink);
+}
+
+.design-dorms-story .ch-contrast__panel--dark .prose .note-serif {
+  color: rgba(244, 241, 235, 0.6);
+}
+
+.design-dorms-story .ch-contrast__panel .note-serif:first-child {
+  margin-bottom: 0.2em;
+  color: var(--ch-orange);
+  font-size: 0.6em;
+  letter-spacing: 0.08em;
+}
+
+.design-dorms-story .ch-contrast__panel .lead {
+  font-size: 1.12em;
+}
+
+.design-dorms-story .ch-contrast__arrow {
+  display: grid;
+  place-items: center;
+  color: var(--ch-orange);
+  font-size: 0.8em;
+}
+
+.design-dorms-story .ch-contrast__arrow svg {
+  width: 2.4em;
+  height: 2.4em;
+}
+
+/* ── ch-flow 흐름 ───────────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-flow {
+  display: grid;
+  flex: 1 1 auto;
+  gap: 1.1em;
+}
+
+.design-dorms-story .ch-flow--media {
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  align-items: center;
+}
+
+/* 백영고 오락실 실습 장은 단계 글이 주인공이다. 글 칸을 넓혀 글자가 커지게 하고, 화면 캡처는 따라 하기 보조로 둔다. */
+
+.design-dorms-story .ch-flow__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9em;
+}
+
+.design-dorms-story .ch-flow__steps {
+  display: grid;
+  gap: 0.6em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-flow:not(.ch-flow--media) .ch-flow__steps {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 1.3em;
+}
+
+.design-dorms-story .ch-flow__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.7em;
+  row-gap: 0.15em;
+  align-items: baseline;
+  /* 카드 높이가 늘어도 줄 간격을 벌리지 않는다. 그래야 네 카드의 본문이 같은 높이에서 시작한다. */
+  align-content: start;
+  padding: 0.75em 0.95em;
+  border: 1px solid var(--ch-ink);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.design-dorms-story .ch-flow__step:last-child {
+  border-color: var(--ch-dark);
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-flow__no {
+  grid-row: span 2;
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.62em;
+}
+
+.design-dorms-story .ch-flow__step strong {
+  font-family: var(--ch-display);
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.design-dorms-story .ch-flow__step > span:not(.ch-flow__no) {
+  grid-column: 2;
+  font-size: 0.72em;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.design-dorms-story .ch-flow__link {
+  position: absolute;
+  left: 1.3em;
+  bottom: -0.62em;
+  z-index: 1;
+  width: 2px;
+  height: 0.62em;
+  background: var(--ch-orange);
+}
+
+.design-dorms-story .ch-flow:not(.ch-flow--media) .ch-flow__link {
+  top: 50%;
+  right: -1.3em;
+  bottom: auto;
+  left: auto;
+  width: 1.3em;
+  height: 2px;
+  transform-origin: left;
+}
+
+.design-dorms-story .ch-flow__copy {
+  font-size: 0.9em;
+}
+
+.design-dorms-story .ch-flow__media .body-page__media img {
+  max-height: 16.5em;
+  border: 1px solid var(--ch-line);
+  border-radius: 16px;
+  box-shadow: 0 24px 50px -30px rgba(17, 17, 17, 0.45);
+}
+
+/* ── ch-stream 흘러가는 채팅 ─────────────────────────────────────────────── */
+
+.design-dorms-story .ch-stream {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.4em;
+  align-items: center;
+}
+
+.design-dorms-story .ch-stream__phone {
+  display: flex;
+  flex-direction: column;
+  border-radius: 26px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  box-shadow: 0 30px 60px -30px rgba(17, 17, 17, 0.6);
+}
+
+.design-dorms-story .ch-stream__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6em;
+  padding: 0.7em 1em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--ch-mono);
+  font-size: 0.5em;
+  letter-spacing: 0.06em;
+}
+
+.design-dorms-story .ch-stream__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+  margin: 0;
+  padding: 0.6em 0.9em 0.9em;
+  list-style: none;
+}
+
+.design-dorms-story .ch-stream__msg {
+  opacity: var(--fade, 1);
+  animation-name: ch-chat-in;
+}
+
+@keyframes ch-chat-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: var(--fade, 1);
+    transform: none;
+  }
+}
+
+.design-dorms-story .ch-stream__msg {
+  display: grid;
+  gap: 0.2em;
+  font-size: 0.6em;
+}
+
+.design-dorms-story .ch-stream__who {
+  color: rgba(244, 241, 235, 0.55);
+  font-size: 0.82em;
+}
+
+.design-dorms-story .ch-stream__bubble {
+  justify-self: start;
+  padding: 0.45em 0.75em;
+  border-radius: 12px 12px 12px 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.design-dorms-story .ch-stream__app {
+  display: grid;
+  justify-self: start;
+  gap: 0.1em;
+  min-width: 12em;
+  padding: 0.55em 0.8em;
+  border: 1px solid rgba(242, 159, 200, 0.6);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(86, 146, 240, 0.25), rgba(242, 159, 200, 0.25));
+}
+
+.design-dorms-story .ch-stream__app small {
+  color: var(--ch-pink);
+  font-family: var(--ch-mono);
+  font-size: 0.8em;
+}
+
+.design-dorms-story .ch-stream__copy .lead {
+  font-size: 1.15em;
+}
+
+/* ── ch-vessel 그릇 ─────────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-vessel {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 1.3em;
+  align-items: center;
+}
+
+.design-dorms-story .ch-vessel__bowl {
+  position: relative;
+  padding: 0.9em 0.9em 1.6em;
+  border: 2px solid var(--ch-ink);
+  border-top: 0;
+  border-radius: 0 0 var(--ch-radius) var(--ch-radius);
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.55));
+}
+
+.design-dorms-story .ch-vessel__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45em;
+}
+
+.design-dorms-story .ch-vessel__card {
+  display: grid;
+  gap: 0.15em;
+  padding: 0.5em 0.6em;
+  border: 1px solid var(--ch-line);
+  border-radius: 12px;
+  background: #fff;
+  animation-name: ch-drop;
+}
+
+@keyframes ch-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-40px) rotate(-4deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(3px) rotate(0.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.design-dorms-story .ch-vessel__card b {
+  font-family: var(--ch-display);
+  font-size: 0.58em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.design-dorms-story .ch-vessel__card span {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.44em;
+}
+
+.design-dorms-story .ch-vessel__label {
+  position: absolute;
+  bottom: 0.45em;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.5em;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* ── ch-name 이름 분해 ──────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-name {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 1.4em;
+  row-gap: 0.8em;
+  align-items: center;
+}
+
+.design-dorms-story .ch-name__word {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  font-family: var(--ch-display);
+  font-size: 3.4em;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.design-dorms-story .ch-name__part--0 { color: var(--ch-blue); }
+.design-dorms-story .ch-name__part--1 { color: var(--ch-ink); font-size: 0.55em; margin: 0 0.18em; align-self: center; }
+.design-dorms-story .ch-name__part--2 { color: var(--ch-orange); display: inline-block; animation-name: ch-spin-in; }
+
+@keyframes ch-spin-in {
+  from {
+    opacity: 0;
+    transform: rotate(-200deg) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.design-dorms-story .ch-name__legend {
+  display: grid;
+  gap: 0.55em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-name__legend li {
+  display: grid;
+  grid-template-columns: 4.6em minmax(0, 1fr);
+  gap: 0.7em;
+  align-items: baseline;
+  font-size: 0.78em;
+  line-height: 1.45;
+}
+
+.design-dorms-story .ch-name__chip {
+  display: inline-block;
+  padding: 0.18em 0.55em;
+  border-radius: 9999px;
+  color: #fff;
+  font-family: var(--ch-display);
+  font-weight: 700;
+  text-align: center;
+}
+
+.design-dorms-story .ch-name__chip--0 { background: var(--ch-blue); }
+.design-dorms-story .ch-name__chip--1 { background: var(--ch-ink); }
+.design-dorms-story .ch-name__chip--2 { background: var(--ch-orange); }
+
+.design-dorms-story .ch-name__copy {
+  /* 인용 상자는 글 높이만큼만 차지하고, 남는 자리는 글자를 키워 채운다 */
+  align-self: center;
+  padding: 1em 1.1em;
+  border-radius: 18px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  font-size: 1.05em;
+}
+
+.design-dorms-story .ch-name__copy .prose,
+.design-dorms-story .ch-name__copy .prose .lead {
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-name__copy .prose .hl {
+  color: var(--ch-pink);
+}
+
+.design-dorms-story .ch-name__copy .note-serif {
+  color: rgba(244, 241, 235, 0.55);
+}
+
+/* ── ch-network 연결 ────────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-network {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 1.2em;
+  align-items: center;
+}
+
+.design-dorms-story .ch-network__stage {
+  height: 13em;
+  border-radius: var(--ch-radius);
+  background: var(--ch-dark);
+  overflow: hidden;
+}
+
+.design-dorms-story .ch-network__stage svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.design-dorms-story .ch-network__edge {
+  stroke: rgba(242, 159, 200, 0.28);
+  stroke-width: 0.18;
+  animation-name: ch-fade;
+}
+
+.design-dorms-story .ch-network__dot {
+  fill: #f4f1eb;
+  animation-name: ch-pop;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes ch-pop {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.design-dorms-story .ch-network__core {
+  fill: var(--ch-orange);
+}
+
+.design-dorms-story .ch-network__core--b {
+  fill: var(--ch-sky);
+}
+
+.design-dorms-story .ch-network__side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9em;
+}
+
+.design-dorms-story .ch-network__facts {
+  display: grid;
+  gap: 0.5em;
+  margin: 0;
+}
+
+.design-dorms-story .ch-network__facts div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px dashed var(--ch-line);
+}
+
+.design-dorms-story .ch-network__facts dt {
+  font-size: 0.72em;
+  color: var(--ch-ink-2);
+}
+
+.design-dorms-story .ch-network__facts dd {
+  margin: 0;
+  font-family: var(--ch-display);
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* ── ch-map 지역 점지도 ─────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-map {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.3em;
+  align-items: stretch;
+}
+
+.design-dorms-story .ch-map__stage {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 0.12em;
+  align-self: center;
+  width: 100%;
+  max-width: 11.5em;
+  aspect-ratio: 4 / 3.6;
+  justify-self: center;
+}
+
+/* 칸 색 진하기는 인원(--v, 0.12~1). 가장 많은 곳(경기)만 주황으로 둔다. */
+.design-dorms-story .ch-map__tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 0.22em 0.3em;
+  border-radius: 0.12em;
+  background: #9db4e0;
+  background: color-mix(in srgb, #1e5fce calc(var(--v) * 100%), #f3efe8);
+  color: var(--ch-ink);
+  animation-name: ch-pop;
+}
+
+.design-dorms-story .ch-map__tile--deep {
+  color: #fff;
+}
+
+/* 주황 칸은 먹색 글자가 흰 글자보다 잘 읽힌다(5.5:1 대 3.5:1). */
+.design-dorms-story .ch-map__tile--top {
+  background: var(--ch-orange);
+  color: var(--ch-ink);
+}
+
+.design-dorms-story .ch-map__tile i {
+  font-family: var(--ch-ui);
+  font-size: 0.42em;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-map__tile b {
+  align-self: flex-end;
+  font-family: var(--ch-display);
+  font-size: 0.56em;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.design-dorms-story .ch-map__side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  justify-content: center;
+}
+
+.design-dorms-story .ch-map__rank {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4em 1em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-map__rank li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px dashed var(--ch-line);
+  font-size: 0.78em;
+}
+
+.design-dorms-story .ch-map__rank b {
+  font-family: var(--ch-display);
+}
+
+/* ── ch-chart 어두운 그래프 패널 ─────────────────────────────────────────── */
+
+.design-dorms-story .ch-chart {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.design-dorms-story .ch-chart__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  padding: 0.9em 1.1em 0.7em;
+  border-radius: var(--ch-radius);
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  box-shadow: 0 30px 60px -34px rgba(17, 17, 17, 0.7);
+}
+
+.design-dorms-story .ch-chart__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--ch-mono);
+  font-size: 0.52em;
+  letter-spacing: 0.06em;
+}
+
+.design-dorms-story .ch-chart__title {
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-chart__live {
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.design-dorms-story .ch-chart__legend {
+  display: flex;
+  gap: 1.1em;
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-chart__legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.design-dorms-story .ch-chart__legend i {
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+}
+
+.design-dorms-story .ch-chart__legend b {
+  font-family: var(--ch-display);
+  font-size: 1.35em;
+  letter-spacing: -0.02em;
+}
+
+.design-dorms-story .ch-chart__plot {
+  height: 10.5em;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.design-dorms-story .ch-chart__plot svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.design-dorms-story .ch-chart__grid {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.design-dorms-story .ch-chart__line {
+  animation-name: ch-draw;
+  animation-duration: 1.8s;
+}
+
+.design-dorms-story .ch-chart__axis {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(244, 241, 235, 0.5);
+  font-family: var(--ch-mono);
+  font-size: 0.48em;
+}
+
+.design-dorms-story .ch-chart__copy {
+  font-size: 0.82em;
+}
+
+/* ── ch-numbers 큰 숫자 ─────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-numbers {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.9em;
+}
+
+.design-dorms-story .ch-numbers__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6em;
+  margin: 0;
+}
+
+.design-dorms-story .ch-numbers__grid[data-count="2"],
+.design-dorms-story .ch-numbers__grid[data-count="4"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.design-dorms-story .ch-numbers__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  padding: 0.75em 0.9em;
+  border-top: 2px solid var(--ch-ink);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.design-dorms-story .ch-numbers__cell:first-child {
+  border-top-color: var(--ch-orange);
+}
+
+/* 다섯 칸이면 첫 칸을 두 칸 너비로 펴서 빈자리 없이 채운다(첫 줄 2개, 둘째 줄 3개). */
+.design-dorms-story .ch-numbers__grid[data-count="5"] .ch-numbers__cell:first-child {
+  grid-column: span 2;
+}
+
+.design-dorms-story .ch-numbers__cell dt {
+  color: var(--ch-ink-2);
+  font-family: var(--ch-mono);
+  font-size: 0.52em;
+  letter-spacing: 0.06em;
+}
+
+.design-dorms-story .ch-numbers__cell dd {
+  margin: 0;
+  font-family: var(--ch-display);
+  font-size: 1.85em;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.design-dorms-story .ch-numbers__cell dd small {
+  margin-left: 0.12em;
+  color: var(--ch-muted);
+  font-size: 0.42em;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.design-dorms-story .ch-numbers__cell p {
+  margin: 0;
+  color: var(--ch-muted);
+  font-size: 0.56em;
+  line-height: 1.4;
+}
+
+/* 숫자는 서식 그대로(천 단위 쉼표) 두고, 아래에서 굴러 올라오며 초점이 맞는다. */
+.design-dorms-story .ch-count {
+  display: inline-block;
+  animation: ch-roll 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--d, 0s) + 0.15s);
+}
+
+@keyframes ch-roll {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(0.45em);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+.design-dorms-story .ch-numbers__live .case-live-stats {
+  position: static;
+}
+
+/* ── ch-posts 실제 글 벽 ────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-posts {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.design-dorms-story .ch-posts__wall {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55em;
+}
+
+.design-dorms-story .ch-posts__wall[data-count="4"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.design-dorms-story .ch-posts__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  padding: 0.7em 0.8em;
+  border: 1px solid var(--ch-line);
+  border-radius: 16px;
+  background: #fffdf9;
+  color: var(--ch-ink);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.design-dorms-story a.ch-posts__card:hover {
+  border-color: var(--ch-orange);
+  transform: translateY(-2px);
+}
+
+.design-dorms-story .ch-posts__meta {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.46em;
+  letter-spacing: 0.04em;
+}
+
+.design-dorms-story .ch-posts__title {
+  font-family: var(--ch-display);
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.design-dorms-story .ch-posts__excerpt {
+  color: var(--ch-ink-2);
+  font-size: 0.64em;
+  line-height: 1.5;
+}
+
+.design-dorms-story .ch-posts__stats {
+  margin-top: auto;
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.46em;
+}
+
+.design-dorms-story .ch-posts__copy {
+  font-size: 0.8em;
+}
+
+/* ── 사례 그림 공통: 도름스 화면 조각 ─────────────────────────────────────── */
+
+/* 도름스 공감 수(도름)·댓글 수. 도름스 피드의 엄지·말풍선과 같은 짝으로 둔다. */
+.design-dorms-story .ch-react {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  color: var(--ch-ink-2);
+  font-family: var(--ch-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.design-dorms-story .ch-react__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.design-dorms-story .ch-react__item svg {
+  width: 1.05em;
+  height: 1.05em;
+  color: var(--ch-orange);
+}
+
+/* 잠긴 앱(교사 인증 전용)은 그림 대신 자물쇠 자리로 둔다. 무엇이 있는지는 말하되 내용은 보이지 않는다. */
+.design-dorms-story :is(.ch-app__shot, .ch-remix__shot, .ch-collab__shot, .ch-evi__shot) {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #e7e1d5;
+}
+
+/* 그림은 틀을 채우기만 하고 틀의 높이를 정하지 않는다. 높이는 em 으로 정해 AutoFit 이 함께 줄인다. */
+.design-dorms-story :is(.ch-app__shot, .ch-remix__shot, .ch-collab__shot, .ch-evi__shot) img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/*
+ * 틀 높이는 em 으로 정해져 있어서 틀 자체의 글자 크기를 줄이면 틀도 함께 납작해진다.
+ * 그래서 틀은 그대로 두고 안쪽 글자와 자물쇠만 작게 한다.
+ */
+.design-dorms-story :is(.ch-app__shot--locked, .ch-remix__shot--locked, .ch-collab__shot--locked, .ch-evi__shot--locked) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+  overflow: visible;
+  background: #ebe5d9;
+  color: var(--ch-muted);
+  text-align: center;
+}
+
+.design-dorms-story :is(.ch-app__shot--locked, .ch-remix__shot--locked, .ch-collab__shot--locked, .ch-evi__shot--locked) > span {
+  font-family: var(--ch-mono);
+  font-size: 0.5em;
+  letter-spacing: 0.02em;
+}
+
+/* 자물쇠도 글자 크기를 따라 줄어야 AutoFit 이 작게 맞출 때 틀 밖으로 삐져나가지 않는다. */
+.design-dorms-story :is(.ch-app__shot--locked, .ch-remix__shot--locked, .ch-collab__shot--locked, .ch-evi__shot--locked) svg {
+  width: 0.85em;
+  height: 0.85em;
+}
+
+/* ── ch-apps 선생님들이 올린 앱: 실제 화면이 먼저 서는 진열장 ───────────────── */
+
+.design-dorms-story .ch-apps {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.design-dorms-story .ch-apps__copy {
+  font-size: 0.78em;
+}
+
+.design-dorms-story .ch-apps__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75em 0.9em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-apps__grid[data-count="8"],
+.design-dorms-story .ch-apps__grid[data-count="12"] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.design-dorms-story .ch-app {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 0.22em;
+  height: 100%;
+  color: var(--ch-ink);
+  text-decoration: none;
+}
+
+.design-dorms-story .ch-app__frame {
+  position: relative;
+  display: block;
+  margin-bottom: 0.25em;
+}
+
+.design-dorms-story .ch-app__shot {
+  height: 4.6em;
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.08), 0 10px 22px -16px rgba(40, 30, 10, 0.55);
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s ease;
+}
+
+.design-dorms-story .ch-apps__grid[data-count="8"] .ch-app__shot,
+.design-dorms-story .ch-apps__grid[data-count="12"] .ch-app__shot {
+  height: 3.9em;
+}
+
+.design-dorms-story a.ch-app:hover .ch-app__shot,
+.design-dorms-story a.ch-app:focus-visible .ch-app__shot {
+  transform: translateY(-3px);
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.08), 0 18px 30px -18px rgba(40, 30, 10, 0.6);
+}
+
+.design-dorms-story a.ch-app:focus-visible {
+  outline: 2px solid var(--ch-orange);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+/* 영역은 도름스 피드의 분류 칩처럼 그림 위 왼쪽 위에 작게 얹는다. */
+.design-dorms-story .ch-app__area {
+  position: absolute;
+  top: 0.55em;
+  left: 0.55em;
+  padding: 0.3em 0.6em;
+  border-radius: 6px;
+  background: rgba(17, 17, 17, 0.82);
+  color: #f7f3ec;
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.design-dorms-story .ch-app__name {
+  font-family: var(--ch-display);
+  font-size: 0.66em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.design-dorms-story .ch-app__line {
+  color: var(--ch-ink-2);
+  font-size: 0.5em;
+  line-height: 1.45;
+}
+
+.design-dorms-story .ch-app__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.2em 0.8em;
+  font-size: 0.42em;
+}
+
+.design-dorms-story .ch-app__maker {
+  color: var(--ch-muted);
+}
+
+/* ── ch-remix 옆그레이드 사슬: 화면에서 화면으로 ─────────────────────────── */
+
+.design-dorms-story .ch-remix {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.design-dorms-story .ch-remix__chains {
+  display: grid;
+  gap: 0.7em;
+}
+
+.design-dorms-story .ch-remix__chain {
+  display: grid;
+  gap: 0.3em;
+}
+
+.design-dorms-story .ch-remix__name {
+  margin: 0;
+  color: var(--ch-ink);
+  font-family: var(--ch-display);
+  font-size: 0.56em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.design-dorms-story .ch-remix__row {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-remix__step {
+  display: flex;
+  flex: 1 1 0;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.design-dorms-story .ch-remix__gap {
+  position: relative;
+  display: flex;
+  flex: 0 0 3.2em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15em;
+  color: var(--ch-orange);
+}
+
+.design-dorms-story .ch-remix__gap svg {
+  width: 2.6em;
+  height: 1.14em;
+  overflow: visible;
+}
+
+.design-dorms-story .ch-remix__gap b {
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.42em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-remix__card {
+  display: grid;
+  grid-template-columns: 4.4em minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 0.6em;
+  row-gap: 0.18em;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.45em;
+  border-radius: 14px;
+  background: #fffdf9;
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.06), 0 8px 18px -14px rgba(40, 30, 10, 0.5);
+  color: var(--ch-ink);
+  text-decoration: none;
+}
+
+.design-dorms-story .ch-remix__shot {
+  grid-row: 1 / span 3;
+  height: 3em;
+  border-radius: 8px;
+}
+
+.design-dorms-story .ch-remix__card--origin {
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story a.ch-remix__card:hover,
+.design-dorms-story a.ch-remix__card:focus-visible {
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.06), 0 14px 26px -16px rgba(40, 30, 10, 0.6);
+  outline: none;
+}
+
+.design-dorms-story a.ch-remix__card:focus-visible {
+  outline: 2px solid var(--ch-orange);
+  outline-offset: 3px;
+}
+
+.design-dorms-story .ch-remix__role {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  font-size: 0.42em;
+}
+
+.design-dorms-story .ch-remix__chip {
+  padding: 0.18em 0.55em;
+  border-radius: 6px;
+  background: var(--ch-orange);
+  color: #fff;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-remix__card--origin .ch-remix__chip {
+  background: #f4f1eb;
+  color: var(--ch-ink);
+}
+
+.design-dorms-story .ch-remix__card--together .ch-remix__chip {
+  background: var(--ch-blue);
+}
+
+.design-dorms-story .ch-remix__role em {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-style: normal;
+}
+
+.design-dorms-story .ch-remix__card--origin .ch-remix__role em {
+  color: rgba(244, 241, 235, 0.6);
+}
+
+.design-dorms-story .ch-remix__title {
+  font-family: var(--ch-display);
+  font-size: 0.6em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.design-dorms-story .ch-remix__note {
+  color: var(--ch-ink-2);
+  font-size: 0.46em;
+  line-height: 1.45;
+}
+
+.design-dorms-story .ch-remix__card--origin .ch-remix__note {
+  color: rgba(244, 241, 235, 0.78);
+}
+
+.design-dorms-story .ch-remix__copy {
+  font-size: 0.74em;
+}
+
+/* ── ch-collab 요청이 기능이 되기까지 ───────────────────────────────────── */
+
+.design-dorms-story .ch-collab {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.design-dorms-story .ch-collab__rows {
+  display: grid;
+  gap: 0.6em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-collab__row {
+  display: grid;
+  grid-template-columns: 6.4em minmax(0, 1fr) 4.6em minmax(0, 1fr);
+  align-items: center;
+  gap: 0.7em;
+}
+
+.design-dorms-story .ch-collab__app {
+  display: grid;
+  gap: 0.25em;
+  color: var(--ch-ink);
+  text-decoration: none;
+}
+
+.design-dorms-story .ch-collab__shot {
+  height: 3.6em;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px -14px rgba(40, 30, 10, 0.5);
+}
+
+.design-dorms-story .ch-collab__app strong {
+  font-family: var(--ch-display);
+  font-size: 0.5em;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.design-dorms-story :is(.ch-collab__ask, .ch-collab__done) {
+  display: grid;
+  gap: 0.3em;
+  padding: 0.55em 0.75em;
+  border-radius: 14px;
+}
+
+.design-dorms-story .ch-collab__ask {
+  border-bottom-left-radius: 4px;
+  background: #fffdf9;
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.06);
+}
+
+.design-dorms-story .ch-collab__done {
+  border-bottom-right-radius: 4px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-collab__when {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.4em;
+}
+
+.design-dorms-story .ch-collab__done .ch-collab__when {
+  color: rgba(244, 241, 235, 0.6);
+}
+
+.design-dorms-story :is(.ch-collab__ask, .ch-collab__done) p {
+  margin: 0;
+  font-size: 0.52em;
+  line-height: 1.45;
+}
+
+.design-dorms-story .ch-collab__gap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  color: var(--ch-orange);
+}
+
+.design-dorms-story .ch-collab__gap svg {
+  width: 100%;
+  height: 0.6em;
+}
+
+.design-dorms-story .ch-collab__gap b {
+  font-family: var(--ch-display);
+  font-size: 0.56em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-collab__copy {
+  font-size: 0.74em;
+}
+
+/* ── ch-evidence 다섯 가지의 증거 ──────────────────────────────────────── */
+
+.design-dorms-story .ch-evidence {
+  --el: var(--ch-orange);
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.design-dorms-story .ch-evidence__track {
+  display: flex;
+  gap: 0.35em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.44em;
+}
+
+.design-dorms-story .ch-evidence__track li {
+  padding: 0.28em 0.8em;
+  border-radius: 9999px;
+  background: rgba(17, 17, 17, 0.05);
+  color: var(--ch-muted);
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-evidence__track li[data-state="now"] {
+  background: var(--ch-ink);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-evidence__track li[data-state="done"] {
+  color: var(--ch-ink-2);
+}
+
+.design-dorms-story .ch-evidence__main {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.55fr);
+  gap: 1.1em;
+  align-items: start;
+}
+
+.design-dorms-story .ch-evidence__side {
+  display: grid;
+  gap: 0.6em;
+}
+
+.design-dorms-story .ch-evidence__copy {
+  font-size: 0.78em;
+}
+
+.design-dorms-story .ch-evidence__figures {
+  display: grid;
+  gap: 0.45em;
+  margin: 0;
+}
+
+.design-dorms-story .ch-evidence__figures div {
+  display: grid;
+  gap: 0.05em;
+  padding-top: 0.4em;
+  border-top: 1px solid var(--ch-line);
+}
+
+.design-dorms-story .ch-evidence__figures dt {
+  order: 2;
+  color: var(--ch-ink-2);
+  font-size: 0.46em;
+  line-height: 1.4;
+}
+
+.design-dorms-story .ch-evidence__figures dd {
+  order: 1;
+  margin: 0;
+  font-family: var(--ch-display);
+  font-size: 1.15em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.design-dorms-story .ch-evidence__figures small {
+  margin-left: 0.12em;
+  color: var(--ch-ink-2);
+  font-size: 0.45em;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.design-dorms-story .ch-evidence__cases {
+  display: grid;
+  gap: 0.6em;
+}
+
+.design-dorms-story .ch-evidence__small {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 0.6em;
+}
+
+.design-dorms-story .ch-evi {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fffdf9;
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.06), 0 10px 22px -16px rgba(40, 30, 10, 0.5);
+  color: var(--ch-ink);
+  text-decoration: none;
+  transition: box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.design-dorms-story a.ch-evi:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.06), 0 16px 28px -16px rgba(40, 30, 10, 0.6);
+}
+
+.design-dorms-story a.ch-evi:focus-visible {
+  outline: 2px solid var(--ch-orange);
+  outline-offset: 3px;
+}
+
+/* 큰 카드는 그림을 왼쪽에 크게, 작은 카드는 위에 얇게 둔다. */
+.design-dorms-story .ch-evi--feature {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-rows: auto;
+}
+
+.design-dorms-story .ch-evi__shot {
+  height: 3.2em;
+}
+
+.design-dorms-story .ch-evi--text {
+  grid-template-rows: auto;
+}
+
+.design-dorms-story .ch-evi--feature.ch-evi--text {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.design-dorms-story .ch-evi--feature .ch-evi__shot {
+  height: auto;
+  min-height: 6.4em;
+  /* 오른쪽 글 카드와 맞닿는 끝에서 캡처 글자가 반쪽으로 잘려 보이지 않게 흐리게 사라지게 한다. */
+  -webkit-mask-image: linear-gradient(to right, #000 78%, transparent);
+  mask-image: linear-gradient(to right, #000 78%, transparent);
+}
+
+.design-dorms-story .ch-evi__body {
+  display: grid;
+  align-content: start;
+  gap: 0.25em;
+  padding: 0.55em 0.7em 0.6em;
+}
+
+.design-dorms-story .ch-evi--feature .ch-evi__body {
+  padding: 0.75em 0.85em;
+}
+
+.design-dorms-story .ch-evi__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3em 0.6em;
+  font-size: 0.4em;
+}
+
+.design-dorms-story .ch-evi__kind {
+  padding: 0.2em 0.55em;
+  border-radius: 6px;
+  background: var(--el);
+  color: #fff;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-evi__who {
+  color: var(--ch-muted);
+}
+
+.design-dorms-story .ch-evi__title {
+  font-family: var(--ch-display);
+  font-size: 0.56em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.design-dorms-story .ch-evi--feature .ch-evi__title {
+  font-size: 0.66em;
+}
+
+.design-dorms-story .ch-evi__quote {
+  color: var(--ch-ink-2);
+  font-size: 0.48em;
+  line-height: 1.5;
+}
+
+.design-dorms-story .ch-evi--feature .ch-evi__quote {
+  color: var(--ch-ink);
+  font-size: 0.56em;
+  line-height: 1.55;
+}
+
+.design-dorms-story .ch-evi__stats {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.38em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 다섯 가지의 자리마다 정해진 색(1 주황·2 분홍·3 파랑·4 초록·5 금색). 다섯 가지 한눈에(ch-five)와 같은 순서·같은 색이다. */
+.design-dorms-story [data-element="0"],
+.design-dorms-story .ch-evidence[data-element="0"] { --el: #ed5a14; }
+.design-dorms-story [data-element="1"],
+.design-dorms-story .ch-evidence[data-element="1"] { --el: #c2407f; }
+.design-dorms-story [data-element="2"],
+.design-dorms-story .ch-evidence[data-element="2"] { --el: #1e5fce; }
+.design-dorms-story [data-element="3"],
+.design-dorms-story .ch-evidence[data-element="3"] { --el: #235c34; }
+.design-dorms-story [data-element="4"],
+.design-dorms-story .ch-evidence[data-element="4"] { --el: #8a5a06; }
+
+.design-dorms-story .ch-evidence__track li[data-state="now"] {
+  background: var(--el);
+}
+
+/* ── ch-five 다섯 가지 한눈에 ──────────────────────────────────────────── */
+
+.design-dorms-story .ch-five {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.design-dorms-story .ch-five__cols {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45em 0.2em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 칸마다 줄을 따로 쌓지 않고 목록의 줄을 나눠 쓴다. 그래야 다섯 칸의 같은 줄이 같은 높이에서 시작한다. */
+.design-dorms-story .ch-five__col {
+  display: grid;
+  grid-row: span var(--five-rows, 4);
+  grid-template-rows: subgrid;
+  row-gap: 0.45em;
+  padding: 0.7em 0.75em 0.8em;
+  border-top: 3px solid var(--el);
+}
+
+
+.design-dorms-story .ch-five__word {
+  color: var(--el);
+  font-family: var(--ch-display);
+  font-size: 1.55em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+/* 회색 줄은 두 줄이 되면 줄 길이를 고르게 나눠 "것" 한 글자만 넘어가지 않게 한다. */
+.design-dorms-story .ch-five__usual {
+  color: var(--ch-muted);
+  font-size: 0.52em;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.design-dorms-story .ch-five__ours {
+  color: var(--ch-ink);
+  font-size: 0.7em;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.design-dorms-story .ch-five__proof {
+  padding-top: 0.5em;
+  border-top: 1px dashed var(--ch-line);
+  color: var(--ch-ink-2);
+  font-family: var(--ch-mono);
+  font-size: 0.46em;
+  line-height: 1.5;
+}
+
+/* 증거가 없는 칸은 자리만 지키고 점선을 긋지 않는다. */
+.design-dorms-story .ch-five__proof:empty {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.design-dorms-story .ch-five__copy {
+  font-size: 0.8em;
+}
+
+/* ── ch-toc 목차 ────────────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-toc {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+.design-dorms-story .ch-toc__list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-toc__row {
+  display: grid;
+  grid-template-columns: 2.1em minmax(0, 6.4em) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.9em;
+  padding: 0.55em 0;
+  border-bottom: 1px solid var(--ch-line);
+}
+
+.design-dorms-story .ch-toc__no {
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.7em;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-toc__title {
+  font-family: var(--ch-display);
+  font-size: 1.05em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.design-dorms-story .ch-toc__what {
+  color: var(--ch-ink-2);
+  font-size: 0.62em;
+  line-height: 1.45;
+}
+
+.design-dorms-story .ch-toc__pages {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.48em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* 보기 화면에서 목차 줄은 누르면 그 장으로 넘어가는 단추다. 모양은 글자 줄과 같고 오른쪽에 넘김 표시가 붙는다. */
+.design-dorms-story .ch-toc__item {
+  display: block;
+}
+.design-dorms-story .ch-toc__row--go {
+  appearance: none;
+  box-sizing: border-box;
+  grid-template-columns: 2.1em minmax(0, 6.4em) minmax(0, 1fr) auto auto;
+  width: 100%;
+  margin: 0;
+  padding-right: 0.3em;
+  padding-left: 0.3em;
+  border: 0;
+  border-bottom: 1px solid var(--ch-line);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.design-dorms-story button.ch-toc__row--go:hover {
+  background: rgba(17, 17, 17, 0.05);
+}
+.design-dorms-story button.ch-toc__row--go:hover .ch-toc__go {
+  background: var(--ch-orange);
+  color: #fff;
+}
+.design-dorms-story .ch-toc__row--go:focus-visible {
+  outline: 2px solid var(--ch-orange);
+  outline-offset: -2px;
+}
+.design-dorms-story .ch-toc__go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 1.5em;
+  height: 1.5em;
+  border: 1.5px solid var(--ch-orange);
+  border-radius: 9999px;
+  color: var(--ch-orange);
+  font-size: 0.6em;
+}
+.design-dorms-story .ch-toc__row--off {
+  cursor: default;
+}
+.design-dorms-story .ch-toc__go--off {
+  visibility: hidden;
+}
+.design-dorms-story .ch-toc__go svg {
+  display: block;
+  width: 0.8em;
+  height: 0.8em;
+}
+.design-dorms-story .ch-toc__copy {
+  font-size: 0.7em;
+}
+
+/* ── 크로마 공통: QR 이 아닌 바로 가기 링크 칩 ─────────────────────────── */
+
+.design-dorms-story .ch-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em 0.5em;
+  margin: 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-links a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  padding: 0.28em 0.7em;
+  border: 1px solid var(--ch-line);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ch-ink);
+  font-size: 0.5em;
+  text-decoration: none;
+}
+
+.design-dorms-story .ch-links b {
+  font-family: var(--ch-display);
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-links span {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.9em;
+}
+
+/* 게시글 댓글 흐름(ch-stream 의 q·a 행): 댓글 원문이 주인공이라 창을 넓히고 글자를 키운다. */
+.design-dorms-story .ch-stream--thread {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+}
+
+.design-dorms-story .ch-stream--thread .ch-stream__msg {
+  font-size: 0.68em;
+}
+
+/* 게시글 댓글 흐름(ch-stream 의 q·a 행): 질문 말풍선을 강조한다. */
+.design-dorms-story .ch-stream__msg--q .ch-stream__bubble {
+  border: 1px solid var(--ch-orange);
+  background: rgba(237, 90, 20, 0.16);
+  color: #fff4ec;
+}
+
+/* ── ch-quote 인용 ──────────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-quote {
+  position: relative;
+  display: grid;
+  flex: 1 1 auto;
+  align-content: center;
+  gap: 0.6em;
+  padding-left: 0.2em;
+}
+
+.design-dorms-story .ch-quote--media {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 1.2em;
+}
+
+.design-dorms-story .ch-quote__mark {
+  position: absolute;
+  top: -0.2em;
+  left: -0.2em;
+  width: 2.6em;
+  height: 2em;
+  color: rgba(237, 90, 20, 0.16);
+}
+
+.design-dorms-story .ch-quote__copy {
+  position: relative;
+  padding-left: 1.1em;
+  border-left: 3px solid var(--ch-orange);
+}
+
+.design-dorms-story .ch-quote__copy .lead {
+  font-size: 1.12em;
+  line-height: 1.5;
+}
+
+.design-dorms-story .ch-quote__media .body-page__media img {
+  max-height: 15em;
+  border-radius: 16px;
+  border: 1px solid var(--ch-line);
+}
+
+/* ── ch-bars 막대 비교 ──────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-bars {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.design-dorms-story .ch-bars__groups {
+  display: grid;
+  gap: 1em;
+}
+
+.design-dorms-story .ch-bars__name {
+  margin: 0 0 0.35em;
+  color: var(--ch-ink-2);
+  font-family: var(--ch-mono);
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.design-dorms-story .ch-bars__row {
+  display: grid;
+  grid-template-columns: var(--ch-bars-label, 6.2em) minmax(0, 1fr) 4.2em;
+  gap: 0.7em;
+  align-items: center;
+  margin-top: 0.35em;
+}
+
+.design-dorms-story .ch-bars__label {
+  font-size: 0.78em;
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-bars__track {
+  position: relative;
+  height: 1.2em;
+  border-radius: 9999px;
+  background: rgba(17, 17, 17, 0.07);
+  overflow: hidden;
+}
+
+.design-dorms-story .ch-bars__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w);
+  border-radius: 9999px;
+  background: #b7b1a8;
+  transform-origin: left;
+  animation: ch-grow-x 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+.design-dorms-story .ch-bars__row--lead .ch-bars__fill {
+  background: linear-gradient(90deg, var(--ch-sky), var(--ch-purple), var(--ch-pink), var(--ch-orange));
+}
+
+.design-dorms-story .ch-bars__value {
+  font-family: var(--ch-display);
+  font-size: 1.1em;
+  letter-spacing: -0.03em;
+  text-align: right;
+}
+
+/* ── ch-pillars 기둥 ────────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-pillars {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+.design-dorms-story .ch-pillars__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-pillars__row[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.design-dorms-story .ch-pillars__row[data-count="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.design-dorms-story .ch-pillars__row[data-count="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.design-dorms-story .ch-pillars__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  padding: 0.95em 1em;
+  border: 1px solid var(--ch-ink);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.design-dorms-story .ch-pillars__card:nth-child(3n + 2) {
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-pillars__no {
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.56em;
+}
+
+.design-dorms-story .ch-pillars__card strong {
+  font-family: var(--ch-display);
+  font-size: 1.12em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.design-dorms-story .ch-pillars__card > span:not(.ch-pillars__no) {
+  font-size: 0.78em;
+  line-height: 1.5;
+  opacity: 0.88;
+}
+
+.design-dorms-story .ch-pillars__card small {
+  margin-top: auto;
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.54em;
+  line-height: 1.45;
+}
+
+.design-dorms-story .ch-pillars__card:nth-child(3n + 2) small {
+  color: rgba(244, 241, 235, 0.55);
+}
+
+.design-dorms-story .ch-pillars__copy {
+  font-size: 0.82em;
+}
+
+/* ── ch-matrix 2×2 ──────────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-matrix {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+.design-dorms-story .ch-matrix__grid {
+  display: grid;
+  grid-template-columns: 4.4em repeat(var(--cols), minmax(0, 1fr));
+  gap: 0.5em;
+}
+
+.design-dorms-story .ch-matrix__line {
+  display: contents;
+}
+
+.design-dorms-story .ch-matrix__colhead,
+.design-dorms-story .ch-matrix__rowhead {
+  align-self: center;
+  color: var(--ch-ink-2);
+  font-family: var(--ch-mono);
+  font-size: 0.56em;
+  letter-spacing: 0.06em;
+}
+
+.design-dorms-story .ch-matrix__colhead {
+  text-align: center;
+}
+
+.design-dorms-story .ch-matrix__cell {
+  display: grid;
+  place-items: center;
+  min-height: 4.1em;
+  padding: 0.6em 0.8em;
+  border: 1px dashed var(--ch-line);
+  border-radius: 18px;
+  color: var(--ch-muted);
+  font-size: 0.74em;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.design-dorms-story .ch-matrix__cell--strong {
+  border: 0;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  font-family: var(--ch-display);
+  font-size: 0.9em;
+  font-weight: 700;
+  box-shadow: 0 0 0 3px var(--ch-orange);
+}
+
+/* ── ch-schools 100개의 학교 ────────────────────────────────────────────── */
+
+.design-dorms-story .ch-schools {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.4em;
+  align-items: center;
+}
+
+.design-dorms-story .ch-schools__grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.28em;
+  width: min(100%, 11.5em);
+  justify-self: center;
+}
+
+.design-dorms-story .ch-schools__cell {
+  aspect-ratio: 1;
+  background: var(--c);
+  transform: rotate(var(--r));
+  animation-name: ch-pop;
+  animation-duration: 0.45s;
+}
+
+.design-dorms-story .ch-schools__cell--circle { border-radius: 50%; }
+.design-dorms-story .ch-schools__cell--square { border-radius: 3px; }
+.design-dorms-story .ch-schools__cell--diamond { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.design-dorms-story .ch-schools__cell--tri { clip-path: polygon(50% 5%, 95% 92%, 5% 92%); }
+.design-dorms-story .ch-schools__cell--pill { border-radius: 9999px; transform: rotate(var(--r)) scaleY(0.55); }
+.design-dorms-story .ch-schools__cell--ring { border-radius: 50%; background: transparent; box-shadow: inset 0 0 0 0.24em var(--c); }
+.design-dorms-story .ch-schools__cell--cross { clip-path: polygon(38% 0, 62% 0, 62% 38%, 100% 38%, 100% 62%, 62% 62%, 62% 100%, 38% 100%, 38% 62%, 0 62%, 0 38%, 38% 38%); }
+.design-dorms-story .ch-schools__cell--half { border-radius: 9999px 9999px 0 0; transform: rotate(var(--r)) scaleY(0.6); }
+
+/* ── ch-lifespan 도구의 일생 ─────────────────────────────────────────────── */
+
+.design-dorms-story .ch-lifespan {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.design-dorms-story .ch-lifespan__head,
+.design-dorms-story .ch-lifespan__row {
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr) 2.2em minmax(0, 1fr);
+  gap: 0.7em;
+  align-items: center;
+}
+
+.design-dorms-story .ch-lifespan__head {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.52em;
+  letter-spacing: 0.06em;
+}
+
+.design-dorms-story .ch-lifespan__head span:nth-child(3) {
+  grid-column: 4;
+}
+
+.design-dorms-story .ch-lifespan__row {
+  padding: 0.75em 0;
+  border-top: 1px solid var(--ch-ink);
+}
+
+.design-dorms-story .ch-lifespan__row strong {
+  font-family: var(--ch-display);
+  font-size: 1.15em;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-lifespan__then {
+  color: var(--ch-ink-2);
+  font-size: 0.9em;
+}
+
+.design-dorms-story .ch-lifespan__now {
+  padding: 0.45em 0.7em;
+  border-radius: 12px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-lifespan__arrow {
+  height: 2px;
+  background: var(--ch-orange);
+  transform-origin: left;
+  animation: ch-grow-x 0.8s both;
+  animation-delay: var(--d, 0s);
+}
+
+.design-dorms-story .ch-lifespan__copy {
+  margin-top: 0.4em;
+  font-size: 0.86em;
+}
+
+/* ── ch-closing 마무리 패널 ─────────────────────────────────────────────── */
+
+.design-dorms-story .ch-closing {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.design-dorms-story .ch-closing__panel {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding: 1.2em;
+  border-radius: var(--ch-radius);
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  text-align: center;
+}
+
+.design-dorms-story .ch-closing__copy {
+  position: relative;
+}
+
+.design-dorms-story .ch-closing__copy .prose,
+.design-dorms-story .ch-closing__copy .prose .lead {
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-closing__copy .lead {
+  font-size: 1.7em;
+  letter-spacing: -0.04em;
+}
+
+.design-dorms-story .ch-closing__copy .note-serif {
+  color: rgba(244, 241, 235, 0.55);
+}
+
+.design-dorms-story .ch-closing .ch-qr {
+  position: relative;
+  border-color: rgba(255, 255, 255, 0.2);
+  /* 알약 모양이면 네모난 QR 이 양 끝 곡선에 눌려 보인다. 살짝만 둥글린 사각형으로 담는다. */
+  border-radius: 0.6em;
+  background: #f4f1eb;
+  padding: 0.55em 1.3em 0.55em 0.55em;
+  text-align: left;
+}
+
+.design-dorms-story .ch-closing .ch-qr svg,
+.design-dorms-story .ch-closing .ch-qr img {
+  border-radius: 6px;
+}
+
+/* 마무리 판 양옆에서 천천히 도는 도름스 엠블럼. 글자 뒤 장식이라 누를 수 없고, 인쇄·움직임 줄이기에서는 멈춘다. */
+.design-dorms-story .ch-closing__swirls {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.design-dorms-story .ch-closing__swirl {
+  position: absolute;
+  display: block;
+  width: var(--swirl-size);
+  height: var(--swirl-size);
+  opacity: 0.88;
+  animation: ch-swirl-bob 3.6s ease-in-out infinite;
+  animation-delay: calc(var(--swirl-bob) * -1);
+}
+
+.design-dorms-story .ch-closing__swirl svg {
+  width: 100%;
+  height: 100%;
+  animation: ch-swirl-spin var(--swirl-spin) linear infinite;
+  animation-direction: var(--swirl-way);
+}
+
+@keyframes ch-swirl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ch-swirl-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.18em);
+  }
+}
+
+/* 표 한 줄을 통째로 원문으로 잇는 투명 덮개. 줄마다 position:relative 를 주고 그 위에 깐다. */
+.design-dorms-story [data-linked] {
+  position: relative;
+}
+
+.design-dorms-story .ch-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.design-dorms-story .ch-hit:focus-visible {
+  outline: 2px solid var(--ch-orange);
+  outline-offset: 3px;
+}
+
+.design-dorms-story .ch-cue {
+  display: inline-flex;
+  width: 0.62em;
+  height: 0.62em;
+  margin-left: 0.28em;
+  color: var(--ch-orange);
+  vertical-align: 0.02em;
+  opacity: 0.8;
+}
+
+.design-dorms-story .ch-cue svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 대화 칸의 이름 줄은 글자가 작아 표시가 묻힌다. 조금 키운다. */
+.design-dorms-story .ch-stream__who .ch-cue,
+.design-dorms-story .ch-collab__when .ch-cue {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+/* 3D 도름이가 오른쪽 아래에서 나오는 장은 설명 상자 오른쪽을 비워 첫 화면에서 글자를 가리지 않게 한다. */
+.design-dorms-story .ch-timeline--pet .ch-timeline__copy {
+  padding-right: 4.6em;
+}
+
+.design-dorms-story [data-linked]:hover :is(.ch-timeline__what, .ch-bars__label, .ch-stream__bubble, .ch-pillars__card small, .ch-collab__ask p, .ch-collab__done p) {
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.18em;
+}
+
+/* ── ch-case 사례 카드 ──────────────────────────────────────────────────── */
+
+.design-dorms-story .ch-case {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.3em;
+  align-items: center;
+}
+
+.design-dorms-story .ch-case__copyCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.design-dorms-story .ch-case__brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8em;
+}
+
+/* 사례·흐름 장의 바로 가기 QR 은 표지보다 작게 둔다. */
+.design-dorms-story .ch-case .ch-qr svg,
+.design-dorms-story .ch-case .ch-qr img,
+.design-dorms-story .ch-flow .ch-qr svg,
+.design-dorms-story .ch-flow .ch-qr img {
+  width: 3.6em;
+  height: 3.6em;
+}
+
+.design-dorms-story .ch-flow .ch-qr {
+  align-self: flex-start;
+}
+
+.design-dorms-story .ch-case__emblem {
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 14px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--ch-line);
+}
+
+.design-dorms-story .ch-case__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5em;
+  margin: 0;
+}
+
+.design-dorms-story .ch-case__stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.1em;
+  padding-top: 0.45em;
+  border-top: 2px solid var(--ch-ink);
+}
+
+.design-dorms-story .ch-case__stats div:first-child {
+  border-top-color: var(--ch-orange);
+}
+
+.design-dorms-story .ch-case__stats dd {
+  margin: 0;
+  font-family: var(--ch-display);
+  font-size: 1.35em;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.design-dorms-story .ch-case__stats dt {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.48em;
+  letter-spacing: 0.05em;
+}
+
+.design-dorms-story .ch-case__side {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.9em;
+}
+
+/* 실제 화면 아래 글 카드. 머리말(자료 이름)·굵은 글 제목·글 보기 버튼을 한 카드로 묶는다. */
+.design-dorms-story .ch-case__posts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-case__posts li {
+  animation: ch-rise 0.6s var(--d, 0.6s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-case__post {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.9em;
+  row-gap: 0.2em;
+  padding: 0.75em 0.95em;
+  border: 1px solid var(--ch-ink);
+  border-left: 4px solid var(--ch-orange);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--ch-ink);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.design-dorms-story .ch-case__postKicker {
+  grid-column: 1;
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.5em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.design-dorms-story .ch-case__postTitle {
+  grid-column: 1;
+  font-family: var(--ch-display);
+  font-size: 0.78em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.design-dorms-story .ch-case__postGo {
+  display: inline-flex;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.42em 0.8em;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  font-size: 0.56em;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.design-dorms-story .ch-case__postGo svg {
+  display: block;
+  flex: none;
+  width: 1em;
+  height: 1em;
+}
+
+.design-dorms-story a.ch-case__post:hover .ch-case__postGo {
+  border-color: var(--ch-ink);
+  background: var(--ch-ink);
+  color: #f4f1eb;
+}
+
+.design-dorms-story a.ch-case__post:focus-visible {
+  outline: 2px solid var(--ch-orange);
+  outline-offset: 3px;
+}
+
+.design-dorms-story .ch-case__media .body-page__media img {
+  max-height: 16.5em;
+  border: 1px solid var(--ch-line);
+  border-radius: 16px;
+  box-shadow: 0 28px 60px -32px rgba(17, 17, 17, 0.55);
+}
+
+/* ── ch-actors 누가 방향을 정하나 ───────────────────────────────────────── */
+
+.design-dorms-story .ch-actors {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2em;
+}
+
+.design-dorms-story .ch-actors__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-actors__chip {
+  padding: 0.55em 1.2em;
+  border-radius: 9999px;
+  font-family: var(--ch-display);
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-actors__chip--dim {
+  border: 1px dashed var(--ch-line);
+  color: var(--ch-muted);
+  font-size: 0.85em;
+}
+
+.design-dorms-story .ch-actors__chip--main {
+  position: relative;
+  padding: 0.7em 1.7em;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  font-size: 1.3em;
+  box-shadow: 0 0 0 4px var(--ch-bg), 0 0 0 6px var(--ch-orange);
+}
+
+.design-dorms-story .ch-actors__copy {
+  max-width: 34em;
+  margin: 0 auto;
+  font-size: 0.92em;
+  text-align: center;
+}
+
+/* ── ch-purpose 도름스가 있는 이유: 정체성 띠 + 좁고 흐린 기술 칸 + 넓고 진한 방향 칸 ── */
+
+.design-dorms-story .ch-purpose {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.75em;
+  min-height: 0;
+}
+
+.design-dorms-story .ch-purpose__identity {
+  display: grid;
+  grid-template-columns: auto auto auto minmax(0, 1fr);
+  column-gap: 0.7em;
+  row-gap: 0.3em;
+  align-items: center;
+  padding: 0.1em 0 0.55em;
+  border-bottom: 1px solid var(--ch-line);
+}
+
+.design-dorms-story .ch-purpose__subject {
+  margin: 0;
+  color: var(--ch-ink);
+  font-family: var(--ch-display);
+  font-size: 1.3em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-purpose__not {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0;
+  padding: 0.42em 0.85em;
+  border: 1.5px dashed rgba(17, 17, 17, 0.35);
+  border-radius: 9999px;
+  color: var(--ch-muted);
+  font-family: var(--ch-display);
+  font-size: 0.95em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-purpose__not s {
+  text-decoration-color: var(--ch-orange);
+  text-decoration-thickness: 0.12em;
+}
+
+.design-dorms-story .ch-purpose__tag {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding: 0.2em 0.65em;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  font-family: var(--ch-mono);
+  font-size: 0.66em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-purpose__arrow {
+  width: 1.9em;
+  height: 0.95em;
+  color: var(--ch-orange);
+}
+
+/* `입니다` 표시는 문장 끝에 붙어 함께 줄바꿈된다(오른쪽 끝으로 떨어지지 않게). */
+.design-dorms-story .ch-purpose__is {
+  margin: 0;
+  color: var(--ch-ink);
+  font-family: var(--ch-display);
+  font-size: 0.98em;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.design-dorms-story .ch-purpose__is strong {
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-purpose__tag--is {
+  margin-left: 0.55em;
+  vertical-align: 0.12em;
+  border-color: var(--ch-ink);
+  background: var(--ch-ink);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-purpose__source {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-self: end;
+  gap: 0.6em;
+  margin: 0;
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.66em;
+  letter-spacing: 0.04em;
+}
+
+.design-dorms-story .ch-purpose__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.3em 0.85em;
+  border: 1.5px solid var(--ch-ink);
+  border-radius: 9999px;
+  color: var(--ch-ink);
+  font-family: var(--ch-ui);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-purpose__link svg {
+  width: 1em;
+  height: 1em;
+}
+
+.design-dorms-story a.ch-purpose__link:hover {
+  background: var(--ch-ink);
+  color: #f4f1eb;
+}
+
+.design-dorms-story a.ch-purpose__link:focus-visible {
+  outline: 2px solid var(--ch-orange);
+  outline-offset: 2px;
+}
+
+.design-dorms-story .ch-purpose__main {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.75fr);
+  gap: 0.85em;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.design-dorms-story .ch-purpose__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6em;
+  min-width: 0;
+  padding: 1em 1.2em;
+  border-radius: var(--ch-radius);
+}
+
+/* 기술은 작고 흐리게: 점선 테두리, 작은 글자. 방향은 넓고 진하게. 칸의 크기 차이가 곧 말하려는 비중이다. */
+.design-dorms-story .ch-purpose__panel--tech {
+  border: 1.5px dashed rgba(17, 17, 17, 0.35);
+  font-size: 0.86em;
+}
+
+.design-dorms-story .ch-purpose__panel--direction {
+  position: relative;
+  background: var(--ch-dark);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-purpose__copy:first-child .note-serif:first-child {
+  display: inline-block;
+  margin-bottom: 0.35em;
+  padding: 0.28em 0.9em;
+  border: 1.5px solid currentColor;
+  border-radius: 9999px;
+  font-family: var(--ch-display);
+  font-size: 0.86em;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.design-dorms-story .ch-purpose__panel--tech .ch-purpose__copy:first-child .note-serif:first-child {
+  color: var(--ch-muted);
+}
+
+.design-dorms-story .ch-purpose__panel--direction .ch-purpose__copy:first-child .note-serif:first-child {
+  color: var(--ch-pink);
+}
+
+.design-dorms-story .ch-purpose__panel--tech .prose .lead {
+  font-size: 1.08em;
+}
+
+.design-dorms-story .ch-purpose__panel--tech .prose p:not(.lead, .note-serif) {
+  color: var(--ch-muted);
+}
+
+.design-dorms-story .ch-purpose__panel--direction .prose,
+.design-dorms-story .ch-purpose__panel--direction .prose .lead {
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-purpose__panel--direction .prose .lead {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-purpose__panel--direction .prose .hl {
+  color: var(--ch-pink);
+}
+
+/* 규약의 질문을 따옴표 문장으로 크게, 그다음 문장은 한 단계 낮춰 덧붙인다. */
+.design-dorms-story .ch-purpose__copy--after .prose > p:first-child {
+  padding-left: 0.7em;
+  border-left: 4px solid var(--ch-pink);
+  color: #f4f1eb;
+  font-family: var(--ch-display);
+  font-size: 1.1em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.design-dorms-story .ch-purpose__copy--after .prose > p:not(:first-child) {
+  color: rgba(244, 241, 235, 0.74);
+  font-size: 0.92em;
+}
+
+.design-dorms-story .ch-purpose__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-purpose__chip {
+  padding: 0.35em 0.85em;
+  border-radius: 9999px;
+  font-family: var(--ch-display);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-purpose__chips--tech .ch-purpose__chip {
+  border: 1px dashed rgba(17, 17, 17, 0.3);
+  color: rgba(17, 17, 17, 0.45);
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-purpose__chips--actors {
+  align-items: center;
+}
+
+.design-dorms-story .ch-purpose__chips--actors .ch-purpose__chip--dim {
+  border: 1px dashed rgba(244, 241, 235, 0.35);
+  color: rgba(244, 241, 235, 0.55);
+  font-size: 0.85em;
+}
+
+.design-dorms-story .ch-purpose__chips--actors .ch-purpose__chip--main {
+  padding: 0.5em 1.25em;
+  background: #f4f1eb;
+  box-shadow: 0 0 0 3px var(--ch-dark), 0 0 0 5px var(--ch-orange);
+  color: var(--ch-ink);
+  font-size: 1.1em;
+}
+
+/* ── 설문·도구 화면을 같은 옷으로 ───────────────────────────────────────── */
+
+.design-dorms-story .survey__option {
+  border-color: var(--ch-ink);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.design-dorms-story .survey__option.is-picked {
+  border-color: var(--ch-orange);
+  box-shadow: inset 0 0 0 1px var(--ch-orange);
+}
+
+.design-dorms-story .survey__meter {
+  background: linear-gradient(90deg, rgba(86, 146, 240, 0.22), rgba(242, 159, 200, 0.3), rgba(237, 90, 20, 0.22));
+}
+
+.design-dorms-story .survey-hint {
+  color: var(--ch-ink-2);
+}
+
+.design-dorms-story :is(.stage, .share) .btn {
+  border-radius: 9999px;
+}
+
+.design-dorms-story :is(.stage, .share) .btn--primary {
+  border-color: var(--ch-dark);
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .stage .field {
+  border-radius: 14px;
+}
+
+/* ── 캡처와 움직임 줄이기: 마지막 모습만 ─────────────────────────────────── */
+.deckPrint__pages--capture .design-dorms-story *,
+.deckPrint__pages--capture .design-dorms-story *::before,
+.deckPrint__pages--capture .design-dorms-story *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+.deckPrint__pages--capture .design-dorms-story .stage::after {
+  opacity: 0.08;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .design-dorms-story * {
+    animation: none !important;
+  }
+}
+
+@media print {
+  .design-dorms-story * {
+    animation: none !important;
+  }
+
+  /* 원고 PDF 에 그레인이 쪽마다 그림으로 박히면 파일이 무거워진다. 종이에는 빼고 낸다. */
+  .design-dorms-story .stage::after {
+    display: none;
+  }
+}
+
+/* 맺음 문장이 두 줄이 되면 마지막 어절 하나만 넘어가지 않게 두 줄 길이를 고르게 나눈다. */
+.design-dorms-story :is(.ch-bars__copy, .ch-flow__copy, .ch-collab__copy) > * {
+  text-wrap: balance;
+}
+
+/* 설문 안내가 두 줄이 되면 "집계됩니다." 만 따로 떨어지지 않게 두 줄을 고르게 나눈다. */
+.design-dorms-story .survey__prompt {
+  text-wrap: balance;
+}
+
+/* 제목이 두 줄이 되면 마지막 한 어절만 넘어가지 않게 두 줄을 고르게 나눈다. */
+.design-dorms-story .page-title {
+  text-wrap: balance;
+}
+
+/* ══ 2026-09-29 최종 녹음 반영 ════════════════════════════════════════════ */
+
+/* ── 오른쪽 위 공통 자리: 실시간 표시 + 다섯 가지 차례 ─────────────────────── */
+
+/* SlidePage 머리말 줄의 오른쪽 빈자리에 붙는다. 새 줄을 만들지 않는다. */
+.design-dorms-story .ch-corner {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.6em;
+  margin-left: auto;
+  font-size: 0.5em;
+}
+
+/* 녹화 중 표시처럼 깜빡이는 빨간 점. 숫자가 실시간으로 바뀐다는 뜻이다. */
+.design-dorms-story .ch-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.32em 0.8em 0.32em 0.65em;
+  border-radius: 9999px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  font-family: var(--ch-mono);
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-live i {
+  position: relative;
+  width: 0.72em;
+  height: 0.72em;
+  border-radius: 50%;
+  background: #ff3b30;
+  box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.6);
+  animation: ch-rec 1.2s ease-in-out infinite;
+}
+
+.design-dorms-story .ch-live small {
+  color: rgba(244, 241, 235, 0.62);
+  font-size: 0.86em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+@keyframes ch-rec {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.55); }
+  50% { opacity: 0.25; box-shadow: 0 0 0 0.45em rgba(255, 59, 48, 0); }
+}
+
+.design-dorms-story .ch-track {
+  display: flex;
+  gap: 0.3em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-track li {
+  --el: #ed5a14;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3em 0.75em 0.3em 0.35em;
+  border-radius: 9999px;
+  background: rgba(17, 17, 17, 0.05);
+  color: var(--ch-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-track li span {
+  display: inline-grid;
+  place-items: center;
+  width: 1.55em;
+  height: 1.55em;
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.08);
+  font-family: var(--ch-mono);
+  font-size: 0.85em;
+}
+
+.design-dorms-story .ch-track li[data-element="1"] { --el: #c2407f; }
+.design-dorms-story .ch-track li[data-element="2"] { --el: #1e5fce; }
+.design-dorms-story .ch-track li[data-element="3"] { --el: #235c34; }
+.design-dorms-story .ch-track li[data-element="4"] { --el: #8a5a06; }
+
+.design-dorms-story .ch-track li[data-state="done"] {
+  color: var(--ch-ink-2);
+}
+
+.design-dorms-story .ch-track li[data-state="done"] span {
+  background: var(--el);
+  color: #fff;
+  opacity: 0.55;
+}
+
+.design-dorms-story .ch-track li[data-state="now"] {
+  background: var(--el);
+  color: #fff;
+}
+
+.design-dorms-story .ch-track li[data-state="now"] span {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+/* ── 표지: 그래프와 링크트리를 크게 ──────────────────────────────────────── */
+
+/* 제목 줄과 통계 줄 사이 오른쪽 빈자리를 그래프로 채운다(GG-40). 왼쪽 글 칸(15.5em)과 겹치지 않는 폭이다. */
+.design-dorms-story .ch-growth {
+  top: -5.9em;
+  width: 20.5em;
+  gap: 0.45em;
+  padding: 0.9em 1.05em 0.7em;
+}
+
+.design-dorms-story .ch-growth svg {
+  height: 9.4em;
+}
+
+.design-dorms-story .ch-growth__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8em;
+  width: 100%;
+}
+
+.design-dorms-story .ch-growth__title .ch-live {
+  font-size: 1.05em;
+}
+
+.design-dorms-story .ch-hero__copy {
+  max-width: 15.5em;
+}
+
+.design-dorms-story .ch-growth__head {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.design-dorms-story .ch-growth__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 1em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-growth__legend li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  color: rgba(244, 241, 235, 0.72);
+  font-size: 0.5em;
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-growth__legend i {
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.design-dorms-story .ch-growth__legend b {
+  color: #f4f1eb;
+  font-family: var(--ch-display);
+  font-size: 2.1em;
+  letter-spacing: -0.03em;
+}
+
+.design-dorms-story .ch-hero .ch-qr {
+  padding: 0.7em 1.1em 0.7em 0.7em;
+  gap: 1em;
+}
+
+.design-dorms-story .ch-hero .ch-qr svg,
+.design-dorms-story .ch-hero .ch-qr canvas,
+.design-dorms-story .ch-hero .ch-qr img {
+  width: 5.6em;
+  height: 5.6em;
+}
+
+.design-dorms-story .ch-hero .ch-qr__copy {
+  font-size: 0.72em;
+}
+
+.design-dorms-story .ch-chart__head .ch-live {
+  font-size: 1.05em;
+}
+
+/* ── 8쪽 음악: 16:9 플레이어를 제목 오른쪽 빈자리에 ───────────────────────── */
+
+.design-dorms-story .ch-chapter--music .ch-chapter__main {
+  position: static;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "copy"
+    "cards";
+  max-width: 54%;
+}
+
+.design-dorms-story .ch-chapter--music .ch-music {
+  position: absolute;
+  top: -6.5em;
+  right: 0;
+  width: min(17.5em, 44%);
+}
+
+.design-dorms-story .ch-chapter--music .ch-music__frame {
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.design-dorms-story .body-page--ch-chapter:has(.ch-chapter--music) .page-title {
+  max-width: 52%;
+}
+
+/* ── 흐름 칸 안의 항목 목록(예전의 장벽 세 가지 등) ─────────────────────── */
+
+.design-dorms-story .ch-flow__list {
+  grid-column: 2;
+  display: grid;
+  gap: 0.25em;
+  margin: 0.15em 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.72em;
+  line-height: 1.4;
+}
+
+.design-dorms-story .ch-flow__list li {
+  position: relative;
+  padding-left: 0.95em;
+}
+
+.design-dorms-story .ch-flow__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 0.4em;
+  height: 0.4em;
+  border-radius: 50%;
+  background: var(--ch-orange);
+}
+
+/* ── 대비 두 판의 머리 표시를 크게(기업의 판단·교사의 판단 등) ─────────── */
+
+.design-dorms-story .ch-contrast__panel .note-serif:first-child {
+  align-self: flex-start;
+  margin-bottom: 0.55em;
+  padding: 0.3em 0.9em;
+  border: 1.5px solid var(--ch-orange);
+  border-radius: 9999px;
+  color: var(--ch-orange);
+  font-family: var(--ch-display);
+  font-size: 0.86em;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.design-dorms-story .ch-contrast__panel--dark .note-serif:first-child {
+  border-color: var(--ch-pink);
+  color: var(--ch-pink);
+}
+
+/* ── 100개의 학교: 모양·색이 모두 다른 칸 ────────────────────────────────── */
+
+.design-dorms-story .ch-schools__cell {
+  transform: none;
+}
+
+.design-dorms-story .ch-schools__cell--pill { transform: scaleY(0.55); }
+.design-dorms-story .ch-schools__cell--half { transform: scaleY(0.6); }
+.design-dorms-story .ch-schools__cell--hex { clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%); }
+.design-dorms-story .ch-schools__cell--star { clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+
+/* ── 챕터 표지 ───────────────────────────────────────────────────────────── */
+
+.design-dorms-story .body-page--ch-divider {
+  padding: 34px 48px 30px;
+}
+
+.design-dorms-story .body-page--ch-divider :is(.body-page__eyebrowRow, .page-title, .page-rule) {
+  display: none;
+}
+
+.design-dorms-story .ch-divider {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.design-dorms-story .ch-divider__panel {
+  position: relative;
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  column-gap: 1.3em;
+  row-gap: 1.1em;
+  overflow: hidden;
+  padding: 1.3em 1.6em 1.1em;
+  border-radius: 28px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 34px 34px;
+  animation: ch-rise 0.7s 0.05s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-divider__mark {
+  align-self: center;
+  background: linear-gradient(160deg, #5692f0 0%, #f29fc8 48%, #ed5a14 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: var(--ch-display);
+  font-size: 7.2em;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+}
+
+.design-dorms-story .ch-divider__copy {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.design-dorms-story .ch-divider__kicker {
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.62em;
+  letter-spacing: 0.12em;
+}
+
+.design-dorms-story .ch-divider__title {
+  margin: 0;
+  font-family: var(--ch-display);
+  font-size: 2.35em;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.design-dorms-story .ch-divider__lead .prose,
+.design-dorms-story .ch-divider__lead .prose .lead {
+  color: rgba(244, 241, 235, 0.82);
+}
+
+.design-dorms-story .ch-divider__lead .prose .hl {
+  color: var(--ch-pink);
+}
+
+.design-dorms-story .ch-divider__track {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr));
+  gap: 0.5em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-divider__track:has(> li:nth-child(4):last-child) { --n: 4; }
+
+.design-dorms-story .ch-divider__track li {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  padding-top: 0.6em;
+  border-top: 3px solid rgba(244, 241, 235, 0.16);
+  color: rgba(244, 241, 235, 0.42);
+  font-size: 0.66em;
+  font-weight: 700;
+  animation: ch-fade 0.6s var(--d, 0.3s) both;
+}
+
+.design-dorms-story .ch-divider__track li span {
+  font-family: var(--ch-mono);
+}
+
+.design-dorms-story .ch-divider__track li[data-state="done"] {
+  border-top-color: rgba(244, 241, 235, 0.55);
+  color: rgba(244, 241, 235, 0.75);
+}
+
+.design-dorms-story .ch-divider__track li[data-state="now"] {
+  border-top-color: var(--ch-orange);
+  color: #fff;
+}
+
+.design-dorms-story .ch-divider__track li[data-state="now"] span {
+  color: var(--ch-orange);
+}
+
+/* ── 다섯 가지 구분 장: 한 칸만 펼친다 ─────────────────────────────────── */
+
+.design-dorms-story .ch-five--focus .ch-five__cols {
+  grid-template-columns: repeat(5, minmax(0, 0.55fr));
+  transition: grid-template-columns 0.5s;
+}
+
+.design-dorms-story .ch-five--focus[data-focus="0"] .ch-five__cols { grid-template-columns: 3.4fr 0.8fr 0.8fr 0.8fr 0.8fr; }
+.design-dorms-story .ch-five--focus[data-focus="1"] .ch-five__cols { grid-template-columns: 0.8fr 3.4fr 0.8fr 0.8fr 0.8fr; }
+.design-dorms-story .ch-five--focus[data-focus="2"] .ch-five__cols { grid-template-columns: 0.8fr 0.8fr 3.4fr 0.8fr 0.8fr; }
+.design-dorms-story .ch-five--focus[data-focus="3"] .ch-five__cols { grid-template-columns: 0.8fr 0.8fr 0.8fr 3.4fr 0.8fr; }
+.design-dorms-story .ch-five--focus[data-focus="4"] .ch-five__cols { grid-template-columns: 0.8fr 0.8fr 0.8fr 0.8fr 3.4fr; }
+
+.design-dorms-story .ch-five__index {
+  color: var(--el);
+  font-family: var(--ch-mono);
+  font-size: 0.62em;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-five--focus .ch-five__col {
+  grid-row: span calc(var(--five-rows, 4) + 1);
+}
+
+/* 접힌 칸은 줄 나눠 쓰기(subgrid)에서 뺀다. 세로로 세운 낱말이 같은 줄 높이를 키워
+   펼친 칸까지 텅 빈 줄이 생기고, 그만큼 글자 맞춤이 글자를 줄였다. */
+.design-dorms-story .ch-five--focus .ch-five__col:not([data-state="now"]) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+  opacity: 0.38;
+}
+
+.design-dorms-story .ch-five--focus .ch-five__col:not([data-state="now"]) :is(.ch-five__usual, .ch-five__ours, .ch-five__proof) {
+  visibility: hidden;
+}
+
+/* 접힌 칸의 낱말은 가로로 작게 둔다. 세로쓰기는 칸 높이를 화면 높이만큼 늘려 글자 맞춤을 망쳤다. */
+.design-dorms-story .ch-five--focus .ch-five__col:not([data-state="now"]) {
+  padding-inline: 0.45em;
+}
+
+.design-dorms-story .ch-five--focus .ch-five__col:not([data-state="now"]) .ch-five__word {
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-five--focus .ch-five__col[data-state="now"] {
+  padding: 0.9em 1.1em 1em;
+  border-radius: 0 0 22px 22px;
+  background: color-mix(in srgb, var(--el) 7%, transparent);
+  animation: ch-rise 0.6s 0.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-five--focus .ch-five__col[data-state="now"] .ch-five__word {
+  font-size: 3.1em;
+}
+
+.design-dorms-story .ch-five--focus .ch-five__col[data-state="now"] .ch-five__usual {
+  font-size: 0.72em;
+}
+
+.design-dorms-story .ch-five--focus .ch-five__col[data-state="now"] .ch-five__ours {
+  font-size: 1.05em;
+}
+
+.design-dorms-story .ch-five--focus .ch-five__col[data-state="now"] .ch-five__proof {
+  font-size: 0.62em;
+}
+
+/* ── 살핌 소개: 흐름 · 시연 영상 · 실시간 숫자 ───────────────────────────── */
+
+/* 영상 칸 폭을 글자 크기(em)로 잡는다. 칸 폭을 비율(fr)로 두면 영상 높이가 글자와 따로 놀아,
+   글자 맞춤이 영상 높이만큼 글자를 줄여 버린다(왼쪽이 텅 비고 글자가 작아진다). */
+.design-dorms-story .ch-product {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr) 19.5em;
+  gap: 1.1em;
+  align-items: stretch;
+}
+
+.design-dorms-story .ch-product__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.7em;
+}
+
+.design-dorms-story .ch-product__steps {
+  display: grid;
+  gap: 0.5em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-product__steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.65em;
+  row-gap: 0.1em;
+  padding: 0.6em 0.9em;
+  border: 1px solid var(--ch-ink);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  animation: ch-rise 0.6s var(--d, 0.2s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-product__steps li:last-child {
+  border-color: var(--ch-dark);
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-product__no {
+  grid-row: span 2;
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.66em;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-product__steps strong {
+  font-family: var(--ch-display);
+  font-size: 0.86em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.design-dorms-story .ch-product__steps li > span:not(.ch-product__no) {
+  font-size: 0.64em;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.design-dorms-story .ch-product__copy {
+  font-size: 0.74em;
+}
+
+.design-dorms-story .ch-product__side {
+  display: grid;
+  align-content: start;
+  gap: 0.65em;
+}
+
+.design-dorms-story .ch-demo {
+  display: grid;
+  gap: 0.4em;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: zoom-in;
+}
+
+.design-dorms-story .ch-demo__frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--ch-line);
+  border-radius: 16px;
+  background: #e8edf5;
+  box-shadow: 0 24px 50px -30px rgba(17, 17, 17, 0.5);
+}
+
+.design-dorms-story .ch-demo__frame video,
+.design-dorms-story .ch-demo__poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.design-dorms-story .ch-demo__poster {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.design-dorms-story .ch-demo__zoom {
+  position: absolute;
+  right: 0.6em;
+  bottom: 0.6em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.4em 0.8em;
+  border-radius: 9999px;
+  background: rgba(17, 17, 17, 0.78);
+  color: #f4f1eb;
+  font-size: 0.52em;
+  font-weight: 700;
+  transition: transform 0.2s;
+}
+
+.design-dorms-story .ch-demo:hover .ch-demo__zoom {
+  transform: scale(1.06);
+}
+
+.design-dorms-story .ch-demo__caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  color: var(--ch-ink-2);
+  font-size: 0.58em;
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-demo__caption svg {
+  color: var(--ch-orange);
+}
+
+.design-dorms-story .ch-product__stats {
+  padding: 0.7em 0.9em 0.8em;
+  border-radius: 18px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-product__statsHead {
+  display: block;
+  margin-bottom: 0.45em;
+  color: rgba(244, 241, 235, 0.6);
+  font-family: var(--ch-mono);
+  font-size: 0.46em;
+  letter-spacing: 0.08em;
+}
+
+.design-dorms-story .ch-product__stats dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8em;
+  margin: 0;
+}
+
+.design-dorms-story .ch-product__stats dl > div {
+  display: grid;
+  gap: 0.15em;
+  animation: ch-rise 0.6s var(--d, 0.3s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-product__stats dt {
+  color: rgba(244, 241, 235, 0.7);
+  font-size: 0.5em;
+  font-weight: 600;
+}
+
+.design-dorms-story .ch-product__stats dd {
+  margin: 0;
+  font-family: var(--ch-display);
+  font-size: 1.28em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.design-dorms-story .ch-product__stats dd small {
+  margin-left: 0.12em;
+  color: rgba(244, 241, 235, 0.6);
+  font-size: 0.42em;
+  font-weight: 500;
+}
+
+.design-dorms-story .ch-product__bar {
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #5692f0, #f29fc8, #ed5a14);
+  transform-origin: left;
+  animation: ch-grow-x 1.1s var(--d, 0.4s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes ch-grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.deckPrint__pages--capture .design-dorms-story .ch-demo__frame video {
+  display: none;
+}
+
+.deckPrint__pages--capture .design-dorms-story .ch-demo__poster {
+  display: block;
+}
+
+@media print {
+  .design-dorms-story .ch-demo__frame video { display: none; }
+  .design-dorms-story .ch-demo__poster { display: block; }
+}
+
+/* 시연 영상 크게 보기. 무대 밖(body, 전체 화면이면 그 전체 화면 요소)에 붙으므로 덱 표시 없이 이 이름만으로 꾸민다.
+   전체 화면의 `전체 화면 끄기` 단추(1002)보다 위에 둔다. 큰 화면 활동 창(10000)보다는 아래다. */
+.ch-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1003;
+  display: grid;
+  place-items: center;
+  padding: max(16px, 3vh) max(16px, 3vw);
+  background: rgba(10, 10, 10, 0.86);
+  backdrop-filter: blur(3px);
+  animation: ch-fade 0.2s both;
+}
+
+.ch-lightbox__body {
+  display: grid;
+  gap: 12px;
+  width: min(1280px, 100%);
+}
+
+.ch-lightbox__body video {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 110px);
+  border-radius: 14px;
+  background: #000;
+  object-fit: contain;
+}
+
+.ch-lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #f4f1eb;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ch-lightbox__bar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 9999px;
+  background: #f4f1eb;
+  color: #111;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ── 5쪽: 있었던 것 → 없던 것 → 그래서 만든 곳 ───────────────────────────── */
+
+.design-dorms-story .ch-need {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.9em;
+}
+
+.design-dorms-story .ch-need__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: 2.4em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-need__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+  animation: ch-rise 0.7s var(--d, 0.2s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-need__step {
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.56em;
+  letter-spacing: 0.08em;
+}
+
+.design-dorms-story .ch-need__box {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.55em;
+  min-height: 7.4em;
+  padding: 0.9em 1em;
+  border-radius: 20px;
+}
+
+.design-dorms-story .ch-need__box strong {
+  font-family: var(--ch-display);
+  font-size: 1.02em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.design-dorms-story .ch-need__more {
+  font-size: 0.66em;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.design-dorms-story .ch-need__stage--have .ch-need__box {
+  border: 1px solid var(--ch-ink);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.design-dorms-story .ch-need__stage--empty .ch-need__box {
+  border: 2px dashed rgba(17, 17, 17, 0.35);
+  background: repeating-linear-gradient(135deg, rgba(17, 17, 17, 0.035) 0 10px, transparent 10px 20px);
+  color: var(--ch-ink-2);
+  text-align: center;
+  align-items: center;
+}
+
+.design-dorms-story .ch-need__stage--made .ch-need__box {
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  box-shadow: 0 24px 46px -28px rgba(17, 17, 17, 0.7);
+}
+
+.design-dorms-story .ch-need__stage--made .ch-need__box svg {
+  width: 2.2em;
+  height: 2.2em;
+  color: var(--ch-orange);
+  animation: ch-spin 14s linear infinite;
+}
+
+@keyframes ch-spin {
+  to { transform: rotate(360deg); }
+}
+
+.design-dorms-story .ch-need__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-need__chips li {
+  padding: 0.3em 0.75em;
+  border-radius: 9999px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  font-size: 0.62em;
+  font-weight: 700;
+  animation: ch-pop 0.45s var(--d, 0.3s) both;
+}
+
+.design-dorms-story .ch-need__chips li:nth-child(2) { background: #1e5fce; }
+.design-dorms-story .ch-need__chips li:nth-child(3) { background: #ed5a14; }
+.design-dorms-story .ch-need__chips li:nth-child(4) { background: #235c34; }
+.design-dorms-story .ch-need__chips li:nth-child(5) { background: #7a42b8; }
+
+.design-dorms-story .ch-need__stage--made .ch-need__chips li {
+  background: rgba(244, 241, 235, 0.14);
+}
+
+.design-dorms-story .ch-need__arrow {
+  position: absolute;
+  top: 52%;
+  right: -2.2em;
+  width: 2em;
+  color: var(--ch-orange);
+}
+
+.design-dorms-story .ch-need__arrow svg {
+  display: block;
+  width: 100%;
+}
+
+.design-dorms-story .ch-need__copy {
+  font-size: 0.86em;
+}
+
+/* ── 19쪽: 판단의 뿌리 → 살핌의 결정 ─────────────────────────────────────── */
+
+.design-dorms-story .ch-reasons {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.design-dorms-story .ch-reasons__heads,
+.design-dorms-story .ch-reasons__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3.4em minmax(0, 1.1fr);
+  gap: 0.6em;
+  align-items: stretch;
+}
+
+.design-dorms-story .ch-reasons__heads span {
+  color: var(--ch-muted);
+  font-family: var(--ch-mono);
+  font-size: 0.52em;
+  letter-spacing: 0.08em;
+}
+
+.design-dorms-story .ch-reasons__heads span:last-child {
+  grid-column: 3;
+}
+
+.design-dorms-story .ch-reasons__rows {
+  display: grid;
+  gap: 0.6em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-reasons__row {
+  animation: ch-rise 0.7s var(--d, 0.2s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-reasons__root,
+.design-dorms-story .ch-reasons__choice {
+  display: grid;
+  align-content: center;
+  gap: 0.25em;
+  padding: 0.75em 0.95em;
+  border-radius: 18px;
+}
+
+.design-dorms-story .ch-reasons__root {
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.6em;
+  border: 1px solid var(--ch-ink);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.design-dorms-story .ch-reasons__no {
+  grid-row: span 2;
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.7em;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-reasons__choice {
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-reasons__root strong,
+.design-dorms-story .ch-reasons__choice strong {
+  font-family: var(--ch-display);
+  font-size: 0.92em;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.design-dorms-story .ch-reasons__root > span:not(.ch-reasons__no),
+.design-dorms-story .ch-reasons__choice > span {
+  font-size: 0.64em;
+  line-height: 1.5;
+  opacity: 0.86;
+}
+
+.design-dorms-story .ch-reasons__root > span:not(.ch-reasons__no) {
+  grid-column: 2;
+}
+
+.design-dorms-story .ch-reasons__link {
+  display: grid;
+  place-items: center;
+  color: var(--ch-orange);
+}
+
+.design-dorms-story .ch-reasons__link svg {
+  width: 100%;
+  height: 1em;
+}
+
+.design-dorms-story .ch-reasons__copy {
+  font-size: 0.8em;
+}
+
+/* ── 48쪽: 현실의 장벽을 도름스가 대신 치운다 ───────────────────────────── */
+
+.design-dorms-story .ch-guard {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+.design-dorms-story .ch-guard__copy {
+  font-size: 0.78em;
+}
+
+.design-dorms-story .ch-guard__steps {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr));
+  gap: 0.8em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-guard__step {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25em;
+  animation: ch-rise 0.6s var(--d, 0.2s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-guard__wall {
+  align-self: center;
+  padding: 0.35em 0.85em;
+  border: 1.5px dashed rgba(17, 17, 17, 0.4);
+  border-radius: 9999px;
+  color: var(--ch-ink-2);
+  font-size: 0.6em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.design-dorms-story .ch-guard__down {
+  display: grid;
+  place-items: center;
+  height: 1.3em;
+  color: var(--ch-orange);
+}
+
+.design-dorms-story .ch-guard__down svg {
+  height: 100%;
+}
+
+.design-dorms-story .ch-guard__card {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  column-gap: 0.55em;
+  row-gap: 0.25em;
+  padding: 0.8em 0.9em;
+  border: 1px solid var(--ch-ink);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.design-dorms-story .ch-guard__step:last-child .ch-guard__card {
+  border-color: var(--ch-dark);
+  background: var(--ch-dark);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .ch-guard__no {
+  grid-row: span 3;
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.66em;
+  font-weight: 700;
+}
+
+.design-dorms-story .ch-guard__card strong {
+  font-family: var(--ch-display);
+  font-size: 0.86em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.design-dorms-story .ch-guard__what {
+  font-size: 0.62em;
+  line-height: 1.5;
+  opacity: 0.86;
+}
+
+.design-dorms-story .ch-guard__fig {
+  margin-top: 0.2em;
+  padding-top: 0.45em;
+  border-top: 1px dashed currentColor;
+  color: var(--ch-orange);
+  font-family: var(--ch-mono);
+  font-size: 0.56em;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* 원문 공지·글로 가는 버튼. 카드마다 맨 아래 줄에 붙여 네 카드의 버튼 높이를 맞춘다. */
+.design-dorms-story .ch-guard__card--link {
+  position: relative;
+  grid-template-rows: auto auto auto 1fr;
+}
+
+.design-dorms-story .ch-guard__link {
+  display: inline-flex;
+  grid-column: 2;
+  grid-row: 4;
+  align-self: end;
+  justify-self: start;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  margin-top: 0.55em;
+  padding: 0.45em 0.85em;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  color: inherit;
+  font-size: 0.56em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.design-dorms-story .ch-guard__link svg {
+  display: block;
+  flex: none;
+  width: 1em;
+  height: 1em;
+}
+
+/* 무대가 휴대폰 폭으로 줄면 알약 버튼이 손가락보다 작아진다. 카드 전체를 같은 링크의 누름 자리로 쓴다. */
+.design-dorms-story a.ch-guard__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 18px;
+}
+
+.design-dorms-story a.ch-guard__link:hover {
+  border-color: var(--ch-ink);
+  background: var(--ch-ink);
+  color: #f4f1eb;
+}
+
+/* 마지막 카드는 바탕이 어두워 같은 색으로 채우면 버튼이 사라진다. 밝게 뒤집는다. */
+.design-dorms-story .ch-guard__step:last-child a.ch-guard__link:hover {
+  border-color: #f4f1eb;
+  background: #f4f1eb;
+  color: var(--ch-dark);
+}
+
+.design-dorms-story a.ch-guard__link:focus-visible {
+  outline: 2px solid var(--ch-orange);
+  outline-offset: 3px;
+}
+
+/* ── 설문을 크로마 옷으로: 질문 판·주관식 입력·모인 생각 ──────────────────── */
+
+.design-dorms-story .survey-page .page-rule {
+  margin-bottom: 0.6em;
+}
+
+.design-dorms-story .survey__prompt {
+  color: var(--ch-ink);
+  font-family: var(--ch-display);
+  letter-spacing: -0.02em;
+}
+
+/* 서술형 발표자 화면: 베이지 질문 칸 대신 한 줄 안내 + 넓은 판 하나 */
+.design-dorms-story .survey-page--text .survey--presenter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.design-dorms-story .survey-page--text .survey--presenter .survey__prompt {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ch-ink-2);
+  font-family: var(--ch-ui);
+  font-size: 0.82em;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.design-dorms-story .survey__presenterBoard {
+  flex: 1 1 auto;
+  padding: 0.8em;
+  border: 0;
+  border-radius: var(--ch-radius);
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.design-dorms-story .survey__presenterBoard > .survey__placeholder {
+  gap: 0.5em;
+  border: 1.5px dashed rgba(244, 241, 235, 0.25);
+  border-radius: 18px;
+  background: transparent;
+  color: rgba(244, 241, 235, 0.7);
+}
+
+.design-dorms-story .survey__placeholderNo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: #f4f1eb;
+  font-family: var(--ch-mono);
+  font-size: 1.1em;
+  letter-spacing: 0.14em;
+}
+
+.design-dorms-story .survey__placeholderNo::before {
+  content: "";
+  width: 0.62em;
+  height: 0.62em;
+  border-radius: 50%;
+  background: #ff3b30;
+  animation: ch-rec 1.2s ease-in-out infinite;
+}
+
+.design-dorms-story .survey__presenterBoard .survey__sharedTitle {
+  color: rgba(244, 241, 235, 0.6);
+}
+
+.design-dorms-story .survey__answers {
+  gap: 0.45em;
+}
+
+.design-dorms-story .survey__answer {
+  padding: 0.6em 0.8em;
+  border: 1px solid var(--ch-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--ch-ink);
+}
+
+.design-dorms-story .survey__presenterBoard .survey__answer {
+  border-color: rgba(244, 241, 235, 0.12);
+  background: rgba(244, 241, 235, 0.08);
+  color: #f4f1eb;
+}
+
+.design-dorms-story .survey__answer.is-mine {
+  border-left: 1px solid var(--ch-orange);
+  box-shadow: inset 0 0 0 1px var(--ch-orange);
+  background: rgba(237, 90, 20, 0.07);
+}
+
+.design-dorms-story .survey-answer-card__who {
+  color: var(--ch-orange);
+}
+
+.design-dorms-story .survey__presenterBoard .survey-answer-card__who {
+  color: var(--ch-pink);
+}
+
+.design-dorms-story .survey-answer-card__fields dt {
+  color: inherit;
+  opacity: 0.6;
+}
+
+/* 참여자 입력: 둥근 입력칸과 검은 알약 단추 */
+.design-dorms-story .survey__write .field,
+.design-dorms-story .survey__other .field {
+  border: 1px solid var(--ch-ink);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.design-dorms-story .survey__write.is-submitted .field {
+  border-color: var(--ch-orange);
+  box-shadow: inset 0 0 0 1px var(--ch-orange);
+}
+
+.design-dorms-story .survey__other {
+  border: 1px solid var(--ch-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.design-dorms-story .survey__shared {
+  border-top: 1px dashed var(--ch-line);
+}
+
+.design-dorms-story .survey__sharedTitle,
+.design-dorms-story .survey__submitted,
+.design-dorms-story .survey__mine {
+  font-family: var(--ch-mono);
+}
+
+.design-dorms-story .survey__sortToggle button {
+  border-radius: 9999px;
+}
+
+/* 보기 번호 01·02 대신 1·2 */
+.design-dorms-story .survey__options {
+  counter-reset: ch-option;
+}
+
+.design-dorms-story .survey__options > li {
+  counter-increment: ch-option;
+}
+
+/* "01" 글자는 자리만 지키게 투명하게 두고, 그 자리에 1·2 를 같은 크기로 겹쳐 그린다. */
+.design-dorms-story .survey__no {
+  position: relative;
+  color: transparent;
+}
+
+.design-dorms-story .survey__no::before {
+  content: counter(ch-option);
+  position: absolute;
+  left: 0;
+  color: var(--ch-muted);
+}
+
+.design-dorms-story .survey__option.is-picked .survey__no::before {
+  color: var(--ch-orange);
+}
+
+/* ── 11쪽: 표 아래 두 맥락(가정 → 결론) ─────────────────────────────────── */
+
+.design-dorms-story .ch-matrix__notes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.2em;
+  margin: 0.9em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.design-dorms-story .ch-matrix__note {
+  position: relative;
+  display: grid;
+  gap: 0.3em;
+  padding: 0.8em 1em;
+  border-radius: 18px;
+  animation: ch-rise 0.6s var(--d, 0.4s) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.design-dorms-story .ch-matrix__note b {
+  color: var(--ch-orange);
+  font-family: var(--ch-display);
+  font-size: 0.7em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.design-dorms-story .ch-matrix__note span {
+  font-size: 0.82em;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.design-dorms-story .ch-matrix__note--light {
+  border: 1px solid var(--ch-ink);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.design-dorms-story .ch-matrix__note--dark {
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  box-shadow: 0 0 0 3px var(--ch-bg), 0 0 0 5px var(--ch-orange);
+}
+
+.design-dorms-story .ch-matrix__note--light::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -1.75em;
+  width: 1.3em;
+  height: 2px;
+  background: var(--ch-orange);
+  box-shadow: 0.35em -0.3em 0 -0.05em transparent;
+}
+
+.design-dorms-story .ch-matrix__note--light::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 0.32em);
+  right: -1.8em;
+  width: 0.62em;
+  height: 0.62em;
+  border-top: 2px solid var(--ch-orange);
+  border-right: 2px solid var(--ch-orange);
+  transform: rotate(45deg);
+}
+
+/* ── 26쪽: 100칸 가운데 제가 푼 문제 하나 ─────────────────────────────────── */
+
+.design-dorms-story .ch-schools__cell {
+  position: relative;
+}
+
+.design-dorms-story .ch-schools__cell--mine {
+  /* 칸마다 등장 움직임(transform)이 쌓임 맥락을 만들어, 뒤에 오는 칸이 이름표를 덮는다. 이 칸을 위로 올린다. */
+  z-index: 5;
+  outline: 2.5px solid var(--ch-ink);
+  outline-offset: 3px;
+  animation-name: ch-pop, ch-mine;
+  animation-duration: 0.45s, 1.8s;
+  animation-delay: var(--d, 0.1s), 1.6s;
+  animation-iteration-count: 1, infinite;
+}
+
+@keyframes ch-mine {
+  0%, 100% { outline-color: var(--ch-ink); }
+  50% { outline-color: var(--ch-orange); }
+}
+
+.design-dorms-story .ch-schools__tag {
+  position: absolute;
+  top: calc(100% + 0.6em);
+  left: 50%;
+  z-index: 2;
+  padding: 0.3em 0.7em;
+  border-radius: 9999px;
+  background: var(--ch-dark);
+  color: #f4f1eb;
+  font-size: 0.36em;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 10px 22px -10px rgba(17, 17, 17, 0.7);
+  transform: translateX(-50%);
+  animation: ch-fade 0.5s 1.4s both;
+}
+
+/* 100칸이 발표 무대 바닥 선에 닿지 않게 조금 줄인다(9. 29. 100칸 모양·색 교체 뒤 글이 짧아져 칸이 커졌다). */
+.design-dorms-story .ch-schools__grid {
+  width: min(100%, 10.6em);
+}
+
+/* half·pill 칸은 세로로 눌러 그리므로 이름표가 함께 눌리지 않게 되돌린다 */
+.design-dorms-story .ch-schools__cell--pill .ch-schools__tag { transform: translateX(-50%) scaleY(1.82); }
+.design-dorms-story .ch-schools__cell--half .ch-schools__tag { transform: translateX(-50%) scaleY(1.67); }
+
+/* ── 47쪽: 여섯 칸 균등 배치 ─────────────────────────────────────────────── */
+
+.design-dorms-story .ch-evidence__cases--grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55em;
+}
+
+/* ── 목차: '목차' 글자만 크게 ────────────────────────────────────────────── */
+
+.design-dorms-story .body-page--ch-toc .page-title {
+  font-size: 2.7em;
+  letter-spacing: -0.05em;
+}
+
+/* ── 무대 오른쪽 위: 지금 챕터 ──────────────────────────────────────────── */
+
+.design-dorms-story .top__right {
+  color: var(--ch-ink);
+  font-weight: 600;
+}
+
+/* ── 마지막 장: 한 줄 문장 유지 ─────────────────────────────────────────── */
+
+.design-dorms-story .ch-closing__copy .lead {
+  /* 한 줄을 지키되 양옆 소용돌이 자리(판 폭의 약 12%)는 비운다. */
+  font-size: 1.45em;
+  white-space: nowrap;
+}
+
+/*
+ * 백영고 연수 덱 표지. 도름스 운영 그래프를 뺀 표지라 오른쪽 위가 비지 않게
+ * 제목·소개·오늘의 숫자를 키워 그 자리를 채운다. 그래프가 있는 표지(경기 덱)는 건드리지 않는다.
+ */
+
+/* 인쇄 캡처에서는 고정폭 글꼴 이름표가 두 줄로 접혔다. 표지 머리말과 숫자 이름표는 한 줄로 둔다. */
+
+/* 테마의 .prose 글자색(진한 잉크)이 보안 안내 장 아래 검정 띠의 밝은 글자를 덮어 글이 안 보였다(2026-10-09 사용자 지적).
+   어두운 판 위 글은 ch-contrast 어두운 판과 같은 밝은 색으로 되돌린다. */
+.design-dorms-story .security-caution__legal .prose,
+.design-dorms-story .security-caution__legal .prose .lead {
+  color: #f4f1eb;
+}
+
+.design-dorms-story .security-caution__legal .prose .hl {
+  color: var(--ch-pink);
+}
+
+.design-dorms-story .security-caution__legal .prose .note-serif {
+  color: rgba(244, 241, 235, 0.7);
+}
+
+/* 흐름 카드 제목 'dorms-check'가 카드 글자 폭(156px)보다 조금 길어 'dorms-chec / k'로 쪼개졌다.
+   한 단어 제목은 쪼개지 않고 카드 안쪽 여백으로 조금 넘어가게 둔다(카드 밖으로는 나가지 않는다). */
+
+/* 사례 카드 아래 뒷이야기 띠: 크로마 판의 검은 띠와 같은 색, 누르면 주황으로 바뀐다. */
+.design-dorms-story .case-feature__more {
+  border-color: var(--ch-dark);
+  background: var(--ch-dark);
+  color: var(--ch-bg);
+  font-family: var(--ch-ui);
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.design-dorms-story a.case-feature__more:is(:hover, :focus-visible) {
+  border-color: var(--ch-orange);
+  background: var(--ch-orange);
+}
