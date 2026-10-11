@@ -34,7 +34,7 @@ export function Stage({
   onScaleChange?: (scale: number) => void;
   /** 다른 사이트 글 안에 싣는 보기 화면처럼 무대가 틀을 가득 채워야 하는 곳에서만 켠다. */
   allowUpscale?: boolean;
-  /** DoRmSlide 표식. 무대 오른쪽 아래에 늘 같은 자리로 들어간다. */
+  /** DoRmSlide 표식. 꼬리 띠(DECK · SLIDE 줄) 오른쪽 끝에, 그 디자인의 꼬리 글꼴로 들어간다. */
   mark?: ReactNode;
   /** 디자인의 바탕 그림. */
   backdrop?: ReactNode;
@@ -121,8 +121,8 @@ export function Stage({
                 <span className="foot__value">{page}</span>
               </span>
               {live ? <span className="foot__rec">LIVE</span> : null}
+              {mark ? <span className="foot__mark">{mark}</span> : null}
             </footer>
-            {mark ? <div className="stage__mark">{mark}</div> : null}
           </div>
         </div>
       </div>

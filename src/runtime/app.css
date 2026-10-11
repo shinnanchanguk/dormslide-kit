@@ -11,17 +11,17 @@ body { background: #1b1a18; word-break: keep-all; overflow-wrap: break-word; }
 .ds-app:fullscreen { background: #1b1a18; }
 .ds-app .stage-box { flex: 1 1 auto; min-height: 0; }
 
-/* DoRmSlide 표식. 위치·크기·글자·링크는 고정이고 색만 디자인을 따른다(Mark.tsx 머리말). */
-.stage__mark { position: absolute; right: 26px; bottom: 9px; z-index: 40; pointer-events: auto; }
+/* DoRmSlide 표식. 무대 꼬리 띠 오른쪽 끝에 들어가 그 디자인의 꼬리 글꼴·크기를 그대로 쓴다.
+   위치·글자·링크는 고정이고, 색은 디자인 포인트 색(--ds-mark)을 따른다(Mark.tsx 머리말). */
+.foot__mark { margin-left: auto; display: inline-flex; align-items: center; }
 .ds-mark {
-  display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px 4px 6px; border-radius: 999px;
-  font: 700 12px/1 var(--ds-ui); letter-spacing: .02em; color: var(--ds-mark); text-decoration: none;
-  background: color-mix(in srgb, var(--ds-mark) 9%, transparent);
-  border: 1px solid color-mix(in srgb, var(--ds-mark) 26%, transparent);
+  display: inline-flex; align-items: center; gap: 0.5em;
+  color: var(--ds-mark); font: inherit; font-weight: 700; letter-spacing: 0.02em; text-transform: none;
+  text-decoration: none; line-height: 1; white-space: nowrap;
 }
-.ds-mark:hover { background: color-mix(in srgb, var(--ds-mark) 16%, transparent); }
-.ds-mark__emblem { display: inline-flex; width: 18px; height: 18px; }
-.ds-mark__emblem svg { display: block; }
+.ds-mark:hover .ds-mark__label { text-decoration: underline; text-underline-offset: 0.2em; }
+.ds-mark__emblem { display: inline-flex; width: 1.55em; height: 1.55em; }
+.ds-mark__emblem svg { display: block; width: 100%; height: 100%; }
 
 /* 아래 띠 */
 .ds-controls {

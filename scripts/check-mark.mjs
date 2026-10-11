@@ -27,14 +27,14 @@ need(svgPaths.length === 2, "mark/emblem.svg 엠블럼 그림이 바뀌었거나
 need(svgPaths.every((d) => emblem.includes(d)), "src/runtime/Emblem.tsx 의 엠블럼이 mark/emblem.svg 와 달라요.");
 
 const stage = read("src/runtime/Stage.tsx");
-need(/\{mark \? <div className="stage__mark">\{mark\}<\/div> : null\}/.test(stage), "src/runtime/Stage.tsx 가 표식 자리를 그리지 않아요.");
+need(/\{mark \? <span className="foot__mark">\{mark\}<\/span> : null\}/.test(stage), "src/runtime/Stage.tsx 가 꼬리 띠에 표식 자리를 그리지 않아요.");
 const app = read("src/runtime/DeckApp.tsx");
 need(app.includes("mark={<Mark />}"), "src/runtime/DeckApp.tsx 가 무대에 표식을 넘기지 않아요.");
 need(app.includes("startMarkGuard(rootRef.current)"), "src/runtime/DeckApp.tsx 에서 표식 지킴이(startMarkGuard)가 꺼졌어요.");
 need(read("src/runtime/markGuard.ts").includes("export function startMarkGuard"), "src/runtime/markGuard.ts 표식 지킴이가 없어요.");
 
 const css = read("src/runtime/app.css");
-const markRules = [...css.matchAll(/\.(?:ds-mark|stage__mark)[^{]*\{([^}]*)\}/g)].map((m) => m[1]).join(";");
+const markRules = [...css.matchAll(/\.(?:ds-mark|foot__mark)[^{]*\{([^}]*)\}/g)].map((m) => m[1]).join(";");
 need(markRules.length > 0, "src/runtime/app.css 에 표식 모양이 없어요.");
 need(!/display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0(?:\.[0-2])?\s*[;}]|font-size\s*:\s*[0-7]px/.test(markRules), "src/runtime/app.css 에서 표식을 숨기거나 너무 작게 만들었어요.");
 
@@ -44,7 +44,7 @@ for (const dir of fs.readdirSync(path.join(root, "designs"))) {
   if (!fs.statSync(dirPath).isDirectory()) continue;
   for (const file of fs.readdirSync(dirPath).filter((name) => name.endsWith(".css"))) {
     const text = fs.readFileSync(path.join(dirPath, file), "utf8");
-    for (const m of text.matchAll(/([^{}]*\.(?:ds-mark|stage__mark)[^{]*)\{([^}]*)\}/g)) {
+    for (const m of text.matchAll(/([^{}]*\.(?:ds-mark|foot__mark|foot)\b[^{]*)\{([^}]*)\}/g)) {
       if (/display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0(?:\.[0-2])?\s*[;}]|transform\s*:\s*scale\(0/.test(m[2])) problems.push(`designs/${dir}/${file} 가 표식을 숨겨요: ${m[1].trim()}`);
     }
   }
