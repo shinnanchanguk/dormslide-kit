@@ -1,0 +1,161 @@
+/*
+ * 디자인 ② 시뮬레이션 계기판 (blueprint)
+ *
+ * 레퍼런스: 도름스 서재 「시뮬레이션 교육」 책의 디자인 원본(react-app-32 · 검은 조종석 계기판).
+ * 가져온 것은 디자인 요소뿐이다: 검은 바탕(#030303)과 단색 밝은 선(#e2e8f0), 도면 격자, 원형 뷰포트와 눈금 고리,
+ * 빗금 띠, 모서리 꺾쇠가 달린 유리 패널, 주사선, Space Mono 대문자 라벨, 흰 바탕 반전 칩.
+ * 장의 구조는 탄생비화 덱의 배치를 그대로 쓰고 옷만 바꿨다(blueprint-base.css 는 크로마 규칙을 어두운 계기판 색으로 옮긴 초안).
+ * 모든 규칙은 .design-simulation-blueprint 안에서만 듣는다.
+ */
+@font-face {
+  font-family: "BP Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../src/assets/fonts/SpaceMono-Regular.woff2") format("woff2");
+  /* 빈칸(U+0020)은 빼서 한글 사이 띄어쓰기는 한글 글꼴 폭을 따른다 */
+  unicode-range: U+0021-007E, U+00A0-00FF, U+2010-2027;
+}
+@font-face {
+  font-family: "BP Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../../src/assets/fonts/SpaceMono-Bold.woff2") format("woff2");
+  unicode-range: U+0021-007E, U+00A0-00FF, U+2010-2027;
+}
+
+.design-simulation-blueprint {
+  --ch-bg: #030303;
+  --ch-bg-2: #0b0d10;
+  --ch-ink: #e2e8f0;
+  --ch-ink-2: #c3cad4;
+  --ch-muted: #7f8894;
+  --ch-line: rgba(226, 232, 240, 0.18);
+  --ch-line-strong: #e2e8f0;
+  --ch-blue: #e2e8f0;
+  --ch-green: #b9c2ce;
+  --ch-orange: #ffffff;
+  --ch-yellow: #d7dde5;
+  --ch-pink: #a3adba;
+  --ch-purple: #c6cdd7;
+  --ch-sky: #cfd6df;
+  --ch-dark: #0b0d10;
+  --ch-display: "BP Mono", "Wanted Sans Variable", "Pretendard Variable", sans-serif;
+  --ch-ui: "Pretendard Variable", "Wanted Sans Variable", system-ui, sans-serif;
+  --ch-mono: "BP Mono", "JetBrains Mono", ui-monospace, monospace;
+  --ch-radius: 2px;
+  --ch-grain: none;
+  --bp-line: rgba(226, 232, 240, 0.4);
+  --bp-glass: rgba(0, 0, 0, 0.62);
+  --ds-mark: #e2e8f0;
+  --ds-surface: rgba(0, 0, 0, 0.62);
+  --ds-ink: #e2e8f0;
+  --ds-soft: rgba(226, 232, 240, 0.6);
+  --ds-line: rgba(226, 232, 240, 0.35);
+  --ds-fill: rgba(226, 232, 240, 0.05);
+  --ds-button: #e2e8f0;
+  --ds-button-ink: #030303;
+}
+
+/* 무대: 검은 바탕 + 도면 격자 + 바탕 그림 */
+.design-simulation-blueprint .stage {
+  background-color: #030303;
+  background-image:
+    linear-gradient(rgba(226, 232, 240, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 232, 240, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  color: #e2e8f0;
+}
+.design-simulation-blueprint .stage::after { background-image: none !important; opacity: 0 !important; }
+.bp-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.55; }
+.design-simulation-blueprint .canvas { position: relative; z-index: 1; }
+.bp-backdrop line, .bp-backdrop circle { fill: none; stroke: #e2e8f0; vector-effect: non-scaling-stroke; }
+.bp-backdrop .bp-thin, .bp-backdrop .bp-thin line, .bp-backdrop .bp-thin circle { stroke-width: 0.6; stroke-opacity: 0.3; }
+.bp-backdrop .bp-mid { stroke-width: 3; stroke-opacity: 0.35; }
+.bp-backdrop .bp-strong { stroke-width: 5; stroke-opacity: 0.6; }
+.bp-backdrop .bp-ticks { stroke-width: 10; stroke-opacity: 0.3; stroke-dasharray: 2 12; }
+.bp-backdrop .bp-dash { stroke-width: 1; stroke-opacity: 0.35; stroke-dasharray: 4 8; }
+.bp-backdrop__persp line { stroke-width: 0.6; stroke-opacity: 0.25; }
+.bp-backdrop .bp-stars circle { fill: #e2e8f0; stroke: none; opacity: 0.55; }
+.bp-backdrop .bp-reticle circle, .bp-backdrop .bp-reticle line { stroke-width: 1.5; stroke-opacity: 0.8; }
+.bp-backdrop .bp-reticle .bp-fill { fill: #e2e8f0; stroke: none; }
+.bp-backdrop__spin { transform-origin: 0 0; animation: bp-spin 60s linear infinite; }
+@keyframes bp-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .bp-backdrop__spin { animation: none; } }
+
+/* 머리·띠·꼬리: 모노 대문자 라벨 */
+.design-simulation-blueprint .top,
+.design-simulation-blueprint .foot,
+.design-simulation-blueprint .rail { font-family: var(--ch-mono); letter-spacing: 0.12em; text-transform: uppercase; color: rgba(226, 232, 240, 0.65); border-color: rgba(226, 232, 240, 0.18); }
+.design-simulation-blueprint .top__brand { color: #e2e8f0; font-weight: 700; }
+.design-simulation-blueprint .eyebrow { font-family: var(--ch-mono); letter-spacing: 0.14em; text-transform: uppercase; color: rgba(226, 232, 240, 0.7); }
+.design-simulation-blueprint .eyebrow::before { background: #e2e8f0 !important; }
+.design-simulation-blueprint .page-title,
+.design-simulation-blueprint .cover__title { color: #f1f4f8; letter-spacing: -0.01em; }
+.design-simulation-blueprint .page-rule { background: rgba(226, 232, 240, 0.35); height: 1px; }
+
+/* 강조 낱말: 흰 바탕 반전 칩 */
+.design-simulation-blueprint .hl,
+.design-simulation-blueprint mark { color: #030303 !important; background: #e2e8f0 !important; padding: 0 0.18em; -webkit-text-fill-color: #030303; background-image: none !important; }
+
+/* 유리 패널 + 모서리 꺾쇠: 어두운 칸·카드에 공통으로 입힌다 */
+.design-simulation-blueprint [class*="__card"],
+.design-simulation-blueprint [class*="__panel"],
+.design-simulation-blueprint [class*="-panel"],
+.design-simulation-blueprint [class*="__box"],
+.design-simulation-blueprint .ch-growth {
+  background-color: var(--bp-glass) !important;
+  border: 1px solid var(--bp-line) !important;
+  border-radius: 2px !important;
+  box-shadow: inset 0 0 20px rgba(226, 232, 240, 0.05) !important;
+  background-image:
+    linear-gradient(#e2e8f0, #e2e8f0), linear-gradient(#e2e8f0, #e2e8f0),
+    linear-gradient(#e2e8f0, #e2e8f0), linear-gradient(#e2e8f0, #e2e8f0),
+    linear-gradient(#e2e8f0, #e2e8f0), linear-gradient(#e2e8f0, #e2e8f0),
+    linear-gradient(#e2e8f0, #e2e8f0), linear-gradient(#e2e8f0, #e2e8f0) !important;
+  background-size: 10px 2px, 2px 10px, 10px 2px, 2px 10px, 10px 2px, 2px 10px, 10px 2px, 2px 10px !important;
+  background-position: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100% !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 표지 숫자·큰 숫자는 모노로 */
+.design-simulation-blueprint [class*="__num"],
+.design-simulation-blueprint [class*="__value"],
+.design-simulation-blueprint dd strong,
+.design-simulation-blueprint b { font-family: var(--ch-mono); }
+
+/* 그림은 단색 계기판에 맞춰 흑백·약한 대비 */
+.design-simulation-blueprint img:not(.doreumi-stage img) { filter: grayscale(1) contrast(1.05) brightness(0.92); }
+
+/* 그래프: 선은 흰색 실선·회색 점선, 면은 옅은 흰빛 */
+.design-simulation-blueprint svg polyline { stroke: #e2e8f0 !important; }
+.design-simulation-blueprint svg g:nth-child(odd) polyline { stroke: rgba(226, 232, 240, 0.55) !important; stroke-dasharray: 6 5; }
+.design-simulation-blueprint svg polygon[fill^="url"] { fill: rgba(226, 232, 240, 0.08) !important; }
+.design-simulation-blueprint [class*="legend"] i { background: #e2e8f0 !important; }
+.design-simulation-blueprint [class*="legend"] li:nth-child(even) i { background: transparent !important; outline: 1px dashed #e2e8f0; }
+
+/* 장 번호(1·2·3·4·끝)는 속이 빈 도면 글자로 */
+.design-simulation-blueprint [class*="__no"],
+.design-simulation-blueprint [class*="__big"],
+.design-simulation-blueprint [class*="chapter__num"],
+.design-simulation-blueprint [class*="divider__num"],
+.design-simulation-blueprint .ch-divider__mark {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 1.5px #e2e8f0;
+}
+
+/* 이름 칩은 흰 바탕 반전 칩 */
+.design-simulation-blueprint .ch-name__chip { background: #e2e8f0 !important; color: #030303 !important; }
+.design-simulation-blueprint .ch-name__chip * { color: #030303 !important; }
+/* 색 모자이크·색 엠블럼은 단색으로 */
+.design-simulation-blueprint .ch-schools svg,
+.design-simulation-blueprint .ch-schools [class*="__shape"],
+.design-simulation-blueprint .ch-schools [class*="__mosaic"],
+.design-simulation-blueprint .ch-closing svg { filter: grayscale(1) brightness(1.4); }
+/* 설문 막대·선택은 흰빛 */
+.design-simulation-blueprint .ds-survey__option.is-mine { border-color: #e2e8f0; }
+.design-simulation-blueprint .ch-schools__grid { filter: grayscale(1) brightness(1.35); }

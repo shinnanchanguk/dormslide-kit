@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 import type { Block, BodyPayload, BodyResource } from "@/lib/deck-content";
 import type { SlideInlineEditor } from "./InlineEditableText";
 
@@ -38,4 +38,6 @@ export type Design = {
   renderBody: (props: BodyLayoutProps) => ReactNode | null;
   /** 배치마다 글자를 키울 수 있는 최대 크기(px). 비우면 34. */
   fitMax?: (layout: string | undefined) => number;
+  /** 글자 뒤에 깔리는 바탕 그림(선택). 무대 전체에 한 번 그려진다. */
+  Backdrop?: ComponentType;
 };

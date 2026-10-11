@@ -156,7 +156,7 @@ export function DeckApp({ deck: initial, designOverride, editTarget }: Props) {
   return (
     <div ref={rootRef} className={`ds-app ${design.className}${editing ? " is-editing" : ""}`} style={{ ["--ds-mark" as string]: design.markColor }} data-design={design.id}>
       <DeckNavContext.Provider value={{ go, max: total }}>
-        <Stage rail={deck.meta.railLabel} page={String(index + 1).padStart(2, "0")} pageNo={`${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`} brand={deck.meta.brand} issue={deck.meta.issueLabel} footDeck={deck.meta.footLabel} mark={<Mark />}>
+        <Stage rail={deck.meta.railLabel} page={String(index + 1).padStart(2, "0")} pageNo={`${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`} brand={deck.meta.brand} issue={deck.meta.issueLabel} footDeck={deck.meta.footLabel} mark={<Mark />} backdrop={design.Backdrop ? <design.Backdrop /> : null}>
           {slide ? <SlidePage key={`${index}:${editing ? "e" : "v"}`} slide={slide} index={index} design={design} editor={editor} /> : null}
         </Stage>
       </DeckNavContext.Provider>

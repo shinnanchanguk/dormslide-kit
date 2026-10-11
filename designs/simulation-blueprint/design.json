@@ -1,0 +1,12 @@
+{
+ "id": "simulation-blueprint",
+ "name": "시뮬레이션 계기판",
+ "summary": "검은 바탕에 단색 선, 원형 뷰포트와 눈금 고리, 모서리 꺾쇠 유리 패널. 과학·기술·데이터 이야기를 조종석 계기판처럼 보여 줘요.",
+ "markColor": "#e2e8f0",
+ "sample": "samples/dorms-story/deck.json",
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "fonts": ["Space Mono", "Pretendard", "Wanted Sans"],
+ "reference": "도름스 서재 「시뮬레이션 교육」 책 디자인(react-app-32)"
+}

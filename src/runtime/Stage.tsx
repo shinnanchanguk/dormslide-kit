@@ -20,6 +20,7 @@ export function Stage({
   onScaleChange,
   allowUpscale = false,
   mark,
+  backdrop,
 }: {
   rail: string;
   page: string;
@@ -35,6 +36,8 @@ export function Stage({
   allowUpscale?: boolean;
   /** DoRmSlide 표식. 무대 오른쪽 아래에 늘 같은 자리로 들어간다. */
   mark?: ReactNode;
+  /** 디자인의 바탕 그림. */
+  backdrop?: ReactNode;
 }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -92,6 +95,7 @@ export function Stage({
           style={{ width: STAGE_W * renderScale, height: STAGE_H * renderScale }}
         >
           <div className="stage" style={{ transform: `scale(${renderScale})` }}>
+            {backdrop}
             <aside className="rail">
               <div className="rail__mark">DS</div>
               <div className="rail__vt">{rail}</div>
