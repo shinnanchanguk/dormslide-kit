@@ -867,7 +867,7 @@
 .design-simulation-blueprint .ch-timeline__node[data-linked]:hover .ch-timeline__go {
   border-color: var(--ch-ink);
   background: var(--ch-ink);
-  color: rgb(211, 216, 224);
+  color: var(--ch-bg);
 }
 
 .design-simulation-blueprint .ch-timeline__copy {
@@ -1941,8 +1941,8 @@
   left: 0.55em;
   padding: 0.3em 0.6em;
   border-radius: 6px;
-  background: rgba(204, 209, 216, 0.574);
-  color: rgb(212, 218, 225);
+  background: var(--ch-ink);
+  color: var(--ch-bg);
   font-size: 0.42em;
   font-weight: 700;
   letter-spacing: 0;
@@ -2093,7 +2093,7 @@
   padding: 0.18em 0.55em;
   border-radius: 6px;
   background: var(--ch-orange);
-  color: rgb(219, 225, 233);
+  color: var(--ch-bg);
   font-weight: 700;
 }
 
@@ -2271,7 +2271,7 @@
 
 .design-simulation-blueprint .ch-evidence__track li[data-state="now"] {
   background: var(--ch-ink);
-  color: rgb(211, 216, 224);
+  color: var(--ch-bg);
 }
 
 .design-simulation-blueprint .ch-evidence__track li[data-state="done"] {
@@ -2416,7 +2416,7 @@
   padding: 0.2em 0.55em;
   border-radius: 6px;
   background: var(--el);
-  color: rgb(219, 225, 233);
+  color: var(--ch-bg);
   font-weight: 700;
 }
 
@@ -2624,7 +2624,7 @@
 }
 .design-simulation-blueprint button.ch-toc__row--go:hover .ch-toc__go {
   background: var(--ch-orange);
-  color: rgb(219, 225, 233);
+  color: var(--ch-bg);
 }
 .design-simulation-blueprint .ch-toc__row--go:focus-visible {
   outline: 2px solid var(--ch-orange);
@@ -3352,7 +3352,7 @@
 .design-simulation-blueprint a.ch-case__post:hover .ch-case__postGo {
   border-color: var(--ch-ink);
   background: var(--ch-ink);
-  color: rgb(211, 216, 224);
+  color: var(--ch-bg);
 }
 
 .design-simulation-blueprint a.ch-case__post:focus-visible {
@@ -3507,7 +3507,7 @@
   vertical-align: 0.12em;
   border-color: var(--ch-ink);
   background: var(--ch-ink);
-  color: rgb(211, 216, 224);
+  color: var(--ch-bg);
 }
 
 .design-simulation-blueprint .ch-purpose__source {
@@ -3545,7 +3545,7 @@
 
 .design-simulation-blueprint a.ch-purpose__link:hover {
   background: var(--ch-ink);
-  color: rgb(211, 216, 224);
+  color: var(--ch-bg);
 }
 
 .design-simulation-blueprint a.ch-purpose__link:focus-visible {
@@ -3865,18 +3865,18 @@
 
 .design-simulation-blueprint .ch-track li[data-state="done"] span {
   background: var(--el);
-  color: rgb(219, 225, 233);
-  opacity: 0.55;
+  color: var(--ch-bg);
+  opacity: 1;
 }
 
 .design-simulation-blueprint .ch-track li[data-state="now"] {
   background: var(--el);
-  color: rgb(219, 225, 233);
+  color: var(--ch-bg);
 }
 
 .design-simulation-blueprint .ch-track li[data-state="now"] span {
   background: rgba(204, 209, 216, 0.02);
-  color: rgb(219, 225, 233);
+  color: var(--ch-bg);
 }
 
 /* ── 표지: 그래프와 링크트리를 크게 ──────────────────────────────────────── */
@@ -4373,8 +4373,8 @@
   gap: 0.4em;
   padding: 0.4em 0.8em;
   border-radius: 9999px;
-  background: rgba(204, 209, 216, 0.546);
-  color: rgb(211, 216, 224);
+  background: var(--ch-ink);
+  color: var(--ch-bg);
   font-size: 0.52em;
   font-weight: 700;
   transition: transform 0.2s;
@@ -4916,14 +4916,14 @@
 .design-simulation-blueprint a.ch-guard__link:hover {
   border-color: var(--ch-ink);
   background: var(--ch-ink);
-  color: rgb(211, 216, 224);
+  color: var(--ch-bg);
 }
 
 /* 마지막 카드는 바탕이 어두워 같은 색으로 채우면 버튼이 사라진다. 밝게 뒤집는다. */
 .design-simulation-blueprint .ch-guard__step:last-child a.ch-guard__link:hover {
   border-color: rgb(211, 216, 224);
   background: rgb(6, 6, 6);
-  color: var(--ch-dark);
+  color: var(--ch-ink);
 }
 
 .design-simulation-blueprint a.ch-guard__link:focus-visible {
@@ -5277,7 +5277,7 @@
 .design-simulation-blueprint .case-feature__more {
   border-color: var(--ch-dark);
   background: var(--ch-dark);
-  color: var(--ch-bg);
+  color: var(--ch-ink);
   font-family: var(--ch-ui);
   transition: background-color 0.18s ease, border-color 0.18s ease;
 }
@@ -5285,4 +5285,5 @@
 .design-simulation-blueprint a.case-feature__more:is(:hover, :focus-visible) {
   border-color: var(--ch-orange);
   background: var(--ch-orange);
+  color: var(--ch-bg);
 }
