@@ -5,6 +5,7 @@ import { strictPublicWebUrl } from "@/lib/safe-url";
 import { liveClient, liveRoom } from "./client";
 import type { BoardItem } from "./types";
 import { downloadCsv } from "../results-export/exportCsv";
+import { useLocalResults } from "../results-export/context";
 
 /**
  * 학생 화면과 주고받는 도구들. 실시간 모드(내 수파베이스)가 켜져 있으면 반 전체가 한 화면을 같이 쓰고,
@@ -28,7 +29,11 @@ function savedNickname(): string {
 
 function useBoard(slide: number) {
   const client = liveClient();
-  const [items, setItems] = useState<BoardItem[]>([]);
+  const results = useLocalResults();
+  const [items, setItems] = useState<BoardItem[]>(() => !client ? results.boards.get(slide) ?? [] : []);
+  useEffect(() => {
+    if (!client) results.boards.set(slide, items);
+  }, [client, items, results, slide]);
   useEffect(() => {
     if (!client) return;
     return client.subscribeBoard(liveRoom(), slide, setItems);

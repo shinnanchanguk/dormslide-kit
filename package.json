@@ -11,6 +11,7 @@
     "build:html": "npm run check:mark && vite build --mode html && node scripts/finish-html.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
     "check": "npm run check:mark && npm run typecheck && node scripts/check-release.mjs && node scripts/build-catalog.mjs --check",
     "check:mark": "node scripts/check-mark.mjs",
     "catalog": "node scripts/build-catalog.mjs"

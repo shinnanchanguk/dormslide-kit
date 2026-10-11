@@ -24,7 +24,7 @@
 | presentation.case-live-stats (사례 카드 실시간 숫자) | 원고 숫자로 그림(`designs/dorms-story/layouts/live-counters.tsx`). 실시간 값은 내 서버에서 받아 넣을 수 있다 |
 | presentation.training-workflow (연수 단계 프롬프트) | 도름스 서재의 이용 흐름과 플랫폼 연결하기 슬라이드가 맡는다 |
 | admin.pin-session (선생님 잠금번호) | 발표자 = 방을 처음 연 브라우저(익명 번호). 잠금번호 대신 무작위 방 이름 |
-| admin.result-archive (수업 기록 보관) | 도구 `results-export` (표 파일로 내려받기) 뒤 `ds_clear_room` |
+| admin.result-archive (수업 기록 보관) | 도구 `results-export` (모든 장의 설문·의견·링크를 CSV 한 파일로 받기, 엑셀에서 열기) 뒤 `ds_clear_room` |
 | admin.deck-lifecycle (덱 만들기·복사·지우기) | 덱 = 파일. 복사는 파일 복사, 지우기는 파일 지우기 |
 | admin.folder-library (폴더 정리) | 레포 폴더·깃허브 레포로 정리 |
 | admin.learner-password-reset (학생 비밀번호) | 학생 비밀번호를 받지 않으므로 필요 없음 |

@@ -14,6 +14,9 @@ import { Mark } from "./Mark";
 import { QrCode } from "./QrCode";
 import { startMarkGuard } from "./markGuard";
 import type { SlideInlineEdit, SlideInlineEditor } from "./InlineEditableText";
+import { LocalResultsContext } from "@tools/results-export/context";
+import { createLocalResults, hasResultSlides, localResultRows, roomResultRows, RESULT_HEADERS } from "@tools/results-export/roomResults";
+import { downloadCsv } from "@tools/results-export/exportCsv";
 
 /**
  * 발표 화면 하나. 덱을 받아 장을 넘기고, 아래 띠에 기본 기능을 둔다.
@@ -42,6 +45,9 @@ export function DeckApp({ deck: initial, designOverride, editTarget }: Props) {
   const [shareOpen, setShareOpen] = useState(false);
   const [presenting, setPresenting] = useState(false);
   const [following, setFollowing] = useState(true);
+  const [exporting, setExporting] = useState(false);
+  const [exportNotice, setExportNotice] = useState("");
+  const localResults = useMemo(createLocalResults, [initial]);
   const rootRef = useRef<HTMLDivElement>(null);
   const design = designOf(designOverride ?? deck.meta.design);
   const toc = useMemo(() => deckToc(deck.slides) ?? [], [deck.slides]);
@@ -153,7 +159,27 @@ export function DeckApp({ deck: initial, designOverride, editTarget }: Props) {
   const slide = deck.slides[index];
   const shareUrl = typeof window === "undefined" ? "" : `${window.location.origin}${window.location.pathname}${window.location.search}`;
 
+  const exportAll = async () => {
+    if (exporting) return;
+    setExporting(true);
+    setExportNotice("");
+    try {
+      const rows = live && presenting ? roomResultRows(deck, await live.exportRoom(liveRoom())) : localResultRows(deck, localResults);
+      if (!rows.length) {
+        setExportNotice("아직 내려받을 결과가 없어요.");
+        return;
+      }
+      downloadCsv(`${deck.meta.title} 전체 결과.csv`, RESULT_HEADERS, rows);
+      setExportNotice("모든 장의 결과를 받았어요. 엑셀에서 열 수 있어요.");
+    } catch (error) {
+      setExportNotice(error instanceof Error ? error.message : "결과를 불러오지 못했어요. 다시 눌러 주세요.");
+    } finally {
+      setExporting(false);
+    }
+  };
+
   return (
+    <LocalResultsContext.Provider value={localResults}>
     <div ref={rootRef} className={`ds-app ${design.className}${editing ? " is-editing" : ""}`} style={{ ["--ds-mark" as string]: design.markColor }} data-design={design.id}>
       <DeckNavContext.Provider value={{ go, max: total }}>
         <Stage rail={deck.meta.railLabel} page={String(index + 1).padStart(2, "0")} pageNo={`${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`} brand={deck.meta.brand} issue={deck.meta.issueLabel} footDeck={deck.meta.footLabel} mark={<Mark />} backdrop={design.Backdrop ? <design.Backdrop /> : null}>
@@ -206,12 +232,18 @@ export function DeckApp({ deck: initial, designOverride, editTarget }: Props) {
             수업 끝내기
           </button>
         ) : null}
+        {hasResultSlides(deck) && (!client || (live && presenting)) ? (
+          <button type="button" className="ds-controls__btn" onClick={() => void exportAll()} disabled={exporting} aria-label="모든 결과 내려받기" title={exporting ? "결과 모으는 중" : "모든 결과 내려받기"} aria-busy={exporting} data-test="ds-export-all">
+            <Icon name="download" size={15} />
+          </button>
+        ) : null}
         {editTarget ? (
           <button type="button" className={`ds-controls__btn ds-controls__text${editing ? " is-on" : ""}`} onClick={() => setEditing((value) => !value)} aria-pressed={editing} data-test="ds-edit">
             <Icon name="edit" size={15} /> {editing ? (saveState === "saving" ? "저장 중" : saveState === "error" ? "저장 실패" : "편집 끝내기") : "편집"}
           </button>
         ) : null}
       </nav>
+      {exportNotice ? <p className="ds-export-notice" role="status">{exportNotice}</p> : null}
 
       {shareOpen ? (
         <div className="ds-share" role="dialog" aria-label="링크 공유">
@@ -229,5 +261,6 @@ export function DeckApp({ deck: initial, designOverride, editTarget }: Props) {
         </div>
       ) : null}
     </div>
+    </LocalResultsContext.Provider>
   );
 }

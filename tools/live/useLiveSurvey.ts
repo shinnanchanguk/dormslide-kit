@@ -1,20 +1,27 @@
 import { useCallback, useEffect, useState } from "react";
 import { liveClient, liveRoom } from "./client";
+import { useLocalResults } from "../results-export/context";
 
 /**
  * 설문 한 장의 상태. 실시간 모드면 내 수파베이스에 답을 모으고, 아니면 이 화면에서만 센다.
  */
 export function useLiveSurvey(slideIndex: number, optionCount: number) {
   const client = liveClient();
-  const [counts, setCounts] = useState<number[]>(() => Array.from({ length: optionCount }, () => 0));
-  const [texts, setTexts] = useState<string[]>([]);
+  const results = useLocalResults();
+  const [counts, setCounts] = useState<number[]>(() => !client ? results.surveys.get(slideIndex)?.counts ?? Array.from({ length: optionCount }, () => 0) : Array.from({ length: optionCount }, () => 0));
+  const [texts, setTexts] = useState<string[]>(() => !client ? results.surveys.get(slideIndex)?.texts ?? [] : []);
   const [mine, setMine] = useState<number | null>(null);
 
   useEffect(() => {
-    setCounts(Array.from({ length: optionCount }, () => 0));
-    setTexts([]);
+    const saved = client ? undefined : results.surveys.get(slideIndex);
+    setCounts(saved?.counts ?? Array.from({ length: optionCount }, () => 0));
+    setTexts(saved?.texts ?? []);
     setMine(null);
-  }, [optionCount, slideIndex]);
+  }, [client, optionCount, slideIndex, results]);
+
+  useEffect(() => {
+    if (!client) results.surveys.set(slideIndex, { counts, texts });
+  }, [client, results, slideIndex, counts, texts]);
 
   useEffect(() => {
     if (!client) return;

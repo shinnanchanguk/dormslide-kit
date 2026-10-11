@@ -33,13 +33,13 @@
   --ch-muted: #7f8894;
   --ch-line: rgba(226, 232, 240, 0.18);
   --ch-line-strong: #e2e8f0;
-  --ch-blue: #e2e8f0;
+  --ch-blue: #79ade3;
   --ch-green: #b9c2ce;
-  --ch-orange: #ffffff;
+  --ch-orange: #79ade3;
   --ch-yellow: #d7dde5;
   --ch-pink: #a3adba;
   --ch-purple: #c6cdd7;
-  --ch-sky: #cfd6df;
+  --ch-sky: #79ade3;
   --ch-dark: #0b0d10;
   --ch-display: "BP Mono", "Wanted Sans Variable", "Pretendard Variable", sans-serif;
   --ch-ui: "Pretendard Variable", "Wanted Sans Variable", system-ui, sans-serif;
@@ -95,9 +95,9 @@
 .design-simulation-blueprint .cover__title { color: #f1f4f8; letter-spacing: -0.01em; }
 .design-simulation-blueprint .page-rule { background: rgba(226, 232, 240, 0.35); height: 1px; }
 
-/* 강조 낱말: 흰 바탕 반전 칩 */
+/* 도름스 홈의 하늘색 포인트. 어두운 글자를 얹어 대비를 유지한다. */
 .design-simulation-blueprint .hl,
-.design-simulation-blueprint mark { color: #030303 !important; background: #e2e8f0 !important; padding: 0 0.18em; -webkit-text-fill-color: #030303; background-image: none !important; }
+.design-simulation-blueprint mark { color: #030303 !important; background: #79ade3 !important; padding: 0 0.18em; -webkit-text-fill-color: #030303; background-image: none !important; }
 
 /* 유리 패널 + 모서리 꺾쇠: 어두운 칸·카드에 공통으로 입힌다 */
 .design-simulation-blueprint [class*="__card"],
@@ -135,18 +135,31 @@
 .design-simulation-blueprint [class*="legend"] i { background: #e2e8f0 !important; }
 .design-simulation-blueprint [class*="legend"] li:nth-child(even) i { background: transparent !important; outline: 1px dashed #e2e8f0; }
 
-/* 장 번호(1·2·3·4·끝)는 속이 빈 도면 글자로 */
-.design-simulation-blueprint [class*="__no"],
-.design-simulation-blueprint [class*="__big"],
+/* 큰 글자·장 번호도 속을 채워 작은 미리보기에서 읽히게 한다. */
+.design-simulation-blueprint .ch-flow__no,
+.design-simulation-blueprint .ch-guard__no,
+.design-simulation-blueprint .ch-pillars__no,
+.design-simulation-blueprint .ch-product__no,
+.design-simulation-blueprint .ch-reasons__no,
+.design-simulation-blueprint .ch-toc__no,
+.design-simulation-blueprint .survey__no,
 .design-simulation-blueprint [class*="chapter__num"],
 .design-simulation-blueprint [class*="divider__num"],
 .design-simulation-blueprint .ch-divider__mark {
   background: none !important;
   -webkit-background-clip: border-box !important;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 1.5px #e2e8f0;
+  color: #79ade3 !important;
+  -webkit-text-fill-color: #79ade3 !important;
+  -webkit-text-stroke: 0;
 }
+
+/* OECD 같은 비교 막대도 검은 트랙에서 분명히 보이게 한다. */
+.design-simulation-blueprint .ch-bars__track { background: #17202b; }
+.design-simulation-blueprint .ch-bars__fill { background: #b9c2ce; }
+.design-simulation-blueprint .ch-bars__row--lead .ch-bars__fill { background: #79ade3; }
+.design-simulation-blueprint .ch-timeline__what,
+.design-simulation-blueprint .ch-timeline__when { color: #79ade3; -webkit-text-fill-color: #79ade3; -webkit-text-stroke: 0; }
+.design-simulation-blueprint .ch-timeline__more { color: #c3cad4; -webkit-text-fill-color: currentColor; }
 
 /* 이름 칩은 흰 바탕 반전 칩 */
 .design-simulation-blueprint .ch-name__chip { background: #e2e8f0 !important; color: #030303 !important; }

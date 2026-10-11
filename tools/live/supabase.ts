@@ -1,4 +1,4 @@
-import type { BoardItem, LiveClient, SurveySnapshot } from "./types";
+import type { BoardItem, LiveClient, SurveySnapshot, RoomResults } from "./types";
 
 /**
  * 내 수파베이스로 도는 실시간 모드. 표와 규칙은 supabase/schema.sql 에 있다.
@@ -11,6 +11,7 @@ type Query = {
   eq: (column: string, value: unknown) => Query;
   order: (column: string, options: { ascending: boolean }) => Query;
   limit: (count: number) => Promise<{ data: unknown[] | null }>;
+  range: (from: number, to: number) => Promise<{ data: unknown[] | null; error?: unknown }>;
   maybeSingle: () => Promise<{ data: unknown }>;
   insert: (row: Record<string, unknown>) => Promise<unknown>;
 };
@@ -41,6 +42,18 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
     await joined.get(room);
     return db;
   };
+
+  async function readRoomRows(db: Client, table: "ds_responses" | "ds_board", columns: string, room: string): Promise<unknown[]> {
+    const rows: unknown[] = [];
+    const pageSize = 1000;
+    for (let offset = 0; offset < 100_000; offset += pageSize) {
+      const result = await db.from(table).select(columns).eq("room", room).order("created_at", { ascending: true }).order("id", { ascending: true }).range(offset, offset + pageSize - 1);
+      if (result.error || !Array.isArray(result.data)) throw new Error("결과를 불러오지 못했어요. 잠시 뒤 다시 눌러 주세요.");
+      rows.push(...result.data);
+      if (result.data.length < pageSize) return rows;
+    }
+    throw new Error("결과가 많아 한 번에 받지 못했어요. 각 장의 결과 내려받기를 이용해 주세요.");
+  }
 
   async function loadSurvey(room: string, slide: number, optionCount: number): Promise<SurveySnapshot> {
     const db = await join(room);
@@ -127,6 +140,19 @@ export function createSupabaseLive(url: string, anonKey: string): LiveClient {
     async setPresenter(room, index) {
       const db = await join(room);
       await db.rpc("ds_set_presenter", { p_room: room, p_index: index });
+    },
+    async exportRoom(room) {
+      const db = await join(room);
+      const owner = await db.rpc("ds_is_presenter", { p_room: room }) as { data?: unknown; error?: unknown };
+      if (owner.error || owner.data !== true) throw new Error("발표를 시작한 선생님 화면에서 내려받아 주세요.");
+      const [responses, board] = await Promise.all([
+        readRoomRows(db, "ds_responses", "slide, kind, option, text, created_at", room),
+        readRoomRows(db, "ds_board", "id, slide, nickname, text, url, bucket, likes, created_at", room),
+      ]);
+      return {
+        responses: (responses as Array<{ slide: number; kind: "choice" | "text"; option: number | null; text: string | null; created_at: string }>).map(({ created_at, ...row }) => ({ ...row, createdAt: created_at })),
+        board: (board as Array<Omit<RoomResults["board"][number], "createdAt"> & { created_at: string }>).map(({ created_at, ...row }) => ({ ...row, createdAt: created_at })),
+      };
     },
   };
 }

@@ -1,5 +1,9 @@
 export type SurveySnapshot = { counts: number[]; texts: string[] };
 export type BoardItem = { id: string; nickname: string; text: string; url?: string; bucket?: string; likes: number; createdAt: string };
+export type RoomResults = {
+  responses: Array<{ slide: number; kind: "choice" | "text"; option: number | null; text: string | null; createdAt: string }>;
+  board: Array<BoardItem & { slide: number }>;
+};
 
 /** 실시간 모드가 해야 하는 일. 수파베이스 말고 다른 곳으로 옮기고 싶으면 이 모양만 지키면 된다. */
 export type LiveClient = {
@@ -13,4 +17,5 @@ export type LiveClient = {
   clearRoom: (room: string) => Promise<void>;
   subscribePresenter: (room: string, on: (index: number) => void) => () => void;
   setPresenter: (room: string, index: number) => Promise<void>;
+  exportRoom: (room: string) => Promise<RoomResults>;
 };

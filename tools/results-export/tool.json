@@ -2,12 +2,12 @@
  "id": "results-export",
  "name": "결과 내려받기",
  "group": "응답",
- "summary": "설문·게시물 결과를 표(CSV) 파일로 내려받아요.",
+ "summary": "모든 장의 설문·의견·링크를 한 번에 받아 엑셀에서 열어요.",
  "needsServer": true,
  "studentData": true,
  "attach": "viewer",
- "how": "실시간 모드에서 설문·게시판 아래에 [결과 내려받기] 가 생겨요.",
+ "how": "아래 띠의 [모든 결과 내려받기]를 누르면 모든 장의 설문·게시물·링크를 CSV 한 파일로 받아요. 엑셀에서 열어 질문별 응답을 살펴볼 수 있어요. 실시간 수업에서는 발표를 시작한 선생님 화면에서 받아요. 각 장의 [결과 내려받기]도 그대로 쓸 수 있어요.",
  "maker": "DoRms",
  "shelf": "official",
- "version": 1
+ "version": 2
 }
