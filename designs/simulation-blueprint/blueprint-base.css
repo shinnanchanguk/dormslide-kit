@@ -1017,6 +1017,23 @@
   letter-spacing: -0.025em;
 }
 
+/* 네 단계에서는 번호와 내용을 위아래로 두어 한글 어절의 폭을 확보한다. */
+.design-simulation-blueprint .ch-flow__steps:has(> :nth-child(4)):not(:has(> :nth-child(5))) .ch-flow__step {
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline: 0.6em;
+}
+.design-simulation-blueprint .ch-flow__steps:has(> :nth-child(4)):not(:has(> :nth-child(5))) .ch-flow__step strong {
+  grid-column: 1;
+  font-size: 0.85em;
+  word-break: keep-all;
+}
+.design-simulation-blueprint .ch-flow__steps:has(> :nth-child(4)):not(:has(> :nth-child(5))) .ch-flow__no {
+  grid-row: auto;
+}
+.design-simulation-blueprint .ch-flow__steps:has(> :nth-child(4)):not(:has(> :nth-child(5))) .ch-flow__step > span:not(.ch-flow__no) {
+  grid-column: 1;
+}
+
 .design-simulation-blueprint .ch-flow__step > span:not(.ch-flow__no) {
   grid-column: 2;
   font-size: 0.72em;
@@ -1667,6 +1684,17 @@
   font-size: 0.42em;
   font-weight: 500;
   letter-spacing: 0;
+}
+
+/* 두 수치를 비교하는 장에서는 숫자가 가장 먼저 보이게 한다. */
+.design-simulation-blueprint .ch-numbers__grid[data-count="2"] .ch-numbers__cell dd {
+  font-size: 4em;
+}
+.design-simulation-blueprint .ch-numbers__grid[data-count="2"] .ch-numbers__cell dt {
+  font-size: 0.65em;
+}
+.design-simulation-blueprint .ch-numbers__grid[data-count="2"] .ch-numbers__cell p {
+  font-size: 0.68em;
 }
 
 .design-simulation-blueprint .ch-numbers__cell p {
