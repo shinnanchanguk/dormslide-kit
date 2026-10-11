@@ -48,7 +48,7 @@ export default defineConfig(async ({ mode }) => {
     define: html
       ? {
           // HTML 한 파일은 내 컴퓨터 파일을 읽을 수 없어 도름이 3D 는 공개 주소에서 받는다(인터넷이 없으면 정지 그림).
-          "import.meta.env.VITE_DOREUMI_BASE": JSON.stringify("https://shinnanchanguk.github.io/dormslide/mascot/doreumi"),
+          "import.meta.env.VITE_DOREUMI_BASE": JSON.stringify("https://shinnanchanguk.github.io/dormslide-kit/mascot/doreumi"),
         }
       : undefined,
     build: {

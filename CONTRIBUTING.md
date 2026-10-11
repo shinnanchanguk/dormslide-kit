@@ -22,7 +22,7 @@
    `node scripts/dorms.mjs token` 이 클립보드에서 읽어 `.dorms/token` 에 보관한다. 열쇠를 대화창에 붙이지 않는다.
    같은 화면에 나오는 **연결 코드**(예: `DS-7K2Q`)는 PR 본문에 적는다(4번). 그 코드로 이 깃허브 아이디가 그 선생님 것임을 도름스가 확인한다.
 2. **내 사본 만들기**: `gh auth status` 로 깃허브 로그인을 확인한다. 안 돼 있으면 선생님에게 도름스 플랫폼 연결하기의 깃허브 단계(https://dorms.school/vibe/followup)를 안내한다.
-   `gh repo fork shinnanchanguk/dormslide --clone --remote` → `git switch -c <종류>/<짧은-이름>` (예: `design/chalkboard`).
+   `gh repo fork shinnanchanguk/dormslide-kit --clone --remote` → `git switch -c <종류>/<짧은-이름>` (예: `design/chalkboard`).
 3. **만들고 보여 주기**
    - 디자인: `docs/design-guide.md`. 자료를 따로 받지 않았으면 샘플 「도름스 탄생비화」로 그려 보여 준다(`/?sample=dorms-story&design=<이름>`). 63장 모두 넘쳐 보이는 장이 없어야 한다.
    - 도구: `docs/tool-guide.md`. `tools/<이름>/demo.json` 에 작동 예시 장을 넣는다(`/?demo=<이름>`).
@@ -32,7 +32,7 @@
    ```bash
    git add -A && git commit -m "디자인: 칠판 (선생님 닉네임)"
    git push -u origin HEAD
-   gh pr create --repo shinnanchanguk/dormslide --title "디자인: 칠판" --body-file .dorms/pr.md
+   gh pr create --repo shinnanchanguk/dormslide-kit --title "디자인: 칠판" --body-file .dorms/pr.md
    ```
    PR 본문(`.dorms/pr.md`)은 아래 양식을 쉬운 말로 채운다. 이 글이 운영자 쪽지 카드에 그대로 보인다.
    ```markdown

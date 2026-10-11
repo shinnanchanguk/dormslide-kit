@@ -21,7 +21,7 @@ AI 가 이 레포를 받아 슬라이드를 만들고, 개발 서버를 띄워 �
 직접 해 보려면:
 
 ```bash
-git clone https://github.com/shinnanchanguk/dormslide.git 내-슬라이드
+git clone https://github.com/shinnanchanguk/dormslide-kit.git 내-슬라이드
 cd 내-슬라이드 && npm install && npm run dev
 ```
 

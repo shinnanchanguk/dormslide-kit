@@ -1,5 +1,5 @@
 name: pages
-# 메인에 합쳐지면 미리보기 사이트(https://shinnanchanguk.github.io/dormslide/)를 다시 만든다.
+# 메인에 합쳐지면 미리보기 사이트(https://shinnanchanguk.github.io/dormslide-kit/)를 다시 만든다.
 # 도름스 서재의 디자인·도구·시각화 상점이 이 사이트의 ?sample= · ?demo= · ?visual= 화면을 작은 창으로 띄운다.
 on:
   push:

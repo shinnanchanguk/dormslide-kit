@@ -15,7 +15,7 @@
 도름스 서재의 도름슬라이드 책에서 만든 프롬프트를 받았다면 그 안에 계획(장마다 제목·내용·프롬프트·도구 블록)과 고른 디자인이 들어 있다. 그대로 따른다.
 
 1. **준비 확인**: `node -v` 가 20 이상인지 본다. 없거나 낮으면 선생님에게 도름스 환경설정 도우미(https://dorms.school/vibe/setup)를 먼저 마치자고 안내한다.
-2. **레포 받기**: `git clone https://github.com/shinnanchanguk/dormslide.git 내-슬라이드` (git 이 없으면 https://github.com/shinnanchanguk/dormslide/archive/refs/heads/main.zip 을 받아 푼다) → 그 폴더에서 `npm install`.
+2. **레포 받기**: `git clone https://github.com/shinnanchanguk/dormslide-kit.git 내-슬라이드` (git 이 없으면 https://github.com/shinnanchanguk/dormslide-kit/archive/refs/heads/main.zip 을 받아 푼다) → 그 폴더에서 `npm install`.
 3. **계획 저장**: 프롬프트의 계획을 `slides/outline.json` 에 그대로 저장한다(나중에 다시 만들 때 기준이 된다).
 4. **다듬기**: 장마다 제목·내용의 맞춤법·띄어쓰기·두서를 고친다. 생각은 바꾸지 않는다(0-4).
 5. **배치 고르기**: 고른 디자인의 `designs/<디자인>/README.md` 표에서 장마다 내용에 맞는 배치(layout)를 고른다.
