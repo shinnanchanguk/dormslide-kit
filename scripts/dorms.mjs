@@ -14,7 +14,7 @@ import { execFileSync } from "node:child_process";
 const DIR = ".dorms";
 const SITE = process.env.DORMS_SITE_DEV && /^http:\/\/127\.0\.0\.1:\d{2,5}$/.test(process.env.DORMS_SITE_DEV) ? process.env.DORMS_SITE_DEV : "https://dorms.school";
 const UPSTREAM = "shinnanchanguk/dormslide";
-const TOKEN_RE = /^dorms_slide_[A-Za-z0-9_-]{43}$/;
+const TOKEN_RE = /^dorms_pat_[A-Za-z0-9_-]{43}$/;
 const KINDS = new Set(["design", "tool", "visual", "fix"]);
 const args = process.argv.slice(2);
 const flag = (name) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : undefined; };

@@ -1,5 +1,5 @@
 {
- "version": 2,
+ "version": 3,
  "source": "shinnanchanguk/dormslide",
  "designs": [
   {
@@ -18,7 +18,7 @@
    ],
    "kind": "design",
    "folder": "designs/dorms-story",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?sample=dorms-story&design=dorms-story&embed=1"
+   "preview": "?sample=dorms-story&design=dorms-story&embed=1"
   },
   {
    "id": "simulation-blueprint",
@@ -37,7 +37,7 @@
    "reference": "도름스 서재 「시뮬레이션 교육」 책 디자인(react-app-32)",
    "kind": "design",
    "folder": "designs/simulation-blueprint",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?sample=dorms-story&design=simulation-blueprint&embed=1"
+   "preview": "?sample=dorms-story&design=simulation-blueprint&embed=1"
   }
  ],
  "tools": [
@@ -55,7 +55,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/activity-frame",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=activity-frame&embed=1"
+   "preview": "?demo=activity-frame&embed=1"
   },
   {
    "id": "classify",
@@ -71,7 +71,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/classify",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=classify&embed=1"
+   "preview": "?demo=classify&embed=1"
   },
   {
    "id": "doreumi-walk",
@@ -87,7 +87,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/doreumi-walk",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=doreumi-walk&embed=1"
+   "preview": "?demo=doreumi-walk&embed=1"
   },
   {
    "id": "edit-mode",
@@ -103,7 +103,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/edit-mode",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=edit-mode&embed=1"
+   "preview": "?demo=edit-mode&embed=1"
   },
   {
    "id": "first-page",
@@ -119,7 +119,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/first-page",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=first-page&embed=1"
+   "preview": "?demo=first-page&embed=1"
   },
   {
    "id": "fullscreen",
@@ -135,7 +135,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/fullscreen",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=fullscreen&embed=1"
+   "preview": "?demo=fullscreen&embed=1"
   },
   {
    "id": "html-save",
@@ -151,7 +151,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/html-save",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=html-save&embed=1"
+   "preview": "?demo=html-save&embed=1"
   },
   {
    "id": "join",
@@ -167,7 +167,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/join",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=join&embed=1"
+   "preview": "?demo=join&embed=1"
   },
   {
    "id": "likes",
@@ -183,7 +183,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/likes",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=likes&embed=1"
+   "preview": "?demo=likes&embed=1"
   },
   {
    "id": "link-board",
@@ -199,7 +199,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/link-board",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=link-board&embed=1"
+   "preview": "?demo=link-board&embed=1"
   },
   {
    "id": "link-preview",
@@ -215,7 +215,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/link-preview",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=link-preview&embed=1"
+   "preview": "?demo=link-preview&embed=1"
   },
   {
    "id": "link-qr",
@@ -231,7 +231,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/link-qr",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=link-qr&embed=1"
+   "preview": "?demo=link-qr&embed=1"
   },
   {
    "id": "page-jump",
@@ -247,7 +247,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/page-jump",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=page-jump&embed=1"
+   "preview": "?demo=page-jump&embed=1"
   },
   {
    "id": "presenter-follow",
@@ -263,7 +263,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/presenter-follow",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=presenter-follow&embed=1"
+   "preview": "?demo=presenter-follow&embed=1"
   },
   {
    "id": "results-export",
@@ -279,7 +279,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/results-export",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=results-export&embed=1"
+   "preview": "?demo=results-export&embed=1"
   },
   {
    "id": "share-link",
@@ -295,7 +295,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/share-link",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=share-link&embed=1"
+   "preview": "?demo=share-link&embed=1"
   },
   {
    "id": "short-answer",
@@ -311,7 +311,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/short-answer",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=short-answer&embed=1"
+   "preview": "?demo=short-answer&embed=1"
   },
   {
    "id": "survey",
@@ -327,7 +327,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/survey",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=survey&embed=1"
+   "preview": "?demo=survey&embed=1"
   },
   {
    "id": "timer",
@@ -343,7 +343,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/timer",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=timer&embed=1"
+   "preview": "?demo=timer&embed=1"
   },
   {
    "id": "toc",
@@ -359,7 +359,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/toc",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=toc&embed=1"
+   "preview": "?demo=toc&embed=1"
   },
   {
    "id": "youtube",
@@ -375,7 +375,7 @@
    "version": 1,
    "kind": "tool",
    "folder": "tools/youtube",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?demo=youtube&embed=1"
+   "preview": "?demo=youtube&embed=1"
   }
  ],
  "visuals": [
@@ -398,7 +398,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/bar-race",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=bar-race&embed=1"
+   "preview": "?visual=bar-race&embed=1"
   },
   {
    "id": "chapter-divider",
@@ -418,7 +418,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/chapter-divider",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=chapter-divider&embed=1"
+   "preview": "?visual=chapter-divider&embed=1"
   },
   {
    "id": "chat-stream",
@@ -438,7 +438,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/chat-stream",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=chat-stream&embed=1"
+   "preview": "?visual=chat-stream&embed=1"
   },
   {
    "id": "clickable-toc",
@@ -458,7 +458,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/clickable-toc",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=clickable-toc&embed=1"
+   "preview": "?visual=clickable-toc&embed=1"
   },
   {
    "id": "contrast",
@@ -478,7 +478,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/contrast",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=contrast&embed=1"
+   "preview": "?visual=contrast&embed=1"
   },
   {
    "id": "count-numbers",
@@ -498,7 +498,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/count-numbers",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=count-numbers&embed=1"
+   "preview": "?visual=count-numbers&embed=1"
   },
   {
    "id": "five-steps",
@@ -519,7 +519,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/five-steps",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=five-steps&embed=1"
+   "preview": "?visual=five-steps&embed=1"
   },
   {
    "id": "flow-steps",
@@ -539,7 +539,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/flow-steps",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=flow-steps&embed=1"
+   "preview": "?visual=flow-steps&embed=1"
   },
   {
    "id": "gallery",
@@ -559,7 +559,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/gallery",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=gallery&embed=1"
+   "preview": "?visual=gallery&embed=1"
   },
   {
    "id": "growth-cover",
@@ -579,7 +579,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/growth-cover",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=growth-cover&embed=1"
+   "preview": "?visual=growth-cover&embed=1"
   },
   {
    "id": "line-chart",
@@ -599,7 +599,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/line-chart",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=line-chart&embed=1"
+   "preview": "?visual=line-chart&embed=1"
   },
   {
    "id": "matrix",
@@ -619,7 +619,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/matrix",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=matrix&embed=1"
+   "preview": "?visual=matrix&embed=1"
   },
   {
    "id": "need-flow",
@@ -639,7 +639,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/need-flow",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=need-flow&embed=1"
+   "preview": "?visual=need-flow&embed=1"
   },
   {
    "id": "network",
@@ -659,7 +659,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/network",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=network&embed=1"
+   "preview": "?visual=network&embed=1"
   },
   {
    "id": "quote-cards",
@@ -679,7 +679,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/quote-cards",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=quote-cards&embed=1"
+   "preview": "?visual=quote-cards&embed=1"
   },
   {
    "id": "region-map",
@@ -699,7 +699,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/region-map",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=region-map&embed=1"
+   "preview": "?visual=region-map&embed=1"
   },
   {
    "id": "statement",
@@ -719,7 +719,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/statement",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=statement&embed=1"
+   "preview": "?visual=statement&embed=1"
   },
   {
    "id": "timeline",
@@ -739,7 +739,7 @@
    ],
    "kind": "visual",
    "folder": "visuals/timeline",
-   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=timeline&embed=1"
+   "preview": "?visual=timeline&embed=1"
   }
  ]
 }

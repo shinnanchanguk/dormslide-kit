@@ -13,8 +13,7 @@
     "typecheck": "tsc --noEmit",
     "check": "npm run check:mark && npm run typecheck && node scripts/check-release.mjs && node scripts/build-catalog.mjs --check",
     "check:mark": "node scripts/check-mark.mjs",
-    "catalog": "node scripts/build-catalog.mjs",
-    "previews": "node scripts/build-previews.mjs"
+    "catalog": "node scripts/build-catalog.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.117.3",

@@ -10,7 +10,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const PAGES = "https://shinnanchanguk.github.io/dormslide";
 const ID = /^[a-z][a-z0-9-]{1,59}$/;
 
 function collect(dir, file, kind) {
@@ -24,14 +23,14 @@ function collect(dir, file, kind) {
       const meta = JSON.parse(fs.readFileSync(path.join(base, name, file), "utf8"));
       if (meta.id !== name || !ID.test(name)) throw new Error(`${dir}/${name}/${file}: id 는 폴더 이름과 같아야 해요.`);
       if (!meta.name || !meta.summary) throw new Error(`${dir}/${name}/${file}: name · summary 가 필요해요.`);
-      const preview =
-        kind === "design" ? `${PAGES}/?sample=dorms-story&design=${name}&embed=1` : kind === "tool" ? `${PAGES}/?demo=${name}&embed=1` : `${PAGES}/?visual=${name}&embed=1`;
+      // 미리보기 사이트 안의 주소(앞부분 없이). 도름스가 자기 미리보기 창에 이어 붙여 띄운다.
+      const preview = kind === "design" ? `?sample=dorms-story&design=${name}&embed=1` : kind === "tool" ? `?demo=${name}&embed=1` : `?visual=${name}&embed=1`;
       return { ...meta, kind, folder: `${dir}/${name}`, preview };
     });
 }
 
 const catalog = {
-  version: 2,
+  version: 3,
   source: "shinnanchanguk/dormslide",
   designs: collect("designs", "design.json", "design"),
   tools: collect("tools", "tool.json", "tool"),
