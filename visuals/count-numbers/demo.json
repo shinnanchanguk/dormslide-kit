@@ -1,0 +1,76 @@
+{
+ "meta": {
+  "title": "숫자 올라가기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "VISUAL · DEMO",
+  "footLabel": "VISUAL-DEMO",
+  "issueLabel": "시각화 조각",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "title": "지금 도름스에는 이만큼 모였습니다",
+    "layout": "ch-numbers",
+    "tables": [
+     {
+      "head": [
+       "항목",
+       "값",
+       "단위",
+       "설명"
+      ],
+      "rows": [
+       [
+        "가입 교사",
+        "{{live:dorms.members|6,306}}",
+        "명",
+        "봇을 뺀 가입 계정"
+       ],
+       [
+        "선생님이 올린 앱",
+        "{{live:dorms.apps|496}}",
+        "개",
+        "선생님이 직접 만들어 올린 앱"
+       ],
+       [
+        "누적 조회",
+        "{{live:dorms.views|350,689}}",
+        "회",
+        "2026. 6. 7.부터 집계"
+       ],
+       [
+        "다녀간 기기",
+        "{{live:dorms.visitors|74,461}}",
+        "대",
+        "중복 없이 센 방문 기기"
+       ],
+       [
+        "참여한 시·도",
+        "17",
+        "곳",
+        "전국 17개 시·도 전부"
+       ]
+      ]
+     }
+    ],
+    "columns": [
+     [
+      {
+       "b": "note",
+       "parts": [
+        {
+         "t": "text",
+         "v": "dorms.school 공개 통계와 운영 데이터베이스 · 숫자는 실시간으로 바뀝니다"
+        }
+       ]
+      }
+     ]
+    ],
+    "eyebrow": "도름스 · 실시간"
+   }
+  }
+ ]
+}

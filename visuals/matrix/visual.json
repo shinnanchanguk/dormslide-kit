@@ -1,0 +1,17 @@
+{
+ "id": "matrix",
+ "name": "네 칸 표",
+ "summary": "두 기준으로 나눈 네 칸에서 한 칸을 강조해요.",
+ "layout": "ch-matrix",
+ "how": "본문 장 payload.layout \"ch-matrix\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-matrix 줄을 본다.",
+ "samplePages": [
+  11
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

@@ -1,0 +1,17 @@
+{
+ "id": "region-map",
+ "name": "지역 분포 지도",
+ "summary": "시·도별 숫자를 타일 지도로 보여 줘요.",
+ "layout": "ch-map",
+ "how": "본문 장 payload.layout \"ch-map\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-map 줄을 본다.",
+ "samplePages": [
+  32
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

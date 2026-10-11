@@ -1,0 +1,17 @@
+{
+ "id": "clickable-toc",
+ "name": "누르는 목차",
+ "summary": "목차 줄을 누르면 그 장으로 넘어가요.",
+ "layout": "ch-toc",
+ "how": "본문 장 payload.layout \"ch-toc\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-toc 줄을 본다.",
+ "samplePages": [
+  2
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

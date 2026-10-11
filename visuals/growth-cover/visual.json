@@ -1,0 +1,17 @@
+{
+ "id": "growth-cover",
+ "name": "성장 그래프 표지",
+ "summary": "표지에 제목과 함께 날짜별로 자라는 선 그래프·큰 숫자를 띄워요.",
+ "layout": "ch-hero",
+ "how": "본문 장 payload.layout \"ch-hero\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-hero 줄을 본다.",
+ "samplePages": [
+  1
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

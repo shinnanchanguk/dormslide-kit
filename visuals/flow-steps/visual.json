@@ -1,0 +1,17 @@
+{
+ "id": "flow-steps",
+ "name": "단계 흐름",
+ "summary": "단계가 화살표로 이어지는 과정을 차례로 보여 줘요.",
+ "layout": "ch-flow",
+ "how": "본문 장 payload.layout \"ch-flow\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-flow 줄을 본다.",
+ "samplePages": [
+  10
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

@@ -1,0 +1,186 @@
+{
+ "meta": {
+  "title": "앱 갤러리 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "VISUAL · DEMO",
+  "footLabel": "VISUAL-DEMO",
+  "issueLabel": "시각화 조각",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "title": "실제로 선생님들이 자유롭게 올린 앱들",
+    "agenda": [
+     "재미",
+     "주인의식",
+     "진정성",
+     "예쁨",
+     "개방성"
+    ],
+    "layout": "ch-apps",
+    "tables": [
+     {
+      "head": [
+       "영역",
+       "앱",
+       "한 줄",
+       "만든 사람",
+       "도름",
+       "댓글",
+       "주소",
+       "그림"
+      ],
+      "note": "누르면 도름스의 그 앱으로 · ESCAPE-GAME은 교사 인증 전용이라 여는 것만 교사 인증이 필요합니다 · 도름·댓글은 2026. 9. 29. 새벽 기준",
+      "rows": [
+       [
+        "학급경영",
+        "쌤핀",
+        "시간표·급식·일정·담임 업무를 한 화면에 모은 대시보드",
+        "고등학교 교사",
+        "74",
+        "12",
+        "https://dorms.school/apps/a4fa757c-7d74-45dd-802d-193a3365e02d",
+        "/samples/dorms-story/art/ssampin.svg"
+       ],
+       [
+        "수업",
+        "진도계획표 자동계산기",
+        "수업이 빠지면 뒤 차시가 저절로 밀립니다",
+        "고등학교 교사",
+        "36",
+        "55",
+        "https://dorms.school/apps/10e18a23-3a3b-4787-8193-c240ec975be9",
+        "/samples/dorms-story/art/jindo-plan.svg"
+       ],
+       [
+        "평가",
+        "MEI Project",
+        "수학 시험용 도형과 그래프를 쉽게 그리는 사이트",
+        "고등학교 수학 교사",
+        "27",
+        "14",
+        "https://dorms.school/apps/9ee69395-476b-4009-8d63-3268a6b9efb9",
+        "/samples/dorms-story/art/mei-project.svg"
+       ],
+       [
+        "행정",
+        "물품 품의 메이커",
+        "장바구니 캡처나 엑셀을 에듀파인에 올릴 형태로 바꿉니다",
+        "고등학교 수학 교사",
+        "25",
+        "6",
+        "https://dorms.school/apps/01255d20-d5c9-4535-a83d-7874b8f3a0c2",
+        "/samples/dorms-story/art/pumui-maker.svg"
+       ],
+       [
+        "도서관",
+        "ESCAPE-GAME",
+        "학교 도서관을 3D로 옮긴 방탈출. 청구기호·쌓기나무·시 읽기로 탈출합니다",
+        "초등학교 교사",
+        "3",
+        "",
+        "https://dorms.school/apps/a99e3c6e-286d-4031-9c63-86f76e7b771e",
+        "/samples/dorms-story/art/escape-library.svg"
+       ],
+       [
+        "초등 학급",
+        "정령 소환 학급 보상",
+        "1인 1역을 완수하면 정령이 자라는 학급 보상",
+        "교사",
+        "20",
+        "2",
+        "https://dorms.school/apps/8fa612f1-50df-41ce-89a6-4856106b47c7",
+        "/samples/dorms-story/art/jeongryeong.svg"
+       ],
+       [
+        "특수교육",
+        "이루다iep 수업자료편",
+        "개별화교육·평가·누가기록·수업자료의 반복 작업을 줄입니다",
+        "초등 특수교사",
+        "6",
+        "",
+        "https://dorms.school/apps/d8c87286-c32c-40c2-a953-2998809f58c0",
+        "/samples/dorms-story/art/iruda-iep.svg"
+       ],
+       [
+        "국어",
+        "관동별곡: 잃어버린 시구",
+        "정철의 「관동별곡」을 원문 순서대로 걸으며 익히는 학습 게임",
+        "고등학교 교사",
+        "16",
+        "20",
+        "https://dorms.school/apps/98bbd11a-398d-47b8-af90-aa9ca5d8ace0",
+        "/samples/dorms-story/art/gwandong.svg"
+       ],
+       [
+        "친목",
+        "급식먹고산책",
+        "점심 먹고 남는 20분, 다른 학교 선생님들과 학교 앞을 함께 걷는 사이트",
+        "고등학교 지리 교사",
+        "10",
+        "5",
+        "https://dorms.school/apps/19737684-6a1a-493e-9b57-dba1e0dd25cd",
+        "/samples/dorms-story/art/meal-stroll.svg"
+       ],
+       [
+        "역사",
+        "왕의 장부",
+        "루이14세, 엘리자베스 1세가 되어 나라를 운영해 봅니다",
+        "중학교 역사 교사",
+        "13",
+        "12",
+        "https://dorms.school/apps/5dd06240-31b4-434e-97a6-1e827e7267a6",
+        "/samples/dorms-story/art/kings-ledger.svg"
+       ],
+       [
+        "과학",
+        "기후 생존 도시",
+        "통합과학 신재생 에너지 수업용 건설 게임",
+        "고등학교 과학 교사",
+        "12",
+        "8",
+        "https://dorms.school/apps/c93afcbf-268d-4dcc-be26-6270b9f5d5f3",
+        "/samples/dorms-story/art/climate-city.svg"
+       ],
+       [
+        "음악",
+        "개념 없이 악보 제작",
+        "음악 개념이 부족한 학생도 쓰는 악보 사보 프로그램",
+        "중학교 음악 교사",
+        "10",
+        "2",
+        "https://dorms.school/apps/6250478e-a565-4435-8498-6e9ba9541eca",
+        "/samples/dorms-story/art/score-maker.svg"
+       ]
+      ]
+     }
+    ],
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "교실 구석구석의 문제를 "
+        },
+        {
+         "t": "hl",
+         "v": "현장의 선생님"
+        },
+        {
+         "t": "text",
+         "v": "이 직접 풀었습니다."
+        }
+       ]
+      }
+     ]
+    ],
+    "eyebrow": "주인의식 · 선생님들이 올린 앱"
+   }
+  }
+ ]
+}

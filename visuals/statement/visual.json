@@ -1,0 +1,17 @@
+{
+ "id": "statement",
+ "name": "한 문장 크게",
+ "summary": "가장 중요한 한 문장을 크게, 강조 낱말은 반전으로.",
+ "layout": "ch-statement",
+ "how": "본문 장 payload.layout \"ch-statement\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-statement 줄을 본다.",
+ "samplePages": [
+  3
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

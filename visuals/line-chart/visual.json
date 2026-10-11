@@ -1,0 +1,17 @@
+{
+ "id": "line-chart",
+ "name": "꺾은선 추이",
+ "summary": "날짜에 따라 늘어나는 선을 그리며 보여 줘요.",
+ "layout": "ch-chart",
+ "how": "본문 장 payload.layout \"ch-chart\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-chart 줄을 본다.",
+ "samplePages": [
+  29
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

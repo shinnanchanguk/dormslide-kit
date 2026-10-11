@@ -1,0 +1,17 @@
+{
+ "id": "network",
+ "name": "연결망",
+ "summary": "사람·앱이 서로 이어지는 모습을 점과 선으로 보여 줘요.",
+ "layout": "ch-network",
+ "how": "본문 장 payload.layout \"ch-network\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-network 줄을 본다.",
+ "samplePages": [
+  22
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

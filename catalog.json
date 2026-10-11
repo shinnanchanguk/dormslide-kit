@@ -378,5 +378,368 @@
    "preview": "https://shinnanchanguk.github.io/dormslide/?demo=youtube&embed=1"
   }
  ],
- "visuals": []
+ "visuals": [
+  {
+   "id": "bar-race",
+   "name": "막대 차오르기",
+   "summary": "막대가 왼쪽부터 차오르며 값을 견줘요.",
+   "layout": "ch-bars",
+   "how": "본문 장 payload.layout \"ch-bars\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-bars 줄을 본다.",
+   "samplePages": [
+    5,
+    30
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/bar-race",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=bar-race&embed=1"
+  },
+  {
+   "id": "chapter-divider",
+   "name": "장 구분",
+   "summary": "큰 숫자와 장 제목으로 이야기의 마디를 나눠요.",
+   "layout": "ch-divider",
+   "how": "본문 장 payload.layout \"ch-divider\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-divider 줄을 본다.",
+   "samplePages": [
+    7
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/chapter-divider",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=chapter-divider&embed=1"
+  },
+  {
+   "id": "chat-stream",
+   "name": "대화 흐름",
+   "summary": "말풍선처럼 이어지는 대화를 보여 줘요.",
+   "layout": "ch-stream",
+   "how": "본문 장 payload.layout \"ch-stream\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-stream 줄을 본다.",
+   "samplePages": [
+    23
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/chat-stream",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=chat-stream&embed=1"
+  },
+  {
+   "id": "clickable-toc",
+   "name": "누르는 목차",
+   "summary": "목차 줄을 누르면 그 장으로 넘어가요.",
+   "layout": "ch-toc",
+   "how": "본문 장 payload.layout \"ch-toc\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-toc 줄을 본다.",
+   "samplePages": [
+    2
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/clickable-toc",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=clickable-toc&embed=1"
+  },
+  {
+   "id": "contrast",
+   "name": "맞대어 견주기",
+   "summary": "두 쪽(전/후, 이것/저것)을 나란히 놓고 견줘요.",
+   "layout": "ch-contrast",
+   "how": "본문 장 payload.layout \"ch-contrast\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-contrast 줄을 본다.",
+   "samplePages": [
+    13
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/contrast",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=contrast&embed=1"
+  },
+  {
+   "id": "count-numbers",
+   "name": "숫자 올라가기",
+   "summary": "큰 숫자가 0부터 올라가며 나타나요. 숫자 몇 개를 나란히 보여 줄 때.",
+   "layout": "ch-numbers",
+   "how": "본문 장 payload.layout \"ch-numbers\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-numbers 줄을 본다.",
+   "samplePages": [
+    6
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/count-numbers",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=count-numbers&embed=1"
+  },
+  {
+   "id": "five-steps",
+   "name": "다섯 가지 짚기",
+   "summary": "다섯 요소를 하나씩 짚으며 진행 칩이 따라와요.",
+   "layout": "ch-five",
+   "how": "본문 장 payload.layout \"ch-five\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-five 줄을 본다.",
+   "samplePages": [
+    33,
+    34
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/five-steps",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=five-steps&embed=1"
+  },
+  {
+   "id": "flow-steps",
+   "name": "단계 흐름",
+   "summary": "단계가 화살표로 이어지는 과정을 차례로 보여 줘요.",
+   "layout": "ch-flow",
+   "how": "본문 장 payload.layout \"ch-flow\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-flow 줄을 본다.",
+   "samplePages": [
+    10
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/flow-steps",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=flow-steps&embed=1"
+  },
+  {
+   "id": "gallery",
+   "name": "앱 갤러리",
+   "summary": "여러 앱·작품을 카드 갤러리로 보여 줘요.",
+   "layout": "ch-apps",
+   "how": "본문 장 payload.layout \"ch-apps\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-apps 줄을 본다.",
+   "samplePages": [
+    40
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/gallery",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=gallery&embed=1"
+  },
+  {
+   "id": "growth-cover",
+   "name": "성장 그래프 표지",
+   "summary": "표지에 제목과 함께 날짜별로 자라는 선 그래프·큰 숫자를 띄워요.",
+   "layout": "ch-hero",
+   "how": "본문 장 payload.layout \"ch-hero\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-hero 줄을 본다.",
+   "samplePages": [
+    1
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/growth-cover",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=growth-cover&embed=1"
+  },
+  {
+   "id": "line-chart",
+   "name": "꺾은선 추이",
+   "summary": "날짜에 따라 늘어나는 선을 그리며 보여 줘요.",
+   "layout": "ch-chart",
+   "how": "본문 장 payload.layout \"ch-chart\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-chart 줄을 본다.",
+   "samplePages": [
+    29
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/line-chart",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=line-chart&embed=1"
+  },
+  {
+   "id": "matrix",
+   "name": "네 칸 표",
+   "summary": "두 기준으로 나눈 네 칸에서 한 칸을 강조해요.",
+   "layout": "ch-matrix",
+   "how": "본문 장 payload.layout \"ch-matrix\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-matrix 줄을 본다.",
+   "samplePages": [
+    11
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/matrix",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=matrix&embed=1"
+  },
+  {
+   "id": "need-flow",
+   "name": "있던 것 → 없던 것 → 만든 것",
+   "summary": "문제를 세 단계 이야기로 풀어요.",
+   "layout": "ch-need",
+   "how": "본문 장 payload.layout \"ch-need\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-need 줄을 본다.",
+   "samplePages": [
+    4
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/need-flow",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=need-flow&embed=1"
+  },
+  {
+   "id": "network",
+   "name": "연결망",
+   "summary": "사람·앱이 서로 이어지는 모습을 점과 선으로 보여 줘요.",
+   "layout": "ch-network",
+   "how": "본문 장 payload.layout \"ch-network\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-network 줄을 본다.",
+   "samplePages": [
+    22
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/network",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=network&embed=1"
+  },
+  {
+   "id": "quote-cards",
+   "name": "인용 카드",
+   "summary": "실제 글·댓글을 카드로 인용해 근거로 삼아요.",
+   "layout": "ch-evidence",
+   "how": "본문 장 payload.layout \"ch-evidence\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-evidence 줄을 본다.",
+   "samplePages": [
+    35
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/quote-cards",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=quote-cards&embed=1"
+  },
+  {
+   "id": "region-map",
+   "name": "지역 분포 지도",
+   "summary": "시·도별 숫자를 타일 지도로 보여 줘요.",
+   "layout": "ch-map",
+   "how": "본문 장 payload.layout \"ch-map\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-map 줄을 본다.",
+   "samplePages": [
+    32
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/region-map",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=region-map&embed=1"
+  },
+  {
+   "id": "statement",
+   "name": "한 문장 크게",
+   "summary": "가장 중요한 한 문장을 크게, 강조 낱말은 반전으로.",
+   "layout": "ch-statement",
+   "how": "본문 장 payload.layout \"ch-statement\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-statement 줄을 본다.",
+   "samplePages": [
+    3
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/statement",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=statement&embed=1"
+  },
+  {
+   "id": "timeline",
+   "name": "연표",
+   "summary": "날짜 순서로 일어난 일을 점과 선으로 이어요.",
+   "layout": "ch-timeline",
+   "how": "본문 장 payload.layout \"ch-timeline\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-timeline 줄을 본다.",
+   "samplePages": [
+    9
+   ],
+   "maker": "DoRms",
+   "shelf": "official",
+   "version": 1,
+   "designs": [
+    "dorms-story",
+    "simulation-blueprint"
+   ],
+   "kind": "visual",
+   "folder": "visuals/timeline",
+   "preview": "https://shinnanchanguk.github.io/dormslide/?visual=timeline&embed=1"
+  }
+ ]
 }

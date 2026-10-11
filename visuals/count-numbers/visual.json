@@ -1,0 +1,17 @@
+{
+ "id": "count-numbers",
+ "name": "숫자 올라가기",
+ "summary": "큰 숫자가 0부터 올라가며 나타나요. 숫자 몇 개를 나란히 보여 줄 때.",
+ "layout": "ch-numbers",
+ "how": "본문 장 payload.layout \"ch-numbers\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-numbers 줄을 본다.",
+ "samplePages": [
+  6
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

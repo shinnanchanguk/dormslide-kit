@@ -159,3 +159,6 @@
 /* 설문 막대·선택은 흰빛 */
 .design-simulation-blueprint .ds-survey__option.is-mine { border-color: #e2e8f0; }
 .design-simulation-blueprint .ch-schools__grid { filter: grayscale(1) brightness(1.35); }
+/* 지도에서 가장 큰 칸은 흰 바탕 반전 칸 */
+.design-simulation-blueprint .ch-map__tile--top { background: #e2e8f0 !important; color: #030303 !important; }
+.design-simulation-blueprint .ch-map__tile--top * { color: #030303 !important; }

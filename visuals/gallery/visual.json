@@ -1,0 +1,17 @@
+{
+ "id": "gallery",
+ "name": "앱 갤러리",
+ "summary": "여러 앱·작품을 카드 갤러리로 보여 줘요.",
+ "layout": "ch-apps",
+ "how": "본문 장 payload.layout \"ch-apps\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-apps 줄을 본다.",
+ "samplePages": [
+  40
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

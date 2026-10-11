@@ -1,0 +1,17 @@
+{
+ "id": "quote-cards",
+ "name": "인용 카드",
+ "summary": "실제 글·댓글을 카드로 인용해 근거로 삼아요.",
+ "layout": "ch-evidence",
+ "how": "본문 장 payload.layout \"ch-evidence\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-evidence 줄을 본다.",
+ "samplePages": [
+  35
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

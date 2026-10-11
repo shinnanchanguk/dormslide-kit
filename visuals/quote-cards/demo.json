@@ -1,0 +1,140 @@
+{
+ "meta": {
+  "title": "인용 카드 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "VISUAL · DEMO",
+  "footLabel": "VISUAL-DEMO",
+  "issueLabel": "시각화 조각",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "title": "재미로 시작해서, 서로 따라 만들게 됩니다",
+    "agenda": [
+     "재미",
+     "주인의식",
+     "진정성",
+     "예쁨",
+     "개방성"
+    ],
+    "layout": "ch-evidence",
+    "tables": [
+     {
+      "head": [
+       "종류",
+       "제목",
+       "인용",
+       "누가 · 언제",
+       "반응",
+       "주소",
+       "그림"
+      ],
+      "rows": [
+       [
+        "글",
+        "링크트리 유행이 미니홈피 파도타기로",
+        "예전에 DoRms에서 각자의 링크트리를 제작하는게 유행이었는데요~",
+        "고등 물리 교사 · 8. 29.",
+        "댓글 25 · 선생님 9명이 서로 이음",
+        "https://dorms.school/board/p/6ca8f62f-bde2-4c23-9987-241c656bdd5b",
+        "/samples/dorms-story/art/minihompy-surfing.svg"
+       ],
+       [
+        "댓글",
+        "뼈문과 선생님이 물리 방탈출에 빠지다",
+        "뼈문과인데 아이템 모아서 최종 문제에서 추 옮기고 막 놀고있으니까 주변에서 뭐길래 그렇게 재미있게 하냐며",
+        "고등 지리 교사 · 8. 25.",
+        "퀀텀 이스케이프 댓글",
+        "https://dorms.school/apps/0ce4cb41-88d0-4878-8ed7-f154ab3df50c",
+        "/samples/dorms-story/art/quantum-play.svg"
+       ],
+       [
+        "글",
+        "공모전에 떨어진 선생님의 스티커 제안",
+        "절대 도름 캐릭터 등록하고 떨어져서 쓸 곳이 없어져서 여기서 써보려는 것이 맞습니다. ㅎㅎ",
+        "고등 정보 교사 · 9. 4.",
+        "도름 6 · 댓글 7",
+        "https://dorms.school/board/p/60edb05b-0f8b-4a5b-8f88-020c63200159",
+        "/samples/dorms-story/art/sticker-idea.svg"
+       ],
+       [
+        "댓글",
+        "아이들이 연휴에도 붙잡은 게임",
+        "아이들이 연휴에도 10단계를 달성하려고 부단히 노력했는데",
+        "중학교 과학 교사 · 9. 28.",
+        "멘델의 완두 드롭 머지",
+        "https://dorms.school/apps/12302797-bcad-4b00-a104-5be983047867",
+        "/samples/dorms-story/art/mendel-merge.svg"
+       ]
+      ]
+     },
+     {
+      "head": [
+       "값",
+       "단위",
+       "설명"
+      ],
+      "note": "도름스 운영 데이터베이스 · 게임·교실은 실시간, 팀웍은 2026. 9. 29. 새벽 기준",
+      "rows": [
+       [
+        "{{live:dorms.arcade|109}}",
+        "개",
+        "오락실 학습 게임 · 올린 선생님 41명"
+       ],
+       [
+        "{{live:dorms.classrooms|12}}",
+        "곳",
+        "선생님이 꾸민 도름스쿨 픽셀 교실 · 소품 {{live:dorms.roomItems|218}}개"
+       ],
+       [
+        "61",
+        "명",
+        "MBTI·일주 팀웍에 스스로 등록한 선생님"
+       ]
+      ]
+     }
+    ],
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "놀다 보면 "
+        },
+        {
+         "t": "hl",
+         "v": "만들고 싶어집니다"
+        },
+        {
+         "t": "text",
+         "v": "."
+        }
+       ]
+      },
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "도름스 선생님들끼리 링크트리를 꾸미던 유행이 미니홈피 파도타기로 번졌고, 그 놀이가 그대로 바이브코딩 연습이 됐습니다."
+        }
+       ]
+      }
+     ]
+    ],
+    "eyebrow": "다섯 가지 · 재미",
+    "resources": [
+     {
+      "url": "https://dorms.school/match",
+      "label": "도름스 팀웍 보기"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+{
+ "id": "contrast",
+ "name": "맞대어 견주기",
+ "summary": "두 쪽(전/후, 이것/저것)을 나란히 놓고 견줘요.",
+ "layout": "ch-contrast",
+ "how": "본문 장 payload.layout \"ch-contrast\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-contrast 줄을 본다.",
+ "samplePages": [
+  13
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

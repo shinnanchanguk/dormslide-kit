@@ -1,0 +1,18 @@
+{
+ "id": "bar-race",
+ "name": "막대 차오르기",
+ "summary": "막대가 왼쪽부터 차오르며 값을 견줘요.",
+ "layout": "ch-bars",
+ "how": "본문 장 payload.layout \"ch-bars\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-bars 줄을 본다.",
+ "samplePages": [
+  5,
+  30
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

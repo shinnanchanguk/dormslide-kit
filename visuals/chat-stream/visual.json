@@ -1,0 +1,17 @@
+{
+ "id": "chat-stream",
+ "name": "대화 흐름",
+ "summary": "말풍선처럼 이어지는 대화를 보여 줘요.",
+ "layout": "ch-stream",
+ "how": "본문 장 payload.layout \"ch-stream\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-stream 줄을 본다.",
+ "samplePages": [
+  23
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

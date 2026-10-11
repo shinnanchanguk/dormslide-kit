@@ -1,0 +1,17 @@
+{
+ "id": "need-flow",
+ "name": "있던 것 → 없던 것 → 만든 것",
+ "summary": "문제를 세 단계 이야기로 풀어요.",
+ "layout": "ch-need",
+ "how": "본문 장 payload.layout \"ch-need\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-need 줄을 본다.",
+ "samplePages": [
+  4
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

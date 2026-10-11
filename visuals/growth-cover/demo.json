@@ -1,0 +1,132 @@
+{
+ "meta": {
+  "title": "성장 그래프 표지 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "VISUAL · DEMO",
+  "footLabel": "VISUAL-DEMO",
+  "issueLabel": "시각화 조각",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "title": "교사들은 왜 스스로 모였을까?",
+    "agenda": [
+     "탄생 비화",
+     "만든 이유",
+     "성장 과정",
+     "앞으로의 방향"
+    ],
+    "layout": "ch-hero",
+    "tables": [
+     {
+      "head": [
+       "주",
+       "가입 교사",
+       "앱·자료"
+      ],
+      "rows": [
+       [
+        "6. 1.",
+        "17",
+        "9"
+       ],
+       [
+        "6. 22.",
+        "252",
+        "58"
+       ],
+       [
+        "7. 13.",
+        "571",
+        "116"
+       ],
+       [
+        "8. 3.",
+        "1107",
+        "206"
+       ],
+       [
+        "8. 17.",
+        "2986",
+        "303"
+       ],
+       [
+        "8. 31.",
+        "4865",
+        "401"
+       ],
+       [
+        "9. 14.",
+        "6022",
+        "505"
+       ],
+       [
+        "지금",
+        "{{live:dorms.members|6,306}}",
+        "{{live:dorms.appsAndResources|561}}"
+       ]
+      ],
+      "caption": "도름스 주별 누적 · 실시간"
+     },
+     {
+      "head": [
+       "이름",
+       "값",
+       "단위"
+      ],
+      "rows": [
+       [
+        "가입 교사",
+        "{{live:dorms.members|6,306}}",
+        "명"
+       ],
+       [
+        "선생님이 올린 앱",
+        "{{live:dorms.apps|496}}",
+        "개"
+       ],
+       [
+        "누적 조회",
+        "{{live:dorms.views|350,689}}",
+        "회"
+       ]
+      ]
+     }
+    ],
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "도름스의 탄생부터 앞으로의 방향까지"
+        }
+       ]
+      },
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "홍창욱 · 경기북과학고등학교 교사 · Team DoRm"
+        }
+       ]
+      }
+     ]
+    ],
+    "eyebrow": "2026. 9. 30. 작성",
+    "resources": [
+     {
+      "qr": true,
+      "url": "https://dorms.school/links",
+      "label": "Team DoRm 링크트리"
+     }
+    ]
+   }
+  }
+ ]
+}

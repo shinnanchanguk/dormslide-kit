@@ -1,0 +1,144 @@
+{
+ "meta": {
+  "title": "막대 차오르기 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "VISUAL · DEMO",
+  "footLabel": "VISUAL-DEMO",
+  "issueLabel": "시각화 조각",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "title": "교사들은 이미 자발성을 가지고 있습니다",
+    "layout": "ch-bars",
+    "tables": [
+     {
+      "head": [
+       "나라",
+       "참여율",
+       "항목"
+      ],
+      "note": "TALIS 2024 · 한국 중학교 교사 대상 · 한국교육개발원 발표(2025. 10. 10.)",
+      "rows": [
+       [
+        "한국",
+        "78.8%",
+        "전문성 학습을 위한 교사 네트워크 참여"
+       ],
+       [
+        "OECD 평균",
+        "50.9%",
+        "전문성 학습을 위한 교사 네트워크 참여"
+       ]
+      ]
+     }
+    ],
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "참여할 마음이 없는 게 아닙니다. "
+        },
+        {
+         "t": "hl",
+         "v": "어디에, 어떻게 모이느냐"
+        },
+        {
+         "t": "text",
+         "v": "가 문제입니다."
+        }
+       ]
+      }
+     ]
+    ],
+    "eyebrow": "먼저 확인할 사실",
+    "resources": [
+     {
+      "url": "https://www.kedi.re.kr/khome/main/announce/selectBroadAnnounceForm.do?selectTp=0&board_sq_no=3&article_sq_no=36149",
+      "label": "한국교육개발원 TALIS 2024 결과 발표"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "BODY",
+   "payload": {
+    "title": "넉 달 동안 쌓인 앱, 지금도 늘고 있습니다",
+    "layout": "ch-bars",
+    "tables": [
+     {
+      "head": [
+       "월",
+       "새 앱"
+      ],
+      "rows": [
+       [
+        "6월",
+        "54"
+       ],
+       [
+        "7월",
+        "89"
+       ],
+       [
+        "8월",
+        "169"
+       ],
+       [
+        "9월(29일까지)",
+        "{{live:dorms.appsSeptember|184}}"
+       ]
+      ],
+      "caption": "월별 새 앱"
+     }
+    ],
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "8월부터는 한 달에 "
+        },
+        {
+         "t": "hl",
+         "v": "170개 넘게"
+        },
+        {
+         "t": "text",
+         "v": " 올라옵니다."
+        }
+       ]
+      },
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "가장 많이 올라온 주는 9월 14일 주입니다. 선생님 32명이 앱 49개를 올렸습니다."
+        }
+       ]
+      },
+      {
+       "b": "note",
+       "parts": [
+        {
+         "t": "text",
+         "v": "선생님이 올린 앱 · 봇 데모 제외 · 9월은 오늘(9. 29.)까지 · 실시간"
+        }
+       ]
+      }
+     ]
+    ],
+    "eyebrow": "성장 과정 · 앱"
+   }
+  }
+ ]
+}

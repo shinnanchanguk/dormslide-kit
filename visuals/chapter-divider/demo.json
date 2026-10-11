@@ -1,0 +1,40 @@
+{
+ "meta": {
+  "title": "장 구분 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "VISUAL · DEMO",
+  "footLabel": "VISUAL-DEMO",
+  "issueLabel": "시각화 조각",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "title": "만드는 걸 좋아하는 교사가 바이브코딩을 만나기까지",
+    "agenda": [
+     "탄생 비화",
+     "만든 이유",
+     "성장 과정",
+     "앞으로의 방향"
+    ],
+    "layout": "ch-divider",
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "수업과 음악을 만들던 교사가 어떻게 바이브코딩을 통해 다양한 교육 앱을 만들고, 도름스를 만들게 됐는지"
+        }
+       ]
+      }
+     ]
+    ],
+    "eyebrow": "CHAPTER 1 · 탄생 비화"
+   }
+  }
+ ]
+}

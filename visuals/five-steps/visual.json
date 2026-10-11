@@ -1,0 +1,18 @@
+{
+ "id": "five-steps",
+ "name": "다섯 가지 짚기",
+ "summary": "다섯 요소를 하나씩 짚으며 진행 칩이 따라와요.",
+ "layout": "ch-five",
+ "how": "본문 장 payload.layout \"ch-five\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-five 줄을 본다.",
+ "samplePages": [
+  33,
+  34
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

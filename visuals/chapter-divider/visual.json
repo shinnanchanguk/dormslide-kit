@@ -1,0 +1,17 @@
+{
+ "id": "chapter-divider",
+ "name": "장 구분",
+ "summary": "큰 숫자와 장 제목으로 이야기의 마디를 나눠요.",
+ "layout": "ch-divider",
+ "how": "본문 장 payload.layout \"ch-divider\". 칸 읽는 법은 이 폴더 demo.json 과 designs/<디자인>/README.md 의 ch-divider 줄을 본다.",
+ "samplePages": [
+  7
+ ],
+ "maker": "DoRms",
+ "shelf": "official",
+ "version": 1,
+ "designs": [
+  "dorms-story",
+  "simulation-blueprint"
+ ]
+}

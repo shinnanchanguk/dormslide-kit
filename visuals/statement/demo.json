@@ -1,0 +1,43 @@
+{
+ "meta": {
+  "title": "한 문장 크게 예시",
+  "brand": "DoRmSlide",
+  "railLabel": "VISUAL · DEMO",
+  "footLabel": "VISUAL-DEMO",
+  "issueLabel": "시각화 조각",
+  "design": "dorms-story",
+  "live": false
+ },
+ "slides": [
+  {
+   "kind": "BODY",
+   "payload": {
+    "title": "공간을 만들면, 사람들은 스스로 모일까요?",
+    "layout": "ch-statement",
+    "columns": [
+     [
+      {
+       "b": "lead",
+       "parts": [
+        {
+         "t": "text",
+         "v": "좋은 플랫폼을 만들어도 선생님들이 오지 않아 흐지부지되는 일이 많습니다."
+        }
+       ]
+      },
+      {
+       "b": "p",
+       "parts": [
+        {
+         "t": "text",
+         "v": "그런데 도름스에는 선생님들이 스스로 와서 앱과 자료를 올리고 교육 이야기를 나눕니다. 오늘은 그 이유를 제 경험으로 풀어 보려 합니다."
+        }
+       ]
+      }
+     ]
+    ],
+    "eyebrow": "오늘의 질문"
+   }
+  }
+ ]
+}
