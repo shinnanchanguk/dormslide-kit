@@ -24,7 +24,9 @@ function collect(dir, file, kind) {
       if (meta.id !== name || !ID.test(name)) throw new Error(`${dir}/${name}/${file}: id 는 폴더 이름과 같아야 해요.`);
       if (!meta.name || !meta.summary) throw new Error(`${dir}/${name}/${file}: name · summary 가 필요해요.`);
       // 미리보기 사이트 안의 주소(앞부분 없이). 도름스가 자기 미리보기 창에 이어 붙여 띄운다.
-      const preview = kind === "design" ? `?sample=dorms-story&design=${name}&embed=1` : kind === "tool" ? `?demo=${name}&embed=1` : `?visual=${name}&embed=1`;
+      // 디자인이 자기 샘플(samples/<이름>/deck.json)을 가졌으면 그 샘플로, 없으면 탄생비화 샘플로 미리 보여 준다.
+      const sample = kind === "design" && fs.existsSync(path.join(root, "samples", name, "deck.json")) ? name : "dorms-story";
+      const preview = kind === "design" ? `?sample=${sample}&design=${name}&embed=1` : kind === "tool" ? `?demo=${name}&embed=1` : `?visual=${name}&embed=1`;
       return { ...meta, kind, folder: `${dir}/${name}`, preview };
     });
 }
