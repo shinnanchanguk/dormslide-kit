@@ -23,9 +23,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: node --test scripts/publication.test.mjs
       - run: npm run build
       # 상점 목록도 같은 사이트에 싣는다(미리보기와 목록이 늘 같은 판이 되게).
       - run: cp catalog.json dist/catalog.json
+      - run: node scripts/publication.mjs manifest
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -38,3 +40,20 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+  notify:
+    needs: [build, deploy]
+    # Forks publish their own slides without access to the DoRmS publication secret.
+    if: ${{ always() && github.repository == 'shinnanchanguk/dormslide-kit' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/publication.mjs notify
+        env:
+          DORMSLIDE_PUBLISH_SECRET: ${{ secrets.DORMSLIDE_PUBLISH_SECRET }}
+          PUBLICATION_RESULT: ${{ needs.build.result == 'success' && needs.deploy.result == 'success' && 'success' || 'failure' }}
