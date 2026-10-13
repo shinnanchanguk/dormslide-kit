@@ -1,0 +1,510 @@
+/*
+ * 디자인 ③ 레트로 윈도우
+ *
+ * 레퍼런스: md-design 템플릿 retro-windows(Windows 95/98 데스크톱, 원본 MIT).
+ * 가져온 것은 디자인 요소뿐이다: 회색 단추 면(#d4d0c8), 남색 제목 줄 그라데이션, 튀어나온/들어간 2px 모서리,
+ * 회색 데스크톱 바탕, 주사선, 모서리 없는 직각. 문구·로고는 가져오지 않았다.
+ * 탄생비화(.design-dorms-story)의 규칙을 그대로 받고, 같은 요소를 .design-retro-windows 가 덮어쓴다.
+ */
+@font-face {
+  font-family: "RW Mulmaru";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../../src/assets/fonts/Mulmaru.woff2") format("woff2");
+}
+@font-face {
+  font-family: "RW Terminal";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../src/assets/fonts/VT323-Regular.woff2") format("woff2");
+  /* 영문·숫자만. 한글은 물마루가 그린다 */
+  unicode-range: U+0020-007E;
+}
+
+.design-dorms-story.design-retro-windows {
+  --ch-display: "RW Mulmaru", "Wanted Sans Variable", sans-serif;
+  --ch-ui: "Pretendard Variable", "Wanted Sans Variable", system-ui, sans-serif;
+  --ch-mono: "RW Terminal", "RW Mulmaru", ui-monospace, monospace;
+  --ch-bg: #d4d0c8;
+  --ch-bg-2: #c0c0c0;
+  --ch-ink: #111111;
+  --ch-ink-2: #222222;
+  --ch-muted: #555555;
+  --ch-line: rgba(0, 0, 0, 0.35);
+  --ch-line-strong: #000000;
+  --ch-blue: #000080;
+  --ch-green: #008000;
+  --ch-orange: #000080;
+  --ch-yellow: #808000;
+  --ch-pink: #800000;
+  --ch-purple: #800080;
+  --ch-sky: #1084d0;
+  --ch-dark: #000080;
+  --ch-radius: 0px;
+  --ch-grain: none;
+  --rw-bevel-out: inset -1px -1px 0 #404040, inset 1px 1px 0 #ffffff, inset -2px -2px 0 #808080;
+  --rw-bevel-in: inset 1px 1px 0 #404040, inset -1px -1px 0 #ffffff, inset 2px 2px 0 #808080;
+  --rw-title: linear-gradient(90deg, #000080, #1084d0);
+  --ds-mark: #000080;
+}
+
+/* 무대 = 회색 데스크톱(design.md 의 bg-dark) + 주사선, 그 위에 회색 창 */
+.design-retro-windows .stage {
+  background: #808080;
+}
+.design-retro-windows .stage::after {
+  background-image: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.025) 0 1px, transparent 1px 3px);
+  background-size: auto;
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+.design-retro-windows .canvas {
+  margin: 14px 18px 4px;
+  background: #d4d0c8;
+  box-shadow: var(--rw-bevel-out), 2px 2px 0 rgba(0, 0, 0, 0.35);
+  border: 2px solid #d4d0c8;
+}
+.design-retro-windows .canvas__fade {
+  display: none;
+}
+
+/* 머리·꼬리는 데스크톱 위 작업 표시줄 느낌 */
+.design-retro-windows .top,
+.design-retro-windows .foot {
+  border: 0;
+  color: #ffffff;
+  font-family: var(--ch-mono);
+}
+.design-retro-windows .top__brand {
+  color: #ffffff;
+}
+.design-retro-windows .foot__value {
+  color: #ffffff;
+}
+
+/* 창 제목 줄: 장 맨 위에 남색 막대와 _ □ × 단추 */
+.design-retro-windows :is(.body-page, .survey-page, .tool-page) {
+  padding-top: 62px;
+}
+.design-retro-windows :is(.survey-page, .tool-page)::before {
+  content: "슬라이드.exe";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background: var(--rw-title);
+  color: #ffffff;
+  font-family: var(--ch-ui);
+  font-size: 0.5em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  z-index: 3;
+}
+.design-retro-windows :is(.body-page, .survey-page, .tool-page)::after {
+  content: "_  □  ×";
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  padding: 0 8px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  background: #d4d0c8;
+  box-shadow: var(--rw-bevel-out);
+  color: #000000;
+  font-family: var(--ch-mono);
+  font-size: 0.46em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  z-index: 4;
+}
+
+/* 글자: 제목은 물마루, 라벨·숫자는 터미널 글꼴(VT323) */
+.design-retro-windows .page-title,
+.design-retro-windows .prose .lead {
+  font-weight: 400;
+}
+.design-retro-windows :is(.eyebrow, .top__right, .foot) {
+  letter-spacing: 0.06em;
+}
+.design-retro-windows :is([class*="__num"], [class*="__value"]) {
+  font-size: 1.15em;
+}
+.design-retro-windows .eyebrow {
+  color: #000080;
+  font-family: var(--ch-mono);
+}
+.design-retro-windows .eyebrow::before {
+  background: #000080;
+  height: 2px;
+}
+.design-retro-windows .page-title {
+  letter-spacing: -0.02em;
+}
+.design-retro-windows .page-rule {
+  border-top: 0;
+  height: 2px;
+  background: transparent;
+  box-shadow: 0 -1px 0 #808080, 0 1px 0 #ffffff;
+}
+.design-retro-windows .hl,
+.design-retro-windows mark {
+  background: #000080 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+  padding: 0 0.2em;
+}
+
+/* 카드·칸: 움푹 들어간 흰 칸 */
+.design-retro-windows :is([class*="__card"], [class*="__panel"], [class*="-panel"], [class*="__box"]) {
+  background: #ffffff !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: var(--rw-bevel-in) !important;
+  color: #111111;
+}
+/* 어두운 칸도 창 제목 색으로 */
+.design-retro-windows :is(.ch-hero__stat, .ch-divider, .ch-closing) {
+  border-radius: 0;
+}
+
+/* 그림·큰 숫자 */
+.design-retro-windows img:not(.doreumi-stage img) {
+  border-radius: 0;
+  image-rendering: auto;
+}
+.design-retro-windows :is([class*="__num"], [class*="__value"]) {
+  font-family: var(--ch-mono);
+}
+
+/* 막대·선 그래프 */
+.design-retro-windows .ch-bars__track {
+  background: #ffffff;
+  box-shadow: var(--rw-bevel-in);
+  border-radius: 0;
+}
+.design-retro-windows .ch-bars__fill {
+  background: #000080;
+  border-radius: 0;
+}
+.design-retro-windows .ch-bars__row--lead .ch-bars__fill {
+  background: #000080;
+}
+
+/* ── 기본 배치(ch-*)에 윈도우 부품 입히기 ───────────────────────────────── */
+.design-retro-windows :is(.ch-flow__step, .ch-numbers__cell, .ch-contrast__panel--light) {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: var(--rw-bevel-in) !important;
+}
+.design-retro-windows .ch-flow__step:last-child {
+  background: #000080 !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: var(--rw-bevel-out) !important;
+}
+.design-retro-windows .ch-flow__step:last-child * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.design-retro-windows .ch-flow__no {
+  color: #000080 !important;
+  -webkit-text-fill-color: #000080 !important;
+  font-family: var(--ch-mono);
+}
+.design-retro-windows :is(.ch-flow__link, .ch-contrast__arrow) {
+  color: #000080;
+  border-color: #000080;
+  background-color: #000080;
+}
+
+/* 그래프: 남색 · 청록 · 밝은 파랑 */
+.design-retro-windows svg polyline {
+  stroke-width: 3 !important;
+}
+.design-retro-windows svg g:nth-of-type(1) polyline { stroke: #000080 !important; }
+.design-retro-windows svg g:nth-of-type(2) polyline { stroke: #008080 !important; }
+.design-retro-windows svg g:nth-of-type(3) polyline { stroke: #1084d0 !important; }
+.design-retro-windows svg polygon[fill^="url"] { fill: rgba(0, 0, 128, 0.12) !important; }
+.design-retro-windows [class*="legend"] li:nth-child(1) i { background: #000080 !important; }
+.design-retro-windows [class*="legend"] li:nth-child(2) i { background: #008080 !important; }
+.design-retro-windows [class*="legend"] li:nth-child(3) i { background: #1084d0 !important; }
+.design-retro-windows svg [stroke="#5692f0"] { stroke: #000080 !important; }
+.design-retro-windows svg [stroke="#f29fc8"] { stroke: #008080 !important; }
+.design-retro-windows svg [stroke="#ed5a14"] { stroke: #1084d0 !important; }
+.design-retro-windows svg [stroke="#d99d21"] { stroke: #808000 !important; }
+.design-retro-windows svg [fill="#5692f0"] { fill: #000080 !important; }
+.design-retro-windows svg [fill="#f29fc8"] { fill: #008080 !important; }
+.design-retro-windows svg [fill="#ed5a14"] { fill: #1084d0 !important; }
+.design-retro-windows [style*="#5692f0"] { background: #000080 !important; }
+.design-retro-windows [style*="#f29fc8"] { background: #008080 !important; }
+.design-retro-windows [style*="#ed5a14"] { background: #1084d0 !important; }
+
+/* ── 글 목록 · 표 · 막대 · 기둥 ─────────────────────────────────────────── */
+
+/* 큰 문장(lead) 없이 문단만 있는 장 = '>' 목록(design.md retro-list) */
+.design-retro-windows .body-page .prose:not(:has(.lead)) p:not(.note-serif)::before {
+  content: "> ";
+  color: #000080;
+  font-family: var(--ch-mono);
+  font-weight: 700;
+}
+
+/* 네 칸 표(ch-matrix) = retro-table: 회색 머리, 흰 칸, 얇은 회색 선, 줄무늬 */
+.design-retro-windows .ch-matrix__colhead {
+  background: #c0c0c0;
+  color: #000000;
+  box-shadow: inset 0 0 0 1px #404040;
+  border-radius: 0;
+  font-family: var(--ch-ui);
+  font-weight: 700;
+}
+.design-retro-windows .ch-matrix__rowhead {
+  color: #000080;
+  font-family: var(--ch-display);
+}
+.design-retro-windows .ch-matrix__cell {
+  background: #ffffff !important;
+  color: #222222 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: inset 0 0 0 1px #c0c0c0 !important;
+}
+.design-retro-windows .ch-matrix__line:nth-child(even) .ch-matrix__cell {
+  background: #f0f0f0 !important;
+}
+.design-retro-windows .ch-matrix__cell--strong {
+  color: #000080 !important;
+  font-weight: 700;
+}
+
+/* 막대(ch-bars) = 진행 막대: 움푹 들어간 흰 우물 + 남색 채움 */
+.design-retro-windows .ch-bars__track {
+  height: 1.1em;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.design-retro-windows .ch-bars__fill {
+  display: block;
+  height: 100%;
+}
+.design-retro-windows .ch-bars__name {
+  color: #000080;
+  font-family: var(--ch-display);
+}
+.design-retro-windows .ch-bars__value {
+  color: #000080;
+  font-family: var(--ch-mono);
+}
+
+/* 기둥(ch-pillars) = 그룹 상자: 움푹 들어간 테두리 */
+.design-retro-windows .ch-pillars__card {
+  background: transparent !important;
+  color: #222222 !important;
+  border: 2px groove #ffffff !important;
+  border-radius: 0 !important;
+  box-shadow: inset 1px 1px 0 #808080 !important;
+}
+.design-retro-windows .ch-pillars__no {
+  color: #000080 !important;
+  -webkit-text-fill-color: #000080 !important;
+  font-family: var(--ch-mono);
+}
+
+/* ── 창 제목 줄: 머리말(eyebrow)이 창 파일 이름이 된다 ─────────────────── */
+.design-retro-windows .body-page {
+  padding: 56px 28px 22px;
+}
+.design-retro-windows .body-page .body-page__eyebrowRow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 12px;
+  background: var(--rw-title);
+  z-index: 3;
+}
+.design-retro-windows .body-page .eyebrow {
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--ch-mono);
+  font-size: 0.56em;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+.design-retro-windows .body-page .eyebrow::before {
+  display: none;
+}
+/* 제목은 움푹 들어간 흰 칸 */
+.design-retro-windows .body-page .page-title {
+  margin: 0;
+  padding: 0.18em 0.5em 0.22em;
+  background: #ffffff;
+  box-shadow: var(--rw-bevel-in);
+  font-size: 1.5em;
+}
+.design-retro-windows .body-page .page-rule {
+  display: none;
+}
+
+/* 표처럼 촘촘하게: 칸 높이를 줄이고 왼쪽 정렬 */
+.design-retro-windows .ch-matrix__grid {
+  gap: 0.15em;
+  grid-template-columns: 6.2em repeat(var(--cols), minmax(0, 1fr));
+}
+.design-retro-windows .ch-matrix__cell {
+  min-height: 1.7em;
+  padding: 0.25em 0.6em;
+  place-items: center start;
+  text-align: left;
+  font-size: 0.8em;
+}
+.design-retro-windows .ch-matrix__rowhead,
+.design-retro-windows .ch-matrix__colhead {
+  font-size: 0.7em;
+}
+
+/* 막대 줄을 촘촘하게 */
+.design-retro-windows .ch-bars__row {
+  gap: 0.5em;
+}
+.design-retro-windows .ch-bars__group {
+  gap: 0.25em;
+}
+
+/* 둥근 알약 라벨도 직각으로 */
+.design-retro-windows .ch-contrast__panel .note-serif,
+.design-retro-windows .ch-contrast__panel p:first-child {
+  border-radius: 0 !important;
+}
+
+/* ── 2장 색: 색 이름 글자를 그 색으로 칠한다(옅은 색은 어두운 칸 위에) ─── */
+.design-retro-windows .ch-matrix__line:nth-of-type(1) .ch-matrix__rowhead { color: #d4d0c8; background: #404040; }
+.design-retro-windows .ch-matrix__line:nth-of-type(2) .ch-matrix__rowhead { color: #000080; }
+.design-retro-windows .ch-matrix__line:nth-of-type(3) .ch-matrix__rowhead { color: #ffffff; background: #404040; }
+.design-retro-windows .ch-matrix__line:nth-of-type(4) .ch-matrix__rowhead { color: #008000; }
+.design-retro-windows .ch-matrix__line:nth-of-type(5) .ch-matrix__rowhead { color: #800000; }
+.design-retro-windows .ch-matrix__line:nth-of-type(6) .ch-matrix__rowhead { color: #808000; }
+.design-retro-windows .ch-matrix__line:nth-of-type(7) .ch-matrix__rowhead { color: #008080; }
+.design-retro-windows .ch-matrix__line .ch-matrix__rowhead {
+  align-self: stretch;
+  display: grid;
+  align-items: center;
+  padding: 0 0.5em;
+  font-family: var(--ch-ui);
+  font-weight: 800;
+  font-size: 0.8em;
+}
+
+/* ── 3장 글자 크기: 이름 글자를 그 크기(원본 px ÷ 16)대로 키운다 ───────── */
+.design-retro-windows .ch-bars { --ch-bars-label: 9em; }
+.design-retro-windows .ch-bars__row:nth-of-type(1) .ch-bars__label { font-size: calc(0.78em * 2); }
+.design-retro-windows .ch-bars__row:nth-of-type(2) .ch-bars__label { font-size: calc(0.78em * 1.375); }
+.design-retro-windows .ch-bars__row:nth-of-type(3) .ch-bars__label { font-size: calc(0.78em * 1.125); }
+.design-retro-windows .ch-bars__row:nth-of-type(4) .ch-bars__label { font-size: calc(0.78em * 1); }
+.design-retro-windows .ch-bars__row:nth-of-type(5) .ch-bars__label { font-size: calc(0.78em * 0.875); }
+.design-retro-windows .ch-bars__row:nth-of-type(6) .ch-bars__label { font-size: calc(0.78em * 0.75); }
+
+/* ── 4장 깊이: 안쪽 색은 배경과 같게, 테두리 그림자만 다르게 ─────────── */
+.design-retro-windows .ch-contrast__panel--light,
+.design-retro-windows .ch-contrast__panel--dark {
+  background: #d4d0c8 !important;
+  color: #222222 !important;
+}
+.design-retro-windows .ch-contrast__panel--light {
+  box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #ffffff, inset -2px -2px 0 #808080 !important;
+  border: 2px solid transparent !important;
+  border-top-color: #ffffff !important;
+  border-left-color: #ffffff !important;
+  border-right-color: #000000 !important;
+  border-bottom-color: #000000 !important;
+}
+.design-retro-windows .ch-contrast__panel--dark {
+  box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #ffffff, inset 2px 2px 0 #808080 !important;
+  border: 2px solid transparent !important;
+  border-top-color: #404040 !important;
+  border-left-color: #404040 !important;
+  border-right-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+}
+.design-retro-windows .ch-contrast__panel--dark * {
+  color: #222222 !important;
+  -webkit-text-fill-color: #222222 !important;
+}
+.design-retro-windows .ch-contrast__panel--dark .hl {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 제목 칸과 본문 사이 32px (2·3·4·6쪽) */
+.design-retro-windows :is(.body-page--ch-matrix, .body-page--ch-bars, .body-page--ch-contrast, .body-page--ch-numbers) .page-title {
+  margin-bottom: 32px;
+}
+
+/* ── 1쪽(큰 문장 장): 아래를 진행 막대와 상태 표시줄로 채운다 ─────────── */
+/* ch-body 는 세로 flex 이므로 ::after(진행 막대)와 ::before(상태 표시줄)를 order 로 맨 아래에 차례로 둔다 */
+.design-retro-windows .body-page--ch-statement:has(.prose .lead) .ch-body::after {
+  content: "";
+  order: 98;
+  display: block;
+  flex: none;
+  height: 1.5em;
+  margin-top: 0.8em;
+  box-sizing: border-box;
+  padding: 3px;
+  background:
+    repeating-linear-gradient(90deg, #000080 0 12px, transparent 12px 15px) content-box no-repeat,
+    #ffffff;
+  background-size: 100% 100%, auto;
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  animation: rw-fill 2.4s steps(24, end) both;
+}
+@keyframes rw-fill {
+  from { background-size: 0% 100%, auto; }
+  to { background-size: 100% 100%, auto; }
+}
+.design-retro-windows .body-page--ch-statement:has(.prose .lead) .ch-body::before {
+  content: "READY";
+  order: 99;
+  flex: none;
+  display: flex;
+  align-items: center;
+  margin-top: 0.6em;
+  height: 1.7em;
+  padding: 0 0.8em;
+  box-sizing: border-box;
+  background: #d4d0c8;
+  border-top: 1px solid #404040;
+  border-left: 1px solid #404040;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  color: #008000;
+  font-family: var(--ch-mono);
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .design-retro-windows .body-page--ch-statement:has(.prose .lead) .ch-body::after {
+    animation: none;
+  }
+}

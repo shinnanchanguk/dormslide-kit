@@ -20,6 +20,25 @@
    "preview": "?sample=dorms-story&design=dorms-story&embed=1"
   },
   {
+   "id": "retro-windows",
+   "name": "레트로 윈도우",
+   "summary": "윈도우 95 데스크톱처럼, 장마다 회색 창과 남색 제목 줄, 튀어나온 단추와 움푹 들어간 칸으로 보여 줘요. 가볍고 장난스러운 수업에 어울려요.",
+   "markColor": "#000080",
+   "sample": "samples/retro-windows/deck.json",
+   "maker": "홍창욱",
+   "shelf": "official",
+   "version": 1,
+   "fonts": [
+    "물마루",
+    "VT323",
+    "Pretendard"
+   ],
+   "reference": "md-design 템플릿 retro-windows (Windows 95/98 데스크톱 스타일, 원본 MIT)",
+   "kind": "design",
+   "folder": "designs/retro-windows",
+   "preview": "?sample=retro-windows&design=retro-windows&embed=1"
+  },
+  {
    "id": "simulation-blueprint",
    "name": "시뮬레이션 계기판",
    "summary": "검은 바탕에 단색 선, 원형 뷰포트와 눈금 고리, 모서리 꺾쇠 유리 패널. 과학·기술·데이터 이야기를 조종석 계기판처럼 보여 줘요.",
